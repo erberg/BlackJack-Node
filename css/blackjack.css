@@ -112,17 +112,34 @@
                 left:865px;
                 bottom:120px;
             }
+            .position-Dealer{
+                background-size:cover;
+                width:90px;
+                height:125.2px;
+                position:absolute;
+                left:453px;
+                top:80px;
+            }
             .card-container{
                 background-size:cover;
                 width:90px;
                 height:125.2px;
                 position:absolute;
             }
-            .username-Player1{
+            .username-Player{
              background-color:black;
              color:white;
              position:absolute;
-             bottom:-20px;
+             bottom:-25px;
+             width: 90px;
+             height:20px;
+             overflow: hidden;
+            }
+            .username-Dealer{
+             background-color:black;
+             color:white;
+             position:absolute;
+             top:-25px;
              width: 90px;
              height:20px;
              overflow: hidden;

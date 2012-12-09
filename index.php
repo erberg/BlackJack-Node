@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
     <head>
-        
+
         <meta charset="utf-8">
         <title>Blackjack Card-Counting Application, by Eric R. Berg</title>
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -43,18 +43,27 @@
                 <div class="middle-card-table"></div>
                 <div class="right-card-table"></div>
                 <div class="card-container position-Player1" style="background-image: url(graphics/JC.png);">
-                    <div class="username-Player1">playernamegoeshere</div>    
+                    <div class="username-Player">playernamegoeshere</div>    
                 </div>
-                <div class="card-container position-Player2" style="background-image: url(graphics/JS.png);"></div>
-                <div class="card-container position-Player3" style="background-image: url(graphics/JD.png);"></div>
-                <div class="card-container position-Player4" style="background-image: url(graphics/JH.png);"></div>
-                <div class="card-container position-Player5" style="background-image: url(graphics/AS.png);"></div>
-                <div class="card-container position-Player6" style="background-image: url(graphics/KS.png);"></div>
+                <div class="card-container position-Player2" style="background-image: url(graphics/JS.png);"><div class="username-Player">playernamegoeshere</div> </div>
+                <div class="card-container position-Player3" style="background-image: url(graphics/JD.png);"><div class="username-Player">playernamegoeshere</div> </div>
+                <div class="card-container position-Player4" style="background-image: url(graphics/JH.png);"><div class="username-Player">playernamegoeshere</div> </div>
+                <div class="card-container position-Player5" style="background-image: url(graphics/AS.png);"><div class="username-Player">playernamegoeshere</div> </div>
+                <div class="card-container position-Player6" style="background-image: url(graphics/KS.png);"><div class="username-Player">playernamegoeshere</div> </div>
+                <div class="card-container position-Dealer" style="background-image: url(graphics/KS.png);"><div class="username-Dealer">Dealer</div></div>
             </div>
         </div>
-
         <script src="/js/jquery.js"></script>
         <script src="/js/bootstrap.js"></script>
+        <script src="socket.io.js"></script>
+        <script>
+            var socket = io.connect('http://192.168.2.7:8080');
+            socket.on('news', function (data) {
+                $(".socket").append("<li>booom</li>");
+                console.log(data);
+                socket.emit('my other event', { my: 'data' });
+            });
+        </script>
 
     </body>
 </html>
