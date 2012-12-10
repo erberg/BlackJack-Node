@@ -58,6 +58,7 @@
         <script src="/js/bootstrap.js"></script>
         <script src="socket.io.js"></script>
         <script src="/js/cardView.js"></script>
+
         <script>
             var socket = io.connect('http://192.168.2.7:8080');
             socket.on('news', function (data) {
