@@ -125,6 +125,8 @@
                 width:90px;
                 height:125.2px;
                 position:absolute;
+                background-image: url(../graphics/deck.svg);
+                background-size: 1224px 648px;
             }
             .username-Player{
              background-color:black;

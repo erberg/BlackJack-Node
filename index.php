@@ -42,20 +42,22 @@
                 <div class="left-card-table"></div>
                 <div class="middle-card-table"></div>
                 <div class="right-card-table"></div>
-                <div class="card-container position-Player1" style="background-image: url(graphics/JC.png);">
-                    <div class="username-Player">playernamegoeshere</div>    
-                </div>
-                <div class="card-container position-Player2" style="background-image: url(graphics/JS.png);"><div class="username-Player">playernamegoeshere</div> </div>
-                <div class="card-container position-Player3" style="background-image: url(graphics/JD.png);"><div class="username-Player">playernamegoeshere</div> </div>
-                <div class="card-container position-Player4" style="background-image: url(graphics/JH.png);"><div class="username-Player">playernamegoeshere</div> </div>
-                <div class="card-container position-Player5" style="background-image: url(graphics/AS.png);"><div class="username-Player">playernamegoeshere</div> </div>
-                <div class="card-container position-Player6" style="background-image: url(graphics/KS.png);"><div class="username-Player">playernamegoeshere</div> </div>
-                <div class="card-container position-Dealer" style="background-image: url(graphics/KS.png);"><div class="username-Dealer">Dealer</div></div>
+                <div data-card="JC" class="card-container position-Player1"><div class="username-Player">playernamegoeshere</div></div>
+                <div data-card="QD" class="card-container position-Player2"><div class="username-Player">playernamegoeshere</div> </div>
+                <div data-card="JS" class="card-container position-Player3"><div class="username-Player">playernamegoeshere</div> </div>
+                <div data-card="2H" class="card-container position-Player4"><div class="username-Player">playernamegoeshere</div> </div>
+                <div data-card="AD" class="card-container position-Player5"><div class="username-Player">playernamegoeshere</div> </div>
+                <div data-card="10H" class="card-container position-Player6"><div class="username-Player">playernamegoeshere</div> </div>
+                <div data-card="QS" class="card-container position-Dealer"><div class="username-Dealer">Dealer</div></div>
             </div>
         </div>
+        <ul class="socket">
+            <li>Connected?</li>
+        </ul>
         <script src="/js/jquery.js"></script>
         <script src="/js/bootstrap.js"></script>
         <script src="socket.io.js"></script>
+        <script src="/js/cardView.js"></script>
         <script>
             var socket = io.connect('http://192.168.2.7:8080');
             socket.on('news', function (data) {
@@ -64,6 +66,5 @@
                 socket.emit('my other event', { my: 'data' });
             });
         </script>
-
     </body>
 </html>
