@@ -1,149 +1,154 @@
-       body {
-                padding-top: 60px; /* 60px to make the container go all the way to the bottom of the topbar */
-                height:100%;
-                width:100%;
-                background-color:grey;
-            }
-            .spacer{
-                width:100%;
-                min-height:50px;
-                border:5px solid black;
-                float:left;
-            }
+body {
+    padding-top: 60px; /* 60px to make the container go all the way to the bottom of the topbar */
+    height:100%;
+    width:100%;
+    background-color:grey;
+}
+.spacer{
+    width:100%;
+    min-height:50px;
+    border:5px solid black;
+    float:left;
+}
 
-            .clearfix {
-                display: inline-block;
-            }
-            
-            .table-container{
-                margin:auto;
-                width:1000px;
-            }
-            .card-table{ 
-                position: absolute;
-                width: 1000px;
-                height: 500px;
-                margin: auto;
-                border: 5px solid red;
-            }
+.clearfix {
+    display: inline-block;
+}
 
-            .left-card-table{
-                width:500px;
-                height:500px;
-                border-radius:250px;
-                font-size:20px;
-                color:#fff;
-                line-height:100px;
-                background:green;
-                position:absolute;
-            }
-            .right-card-table{
-                width:500px;
-                height:500px;
-                border-radius:250px;
-                font-size:20px;
-                color:#fff;
-                line-height:100px;
-                background:green;
-                position:absolute;
-                left:500px;
-            }
-            .middle-card-table{
-                width:500px;
-                height:500px;
-                font-size:20px;
-                color:#fff;
-                line-height:100px;
-                background:green;
-                position:absolute;
-                left:250px;
-            }
-            .position-Dealer{
-                background-size:cover;
-                width:90px;
-                height:143px;
-                position:absolute;
-            }
-            .position-Player1{
-                background-size:cover;
-                width:90px;
-                height:125.2px;
-                position:absolute;
-                left:45px;
-                bottom:120px;
-            }
-            .position-Player2{
-                background-size:cover;
-                width:90px;
-                height:125.2px;
-                left:195px;
-                position:absolute;
-                bottom:60px;
-            }
-            .position-Player3{
-                background-size:cover;
-                width:90px;
-                height:125.2px;
-                left:373px;
-                position:absolute;
-                bottom:40px;
-            }
-            .position-Player4{
-                background-size:cover;
-                width:90px;
-                height:125.2px;
-                position:absolute;
-                left:537px;
-                bottom:40px;
-            }
-            .position-Player5{
-                background-size:cover;
-                width:90px;
-                height:125.2px;
-                position:absolute;
-                left:701px;
-                bottom:60px;
-            }
-            .position-Player6{
-                background-size:cover;
-                width:90px;
-                height:125.2px;
-                position:absolute;
-                left:865px;
-                bottom:120px;
-            }
-            .position-Dealer{
-                background-size:cover;
-                width:90px;
-                height:125.2px;
-                position:absolute;
-                left:453px;
-                top:80px;
-            }
-            .card-container{
-                background-size:cover;
-                width:90px;
-                height:125.2px;
-                position:absolute;
-                background-image: url(../graphics/deck.png);
-                background-size: 1224px 648px;
-            }
-            .username-Player{
-             background-color:black;
-             color:white;
-             position:absolute;
-             bottom:-25px;
-             width: 90px;
-             height:20px;
-             overflow: hidden;
-            }
-            .username-Dealer{
-             background-color:black;
-             color:white;
-             position:absolute;
-             top:-25px;
-             width: 90px;
-             height:20px;
-             overflow: hidden;
-            }
+.table-container{
+    margin:auto;
+    width:1000px;
+}
+.card-table{ 
+    position: absolute;
+    width: 1000px;
+    height: 500px;
+    margin: auto;
+    border: 5px solid red;
+}
 
+.left-card-table{
+    width:500px;
+    height:500px;
+    border-radius:250px;
+    font-size:20px;
+    color:#fff;
+    line-height:100px;
+    background:green;
+    position:absolute;
+}
+.right-card-table{
+    width:500px;
+    height:500px;
+    border-radius:250px;
+    font-size:20px;
+    color:#fff;
+    line-height:100px;
+    background:green;
+    position:absolute;
+    left:500px;
+}
+.middle-card-table{
+    width:500px;
+    height:500px;
+    font-size:20px;
+    color:#fff;
+    line-height:100px;
+    background:green;
+    position:absolute;
+    left:250px;
+}
+.position-Player1{
+    background-size:cover;
+    width:110px;
+    height:125.2px;
+    position:absolute;
+    left:70px;
+    bottom:120px;
+}
+.position-Player2{
+    background-size:cover;
+    width:110px;
+    height:125.2px;
+    left:220px;
+    position:absolute;
+    bottom:60px;
+}
+.position-Player3{
+    background-size:cover;
+    width:110px;
+    height:125.2px;
+    left:370px;
+    position:absolute;
+    bottom:40px;
+}
+.position-Player4{
+    background-size:cover;
+    width:110px;
+    height:125.2px;
+    position:absolute;
+    left:520px;
+    bottom:40px;
+}
+.position-Player5{
+    background-size:cover;
+    width:110px;
+    height:125.2px;
+    position:absolute;
+    left:670px;
+    bottom:60px;
+}
+.position-Player6{
+    background-size:cover;
+    width:110px;
+    height:125.2px;
+    position:absolute;
+    left:820px;
+    bottom:120px;
+}
+.position-Dealer{
+    background-size:cover;
+    width:110px;
+    height:125.2px;
+    position:absolute;
+    left:453px;
+    top:80px;
+}
+.card-container{
+    background-size:cover;
+    width:90px;
+    height:125.2px;
+    position:absolute;
+    background-image: url(../graphics/deck.png);
+    background-size: 1224px 648px;
+}
+.card-offset{
+    left: 20px;
+}
+.username-Player{
+    background-color:black;
+    -moz-border-radius: 15px;
+    border-radius: 15px;
+    color:white;
+    position:absolute;
+    bottom:-25px;
+    width: 110px;
+    height:20px;
+    overflow: hidden;
+}
+.username-Dealer{
+    background-color:black;
+    color:white;
+    position:absolute;
+    top:-25px;
+    width: 110px;
+    height:20px;
+    overflow: hidden;
+}
+
+.btn-container
+{
+    bottom:-30px;
+    position:absolute;
+    width:1000px;
+}
