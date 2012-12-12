@@ -54,12 +54,13 @@
                         <button id="betAmt" class="btn btn-primary" style="width:85px;text-align:left;">Bet 5 </button>
                         <button class="btn btn-primary dropdown-toggle" data-toggle="dropdown"><span class="caret"></span></button>
                         <ul class="dropdown-menu">
-                            <li style="margin-right:10px;margin-left:10px;">
+                            <li style="margin-right:10px;margin-left:10px;background-image: url(graphics/scroller.png);">
                                 <div id="scroller" class="btn btn-primary"></div>
                             </li>
                         </ul>
-                        <button class="btn btn-primary">Stand</button>
                         <button class="btn btn-primary">Hit</button>
+                        <button class="btn btn-primary">Split</button>
+                        <button class="btn btn-primary">Stand</button>
                     </div>
                 </div>
             </div>
@@ -68,24 +69,15 @@
             <li>Connected?</li>
         </ul>
         <script src="/js/jquery.js"></script>
-	<script src="js/ui/jquery.ui.core.js"></script>
-	<script src="js/ui/jquery.ui.widget.js"></script>
-	<script src="js/ui/jquery.ui.mouse.js"></script>
-	<script src="js/ui/jquery.ui.draggable.js"></script>
+	<script src="/js/ui/jquery.ui.core.js"></script>
+	<script src="/js/ui/jquery.ui.widget.js"></script>
+	<script src="/js/ui/jquery.ui.mouse.js"></script>
+	<script src="/js/ui/jquery.ui.draggable.js"></script>
         <script src="/js/bootstrap.js"></script>
         <script src="socket.io.js"></script>
         <script src="/js/cardView.js"></script>
-        
-        <script>
-        $( "#scroller" ).draggable({ axis: "x",containment: "parent", drag: function( event, ui ) {}});
-        var val="Bet Min";
-        $( "#scroller" ).on("drag", function( event, ui ) {
-            val=parseInt($(this).css("left"));
-            if(val<5) val=5;
-            $( "#betAmt" ).text("Bet " + Math.round((val/114)*100 / 5) * 5);
-        });
-        </script>
-        
+        <script src="/js/ui/interface.js"></script>
+
         <script>
             var socket = io.connect('http://192.168.2.7:8080');
             socket.on('news', function (data) {
