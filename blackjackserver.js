@@ -5,17 +5,19 @@
 
 // note, io.listen(<port>) will create a http server
 var gameLoop = {};
+
 var deck=require('./js/server/deck.js');
 var board=require('./js/server/board.js');
 
 gameLoop.init = function() {
-    return 1;
+    deck.fillDeck();
+    deck.randomizeDeck();
+    
 };
 
 deck.fillDeck();
 deck.randomizeDeck();
 board.init(deck);
-gameLoop.init();
 
 var io = require('socket.io').listen(8080);
 io.sockets.on('connection', function (socket) {
@@ -26,7 +28,9 @@ io.sockets.on('connection', function (socket) {
         id: socket.id
     });
     socket.on('join', function (data) {
-        socket.emit('displayCards', board.publicCards);
+        var cardout=board.publicCards.slice(0);
+        cardout[0]="XX"; //Hide Dealer Hole (Face Down) Card
+        socket.emit('displayCards', cardout);
     });
   
 });

@@ -14,12 +14,19 @@ function displayCards()
         getPosition: function(stringInput){
             var cardInput=stringInput.slice(0,-1);                  //everything but last char
             var suitInput=stringInput.slice(-1);                    //just last char
-            var xPosition=-90*this.Card.indexOf(cardInput);
-            var yPosition=-125.2*this.Suit.indexOf(suitInput);
+            if(cardInput + suitInput == "XX") {
+                var xPosition=0;
+                var yPosition=-125.2*4;
+            } //XX Means Hole (Face Down) Card
+            else{
+                var xPosition=-90*this.Card.indexOf(cardInput);
+                var yPosition=-125.2*this.Suit.indexOf(suitInput);
+            ;
+            }
             var spritePosition = {
-                "x":[xPosition], 
+                "x":[xPosition],
                 "y": [yPosition]
-            };
+                }
             return spritePosition;
         }
     }

@@ -59,8 +59,10 @@
                             </li>
                         </ul>
                         <button class="btn btn-primary">Hit</button>
-                        <button class="btn btn-primary">Split</button>
                         <button class="btn btn-primary">Stand</button>
+                        <button class="btn btn-primary">Double-Down</button>
+                        <button class="btn btn-primary">Split</button>
+                        
                     </div>
                 </div>
             </div>

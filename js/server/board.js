@@ -4,7 +4,7 @@
  */
 
 module.exports = {
-    publicCards : [], // [D1 D1 P1 P1 P2 P2 P3 P3 ... ]
+    publicCards : [],
     init : function(deck){
         for(var i=0;i<14;i++)  //# of current players will go here
         {
