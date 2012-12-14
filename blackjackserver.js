@@ -6,6 +6,7 @@
 // note, io.listen(<port>) will create a http server
 var gameLoop = {};
 var deck=require('./js/server/deck.js');
+var board=require('./js/server/board.js');
 
 gameLoop.init = function() {
     return 1;
@@ -13,6 +14,7 @@ gameLoop.init = function() {
 
 deck.fillDeck();
 deck.randomizeDeck();
+board.init(deck);
 gameLoop.init();
 
 var io = require('socket.io').listen(8080);
@@ -24,7 +26,7 @@ io.sockets.on('connection', function (socket) {
         id: socket.id
     });
     socket.on('join', function (data) {
-        console.log(data);
+        socket.emit('displayCards', board.publicCards);
     });
   
 });

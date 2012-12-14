@@ -42,13 +42,13 @@
                 <div class="left-card-table"></div>
                 <div class="middle-card-table"></div>
                 <div class="right-card-table"></div>
-                <div class="position-Player1"><div data-card="JC" class="card-container"></div><div data-card="5D" class="card-container card-offset"></div><div class="username-Player">Name Hurr</div></div>
-                <div class="position-Player2"><div data-card="JS" class="card-container"></div><div data-card="8C" class="card-container card-offset"></div><div class="username-Player">Name Hurr</div></div>
-                <div class="position-Player3"><div data-card="QD" class="card-container"></div><div data-card="KC" class="card-container card-offset"></div><div class="username-Player">Name Hurr</div></div>
-                <div class="position-Player4"><div data-card="2H" class="card-container"></div><div data-card="9S" class="card-container card-offset"></div><div class="username-Player">Name Hurr</div></div>
-                <div class="position-Player5"><div data-card="10H" class="card-container"></div><div data-card="10D" class="card-container card-offset"></div><div class="username-Player">Name Hurr</div></div>
-                <div class="position-Player6"><div data-card="AD" class="card-container"></div><div data-card="QH" class="card-container card-offset"></div><div class="username-Player">Name Hurr</div></div>
-                <div class="position-Dealer"><div data-card="5C" class="card-container"></div><div data-card="10D" class="card-container card-offset"></div><div class="username-Player">Name Hurr</div></div>
+                <div class="position-Dealer"><div class="card-container"></div><div class="card-container card-offset"></div><div class="username-Player">Name Hurr</div></div>
+                <div class="position-Player1"><div class="card-container"></div><div class="card-container card-offset"></div><div class="username-Player">Name Hurr</div></div>
+                <div class="position-Player2"><div class="card-container"></div><div class="card-container card-offset"></div><div class="username-Player">Name Hurr</div></div>
+                <div class="position-Player3"><div class="card-container"></div><div class="card-container card-offset"></div><div class="username-Player">Name Hurr</div></div>
+                <div class="position-Player4"><div class="card-container"></div><div class="card-container card-offset"></div><div class="username-Player">Name Hurr</div></div>
+                <div class="position-Player5"><div class="card-container"></div><div class="card-container card-offset"></div><div class="username-Player">Name Hurr</div></div>
+                <div class="position-Player6"><div class="card-container"></div><div class="card-container card-offset"></div><div class="username-Player">Name Hurr</div></div>
                 <div class="btn-container">
                     <div class="btn-group">
                         <button id="betAmt" class="btn btn-primary" style="width:85px;text-align:left;">Bet 5 </button>
@@ -89,6 +89,16 @@
                 console.log(data);
                 //socket.emit('my other event', { my: 'data' });
             });
+            socket.on('displayCards', function (cards) {
+                $(".card-container").each(function(index){
+                    $(this).attr('data-card',cards[index]);
+                });
+                displayCards();
+                for(var i=0;i<14;i++)
+                {
+                    $(".socket").append("<li>Card: "+cards[i]+"</li>"); 
+                }
+                })
         </script>
     </body>
 </html>

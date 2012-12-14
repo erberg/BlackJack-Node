@@ -63,34 +63,10 @@ body {
     width:110px;
     height:125.2px;
     position:absolute;
-    left:70px;
+    left:820px;
     bottom:120px;
 }
 .position-Player2{
-    background-size:cover;
-    width:110px;
-    height:125.2px;
-    left:220px;
-    position:absolute;
-    bottom:60px;
-}
-.position-Player3{
-    background-size:cover;
-    width:110px;
-    height:125.2px;
-    left:370px;
-    position:absolute;
-    bottom:40px;
-}
-.position-Player4{
-    background-size:cover;
-    width:110px;
-    height:125.2px;
-    position:absolute;
-    left:520px;
-    bottom:40px;
-}
-.position-Player5{
     background-size:cover;
     width:110px;
     height:125.2px;
@@ -98,12 +74,36 @@ body {
     left:670px;
     bottom:60px;
 }
+.position-Player3{
+    background-size:cover;
+    width:110px;
+    height:125.2px;
+    position:absolute;
+    left:520px;
+    bottom:40px;
+}
+.position-Player4{
+    background-size:cover;
+    width:110px;
+    height:125.2px;
+    left:370px;
+    position:absolute;
+    bottom:40px;
+}
+.position-Player5{
+    background-size:cover;
+    width:110px;
+    height:125.2px;
+    left:220px;
+    position:absolute;
+    bottom:60px;
+}
 .position-Player6{
     background-size:cover;
     width:110px;
     height:125.2px;
     position:absolute;
-    left:820px;
+    left:70px;
     bottom:120px;
 }
 .position-Dealer{
