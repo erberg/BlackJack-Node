@@ -134,19 +134,21 @@ body {
     border-radius: 15px;
     color:white;
     position:absolute;
-    bottom:-25px;
+    bottom:-30px;
     width: 110px;
     height:20px;
     overflow: hidden;
+    text-align:center;
 }
 .username-Dealer{
     background-color:black;
     color:white;
     position:absolute;
-    top:-25px;
+    top:-30px;
     width: 110px;
     height:20px;
     overflow: hidden;
+    text-align:center;
 }
 
 .btn-container
