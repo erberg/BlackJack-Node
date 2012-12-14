@@ -5,10 +5,20 @@
 
 module.exports = {
     publicCards : [],
+    playerPositions : [1,1,1,0,0,0,0],  //Player Positions 1-6
     init : function(deck){
-        for(var i=0;i<14;i++)  //# of current players will go here
+        for(var i=0;i<this.playerPositions.length;i++)  //# of current players will go here
         {
-            this.publicCards[i]=deck.randomizedDeck.pop();
+            if(this.playerPositions[i])
+                {
+                    this.publicCards.push(deck.randomizedDeck.pop());
+                    this.publicCards.push(deck.randomizedDeck.pop());
+                }
+            else
+            {
+            this.publicCards.push("XX");
+            this.publicCards.push("XX");
+            }
         }
     }
 };

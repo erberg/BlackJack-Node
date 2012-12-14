@@ -42,13 +42,13 @@
                 <div class="left-card-table"></div>
                 <div class="middle-card-table"></div>
                 <div class="right-card-table"></div>
-                <div class="position-Dealer"><div class="card-container"></div><div class="card-container card-offset"></div><div class="username-Player">Name Hurr</div></div>
-                <div class="position-Player1"><div class="card-container"></div><div class="card-container card-offset"></div><div class="username-Player">Name Hurr</div></div>
-                <div class="position-Player2"><div class="card-container"></div><div class="card-container card-offset"></div><div class="username-Player">Name Hurr</div></div>
-                <div class="position-Player3"><div class="card-container"></div><div class="card-container card-offset"></div><div class="username-Player">Name Hurr</div></div>
-                <div class="position-Player4"><div class="card-container"></div><div class="card-container card-offset"></div><div class="username-Player">Name Hurr</div></div>
-                <div class="position-Player5"><div class="card-container"></div><div class="card-container card-offset"></div><div class="username-Player">Name Hurr</div></div>
-                <div class="position-Player6"><div class="card-container"></div><div class="card-container card-offset"></div><div class="username-Player">Name Hurr</div></div>
+                <div class="position-Dealer"><div class="card-container"></div><div class="card-container dealer-card-offset"></div><div class="username-Player">Dealer</div></div>
+                <div class="position-Player1"><div class="btn joinButton btn-primary">Join Table</div><div class="card-container"></div><div class="card-container card-offset"></div><div class="username-Player">Player 1</div></div>
+                <div class="position-Player2"><div class="btn joinButton btn-primary">Join Table</div><div class="card-container"></div><div class="card-container card-offset"></div><div class="username-Player">Player 2</div></div>
+                <div class="position-Player3"><div class="btn joinButton btn-primary">Join Table</div><div class="card-container"></div><div class="card-container card-offset"></div><div class="username-Player">Player 3</div></div>
+                <div class="position-Player4"><div class="btn joinButton btn-primary">Join Table</div><div class="card-container"></div><div class="card-container card-offset"></div><div class="username-Player">Player 4</div></div>
+                <div class="position-Player5"><div class="btn joinButton btn-primary">Join Table</div><div class="card-container"></div><div class="card-container card-offset"></div><div class="username-Player">Player 5</div></div>
+                <div class="position-Player6"><div class="btn joinButton btn-primary">Join Table</div><div class="card-container"></div><div class="card-container card-offset"></div><div class="username-Player">Player 6</div></div>
                 <div class="btn-container">
                     <div class="btn-group">
                         <button id="betAmt" class="btn btn-primary" style="width:85px;text-align:left;">Bet 5 </button>
@@ -82,18 +82,22 @@
 
         <script>
             var socket = io.connect('http://192.168.2.7:8080');
+            
             socket.on('news', function (data) {
                 $(".socket").append("<li>"+data.hello+"</li>");
-                socket.emit('join', data.hello );
+                socket.emit('connect', data.hello );
             });
+            
             socket.on('id', function (data) {
                 $(".socket").append("<li>My ClientID: "+data.id+"</li>");
                 console.log(data);
                 //socket.emit('my other event', { my: 'data' });
             });
+            
             socket.on('displayCards', function (cards) {
                 $(".card-container").each(function(index){
                     $(this).attr('data-card',cards[index]);
+                    if(index>1 && cards[index]=="XX") $(this).hide(); //Hiddencards and Not Dealer, Then Hide Cards
                 });
                 displayCards();
                 for(var i=0;i<14;i++)
@@ -101,6 +105,12 @@
                     $(".socket").append("<li>Card: "+cards[i]+"</li>"); 
                 }
                 })
+           
+           socket.on('playerPositions', function (playerPos) {
+               $(".joinButton").each(function(index){
+                   if(playerPos[index+1]==1){$(this).hide();}; //+1 compensates for dealer
+               });
+           })
         </script>
     </body>
 </html>

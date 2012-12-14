@@ -112,7 +112,7 @@ body {
     height:125.2px;
     position:absolute;
     left:453px;
-    top:80px;
+    top:40px;
 }
 .card-container{
     background-size:cover;
@@ -127,6 +127,12 @@ body {
 }
 .card-offset{
     left: 20px;
+    bottom:25px;
+}
+
+.dealer-card-offset{
+    left: 20px;
+
 }
 .username-Player{
     background-color:black;
@@ -156,4 +162,12 @@ body {
     bottom:-30px;
     position:absolute;
     width:1000px;
+}
+
+.joinButton{
+    left: 10px;
+    bottom: 20px;
+    position:absolute;
+    z-index:2;
+    height:20px;
 }
