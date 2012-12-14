@@ -122,7 +122,7 @@ body {
     background-image: url(../graphics/deck.png);
     -moz-border-radius: 5px;
     border-radius: 5px;
-    background-size: 1224px 648px;
+    background-size: 1170px 626px;
     box-shadow: 5px 5px 5px #000;
 }
 .card-offset{
