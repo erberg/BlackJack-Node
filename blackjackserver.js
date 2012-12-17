@@ -33,7 +33,6 @@ io.sockets.on('connection', function (socket) {
     socket.on('connect', function (data) {
         var cardout=board.publicCards.slice(0);
         socket.emit('updateTable', board);
-        socket.emit('tablePositions', board.tablePositions);
     });
     
   
