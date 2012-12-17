@@ -77,7 +77,7 @@
         <script src="/js/ui/jquery.ui.draggable.js"></script>
         <script src="/js/bootstrap.js"></script>
         <script src="socket.io.js"></script>
-        <script src="/js/cardView.js"></script>
+        <script src="/js/boardView.js"></script>
         <script src="/js/ui/interface.js"></script>
 
         <script>
