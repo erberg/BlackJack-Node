@@ -5,20 +5,19 @@
 
 module.exports = {
     publicCards : [],
-    playerPositions : [1,1,1,0,0,0,0],  //Player Positions 1-6
+    privateCards : [],
+    tablePositions : [1,1,1,1,0,0,0],  //Positions Dealer & Player 1-6
     init : function(deck){
-        for(var i=0;i<this.playerPositions.length;i++)  //# of current players will go here
+        for(var i=0;i<this.tablePositions.length;i++)  //# of current players will go here
         {
-            if(this.playerPositions[i])
+            if(this.tablePositions[i])
                 {
-                    this.publicCards.push(deck.randomizedDeck.pop());
-                    this.publicCards.push(deck.randomizedDeck.pop());
+                    this.privateCards.push(deck.randomizedDeck.pop());
+                    this.privateCards.push(deck.randomizedDeck.pop());
                 }
-            else
-            {
-            this.publicCards.push("XX");
-            this.publicCards.push("XX");
-            }
         }
+        this.publicCards=this.privateCards.slice(0);
+        this.publicCards[0]="XX";
+        this.publicCards[1]="XX";
     }
 };

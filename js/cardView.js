@@ -5,10 +5,15 @@
 
 $(document).ready(function()
 {
-    displayCards();        
+    displayElements();        
 });
  
-function displayCards()
+ function displayElements()
+ {
+     drawCards();
+ }
+ 
+function drawCards()
 {
     var cardView = {
         getPosition: function(stringInput){
@@ -21,12 +26,11 @@ function displayCards()
             else{
                 var xPosition=-90*this.Card.indexOf(cardInput);
                 var yPosition=-125.2*this.Suit.indexOf(suitInput);
-            ;
             }
             var spritePosition = {
-                "x":[xPosition],
+                "x": [xPosition],
                 "y": [yPosition]
-                }
+            }
             return spritePosition;
         }
     }

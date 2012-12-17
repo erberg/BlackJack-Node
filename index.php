@@ -94,21 +94,21 @@
                 //socket.emit('my other event', { my: 'data' });
             });
             
-            socket.on('displayCards', function (cards) {
+            socket.on('displayElements', function (cards) {
                 $(".card-container").each(function(index){
                     $(this).attr('data-card',cards[index]);
-                    if(index>1 && cards[index]=="XX") $(this).hide(); //Hiddencards and Not Dealer, Then Hide Cards
+                    if(cards[index]==undefined) $(this).hide(); //Hide Cards When no Player Present
                 });
-                displayCards();
+                displayElements();
                 for(var i=0;i<14;i++)
                 {
                     $(".socket").append("<li>Card: "+cards[i]+"</li>"); 
                 }
                 })
            
-           socket.on('playerPositions', function (playerPos) {
+           socket.on('tablePositions', function (tablePos) {
                $(".joinButton").each(function(index){
-                   if(playerPos[index+1]==1){$(this).hide();}; //+1 compensates for dealer
+                   if(tablePos[index+1]==1){$(this).hide();} //+1 compensates for dealer
                });
            })
         </script>

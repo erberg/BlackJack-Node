@@ -32,9 +32,8 @@ io.sockets.on('connection', function (socket) {
     
     socket.on('connect', function (data) {
         var cardout=board.publicCards.slice(0);
-        cardout[0]="XX"; //Hide Dealer Hole (Face Down) Card
-        socket.emit('displayCards', cardout);
-        socket.emit('playerPositions', board.playerPositions);
+        socket.emit('displayElements', cardout);
+        socket.emit('tablePositions', board.tablePositions);
     });
     
   
