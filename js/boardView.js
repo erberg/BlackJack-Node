@@ -5,15 +5,35 @@
 
 $(document).ready(function()
 {
+    setCardValues();
     displayElements();        
 });
  
- function displayElements()
- {
-     drawCards();
- }
+function displayBoard()
+{ 
+    prepareCardDisplay();
+    prepareButtonDisplay();
+    prepareCardSpritePositions();
+}
+function prepareCardDisplay()
+{
+    $(".card-container").each(function(index){
+        if(glClientBoard.publicCards[index]==undefined) $(this).hide(); 
+        $(this).attr('data-card',glClientBoard.publicCards[index]); 
+    });
+          
+}
+
+function prepareButtonDisplay()
+{
+    $(".joinButton").each(function(index){
+        if(glClientBoard.tablePositions[index+1]==1){ //+1 compensates for dealer
+            $(this).hide();
+        } 
+    });
+}
  
-function drawCards()
+function prepareCardSpritePositions()
 {
     var cardView = {
         getPosition: function(stringInput){
@@ -42,4 +62,6 @@ function drawCards()
         var cardPosition=cardView.getPosition(cardString);
         $(this).css("background-position",cardPosition["x"] + "px " + cardPosition["y"]+ "px");
     });
+    
+    
 }

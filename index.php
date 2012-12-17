@@ -82,6 +82,7 @@
 
         <script>
             var socket = io.connect('http://192.168.2.7:8080');
+            var glClientBoard={};
             
             socket.on('news', function (data) {
                 $(".socket").append("<li>"+data.hello+"</li>");
@@ -93,24 +94,17 @@
                 console.log(data);
                 //socket.emit('my other event', { my: 'data' });
             });
-            
-            socket.on('displayElements', function (cards) {
-                $(".card-container").each(function(index){
-                    $(this).attr('data-card',cards[index]);
-                    if(cards[index]==undefined) $(this).hide(); //Hide Cards When no Player Present
-                });
-                displayElements();
+                
+                socket.on('updateTable', function (board) {
+                glClientBoard=board;
+                
                 for(var i=0;i<14;i++)
                 {
-                    $(".socket").append("<li>Card: "+cards[i]+"</li>"); 
+                    $(".socket").append("<li>Card: "+board.publicCards[i]+"</li>"); 
                 }
+                displayBoard();
                 })
            
-           socket.on('tablePositions', function (tablePos) {
-               $(".joinButton").each(function(index){
-                   if(tablePos[index+1]==1){$(this).hide();} //+1 compensates for dealer
-               });
-           })
         </script>
     </body>
 </html>
