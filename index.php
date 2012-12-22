@@ -78,9 +78,11 @@
         <script src="/js/bootstrap.js"></script>
         <script src="socket.io.js"></script>
         <script src="/js/boardView.js"></script>
+        <script src="/js/buttonController.js"></script>
         <script src="/js/ui/interface.js"></script>
 
         <script>
+            var glClientID=0;
             var socket = io.connect('http://192.168.2.7:8080');
             var glClientBoard={};
             
@@ -91,6 +93,7 @@
             
             socket.on('id', function (data) {
                 $(".socket").append("<li>My ClientID: "+data.id+"</li>");
+                glClientID=data.id;
                 console.log(data);
                 //socket.emit('my other event', { my: 'data' });
             });

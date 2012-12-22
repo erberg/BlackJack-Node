@@ -2,12 +2,6 @@
  * This script is responsible for displaying appropriate card using data-card value
  * by modifying the background-position of the spritesheet.
  */
-
-$(document).ready(function()
-{
-    setCardValues();
-    displayElements();        
-});
  
 function displayBoard()
 { 
@@ -15,6 +9,7 @@ function displayBoard()
     prepareButtonDisplay();
     prepareCardSpritePositions();
 }
+
 function prepareCardDisplay()
 {
     $(".card-container").each(function(index){
@@ -54,6 +49,7 @@ function prepareCardSpritePositions()
             return spritePosition;
         }
     }
+    
     cardView.Card=["A","2","3", "4", "5", "6", "7", "8", "9", "10", "J", "Q", "K"];
     cardView.Suit=["C", "H", "S", "D"];
                 
