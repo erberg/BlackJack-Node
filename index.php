@@ -94,7 +94,6 @@
             socket.on('id', function (data) {
                 $(".socket").append("<li>My ClientID: "+data.id+"</li>");
                 glClientID=data.id;
-                console.log(data);
                 //socket.emit('my other event', { my: 'data' });
             });
                 

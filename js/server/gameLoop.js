@@ -6,10 +6,9 @@
 module.exports = {
     publicCards : [],
     positionClientID : [0,0,0,0,0,0,0],
-    tablePositions : [1,0,0,0,0,0,0],  //Positions Dealer & Player 1-6
+    tablePositions : [1,1,1,0,0,0,0],  //Positions Dealer & Player 1-6
     numPlayers : 0,
-    addPlayer : function(id,requestedPosition){
-        console.log(id);
+    addPlayer : function(requestedPosition, id){
         if(this.tablePositions[requestedPosition]==0)
         {
             this.positionClientID[requestedPosition]=id;
@@ -23,11 +22,6 @@ module.exports = {
             this.tablePositions[requestedPosition]=0;
             this.numPlayers--;
         }   
-    },
-    isCurrentPlayer : function(id){
-        for(var i=0;i<this.positionClientID.length;i++)
-        {if(this.positionClientID[i]==id){return 1;}}
-        return 0;
     },
     init : function(deck){
         this.publicCards[0]="XX";

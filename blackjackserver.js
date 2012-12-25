@@ -11,19 +11,20 @@ var board=require('./js/server/board.js');
 
 deck.fillDeck();
 deck.randomizeDeck();
-board.init(deck);
-
-gameLoop.init = function() {
-    while(board.numPlayers>0)
-        {
-            //deal, bet, check dealer bj, options loop til stand bust or timeout
-        }
-};
-
 
 var io = require('socket.io').listen(8080);
 io.sockets.on('connection', function (socket) {
     
+    gameLoop.run = function() {
+        for (var i=1;i<board.positionClientID.length;i++)
+        {
+            if(board.positionClientID[i]!==0)
+            {
+                socket.emit('derrrp'); 
+            }
+        }  
+    };
+
     socket.emit('news', {
         hello: 'world'
     });
@@ -36,8 +37,15 @@ io.sockets.on('connection', function (socket) {
         socket.emit('updateTable', board);
     });
     
-    socket.on('joinRequest', function (data) {
-        board.addPlayer(data[0],data[1]);
+    socket.on('joinRequest', function (data) {  //If no players, kicks off game loop.
+        if(board.numPlayers<6)
+        {
+            if(!board.isCurrentPlayer(data["clientID"]))
+            {
+                board.addPlayer(data["clientID"],data["requestedPosition"]);
+                gameLoop.run();
+            }
+        }
     });
     
 });
