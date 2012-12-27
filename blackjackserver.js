@@ -38,14 +38,10 @@ io.sockets.on('connection', function (socket) {
     });
     
     socket.on('joinRequest', function (data) {  //If no players, kicks off game loop.
-        if(board.numPlayers<6)
-        {
-            if(!board.isCurrentPlayer(data["clientID"]))
-            {
-                board.addPlayer(data["clientID"],data["requestedPosition"]);
+
+                if(board.addPlayer(data["clientID"],data["requestedPosition"]))
+                    {socket.emit('updateTable', board);}
                 gameLoop.run();
-            }
-        }
     });
     
 });

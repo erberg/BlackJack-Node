@@ -83,7 +83,7 @@
 
         <script>
             var glClientID=0;
-            var socket = io.connect('http://192.168.2.7:8080');
+            var socket = io.connect('http://192.168.2.6:8080');
             var glClientBoard={};
             
             socket.on('news', function (data) {
