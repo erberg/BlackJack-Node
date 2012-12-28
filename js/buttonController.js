@@ -11,6 +11,6 @@ function requestJoin()
          var data = {};
          data["requestedPosition"]=$(".joinButton").index(this)+1;
          data["clientID"]=glClientID;
-         socket.emit('joinRequest',data);
+         socket.emit('addPlayerRequest',data);
      });    
 }

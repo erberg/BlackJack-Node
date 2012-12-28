@@ -8,6 +8,8 @@ var gameLoop = {};
 
 var deck=require('./js/server/deck.js');
 var board=require('./js/server/board.js');
+var gameState=require('./js/server/gameState.js');
+gameState.setState('waitingForPlayer');
 
 deck.fillDeck();
 deck.randomizeDeck();
@@ -37,11 +39,14 @@ io.sockets.on('connection', function (socket) {
         socket.emit('updateTable', board);
     });
     
-    socket.on('joinRequest', function (data) {  //If no players, kicks off game loop.
+    socket.on('addPlayerRequest', function (data) {  //If no players, kicks off game loop.
 
-                if(board.addPlayer(data["clientID"],data["requestedPosition"]))
-                    {socket.emit('updateTable', board);}
-                gameLoop.run();
+        if(board.addPlayer(data["clientID"],data["requestedPosition"]))
+        {
+            io.sockets.emit('updateTable', board); 
+            gameState.currentState.addPlayer();
+        }
+                
     });
     
 });

@@ -10,7 +10,7 @@ module.exports = {
     numPlayers : 0,
     addPlayer : function(id,requestedPosition){
         console.log(id);
-        if(this.numPlayers<6)
+        if(this.numPlayers<=6)
         {
             if(!this.isCurrentPlayer(id))
             {
@@ -20,9 +20,10 @@ module.exports = {
                     this.tablePositions[requestedPosition]=1;
                     this.numPlayers++;
                     return 1;
-                } else return 0;   
-            } else return 0;
-        } else return 0;
+                }   
+            }
+        } 
+        return 0;
 },
 remPlayer : function(requestedPosition, id){
     if(this.tablePositions[requestedPosition]==id)
