@@ -1,6 +1,6 @@
 /* 
- * This script is responsible for displaying appropriate card using data-card value
- * by modifying the background-position of the spritesheet.
+ * This script is responsible for displaying appropriate card using "data-card" values found in index.php.
+ * These functions convert text into spritesheet positions. 
  */
  
 function displayBoard()
@@ -13,8 +13,8 @@ function displayBoard()
 function prepareCardDisplay()
 {
     $(".card-container").each(function(index){
-        if(glClientBoard.publicCards[index]==undefined) $(this).hide(); 
-        $(this).attr('data-card',glClientBoard.publicCards[index]); 
+        if(glClientBoard.publicCards[index]==undefined) $(this).hide();         //Remove card display if no player is present
+        $(this).attr('data-card',glClientBoard.publicCards[index]);             //Set 'data-card' variables using board (passed from server) 
     });
           
 }
@@ -34,7 +34,7 @@ function prepareCardSpritePositions()
         getPosition: function(stringInput){
             var cardInput=stringInput.slice(0,-1);                  //everything but last char
             var suitInput=stringInput.slice(-1);                    //just last char
-            if(cardInput + suitInput == "XX") {                     //XX Means (Face Down) Card
+            if(cardInput + suitInput == "XX") {                     //XX Means Face Down Card
                 var xPosition=0;
                 var yPosition=-125.2*4;
             } 

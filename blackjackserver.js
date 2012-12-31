@@ -43,8 +43,9 @@ io.sockets.on('connection', function (socket) {
 
         if(board.addPlayer(data["clientID"],data["requestedPosition"]))
         {
-            io.sockets.emit('updateTable', board); 
+            gameState.setState('waitingForPlayer');
             gameState.currentState.addPlayer();
+            io.sockets.emit('updateTable', board);
         }
                 
     });

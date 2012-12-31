@@ -7,10 +7,14 @@ module.exports = {
     states : {
         waitingForPlayer : { //realize event handlers of state 'waitingforplayer'
             addPlayer : function(){
-                console.log('full add click');
+                console.log('wfp addPlayer() called');
             }
         },             //Wait For and Add New Players Upon Join
-        acceptingBets:{},               
+        acceptingBets:{
+            addPlayer : function(){
+                console.log('AB addPlayer() called');
+            }
+        },               
         dealingCards:{},                    
         checkingForDealerBlackJack:{},   
         acceptingPlayerOptions:{},       
@@ -18,6 +22,10 @@ module.exports = {
     },
     setState : function(state){
         this.currentState=this.states[state];
+        //return this.currentState;
+    },
+    getState : function(){
+        return this.currentState;
     }
 };
 
