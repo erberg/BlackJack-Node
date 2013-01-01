@@ -24,10 +24,15 @@ function prepareButtonDisplay()
     $(".joinButton").each(function(index){
         if(glClientBoard.tablePositions[index+1]==1){ //+1 compensates for dealer
             $(this).hide();
-        } 
+        } else $(this).show();
     });
 }
  
+//function prepareMessageDisplay()     might use to add server sent messages. probably message object would be best.
+//{
+//    $(".message").append('<p> message </p>');
+//}
+
 function prepareCardSpritePositions()
 {
     var cardView = {

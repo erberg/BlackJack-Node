@@ -4,11 +4,10 @@
  */
 
 // note, io.listen(<port>) will create a http server
-var gameLoop = {};
-
-var deck=require('./js/server/deck.js');
-var board=require('./js/server/board.js');
-var gameState=require('./js/server/gameState.js');
+gameLoop = require('./js/server/gameLoop.js');
+deck=require('./js/server/deck.js');
+board=require('./js/server/board.js');
+gameState=require('./js/server/gameState.js');
 gameState.setState('waitingForPlayer');
 
 deck.fillDeck();
@@ -39,15 +38,15 @@ io.sockets.on('connection', function (socket) {
         socket.emit('updateTable', board);
     });
     
-    socket.on('addPlayerRequest', function (data) {  //If no players, kicks off game loop.
-
-        if(board.addPlayer(data["clientID"],data["requestedPosition"]))
-        {
-            gameState.setState('waitingForPlayer');
-            gameState.currentState.addPlayer();
-            io.sockets.emit('updateTable', board);
-        }
-                
+    socket.on('addPlayerRequest', function (data) {  //If no players, kicks off game loop. 
+        if(gameState.currentState.addPlayer())
+            {
+            if(board.addPlayer(data["clientID"],data["requestedPosition"]))
+                {
+                    if(!gameLoop.running) gameLoop.startLoop();
+                    io.sockets.emit('updateTable', board);
+                }
+            }
     });
     
 });
