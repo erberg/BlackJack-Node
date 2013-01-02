@@ -10,6 +10,12 @@ function displayBoard()
     prepareCardSpritePositions();
 }
 
+function displayMessage()
+{
+    $(".message").append('<p id="type"> message </p>');
+    setTimeout(function() {$('.message > #type').remove();}, 5000);
+}
+
 function prepareCardDisplay()
 {
     $(".card-container").each(function(index){
@@ -27,11 +33,6 @@ function prepareButtonDisplay()
         } else $(this).show();
     });
 }
- 
-//function prepareMessageDisplay()     might use to add server sent messages. probably message object would be best.
-//{
-//    $(".message").append('<p> message </p>');
-//}
 
 function prepareCardSpritePositions()
 {

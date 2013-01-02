@@ -49,6 +49,7 @@
                 <div class="position-Player4"><div class="btn joinButton btn-primary">Join Table</div><div class="card-container"></div><div class="card-container card-offset"></div><div class="username-Player">Player 4</div></div>
                 <div class="position-Player5"><div class="btn joinButton btn-primary">Join Table</div><div class="card-container"></div><div class="card-container card-offset"></div><div class="username-Player">Player 5</div></div>
                 <div class="position-Player6"><div class="btn joinButton btn-primary">Join Table</div><div class="card-container"></div><div class="card-container card-offset"></div><div class="username-Player">Player 6</div></div>
+                <div class="message"></div>
                 <div class="btn-container">
                     <div class="btn-group">
                         <button id="betAmt" class="btn btn-primary" style="width:85px;text-align:left;">Bet 5 </button>
@@ -105,6 +106,10 @@
                     $(".socket").append("<li>Card: "+board.publicCards[i]+"</li>"); 
                 }
                 displayBoard();
+                })
+                
+                socket.on('displayMessage', function (board) {
+                displayMessage();
                 })
            
         </script>

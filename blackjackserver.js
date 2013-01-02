@@ -43,7 +43,11 @@ io.sockets.on('connection', function (socket) {
             {
             if(board.addPlayer(data["clientID"],data["requestedPosition"]))
                 {
-                    if(!gameLoop.running) gameLoop.startLoop();
+                    if(!gameLoop.running) 
+                    {
+                    gameLoop.startLoop();
+                    socket.emit('displayMessage', "Accepting bets in 5 seconds.");
+                    }
                     io.sockets.emit('updateTable', board);
                 }
             }

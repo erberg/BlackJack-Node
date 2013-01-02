@@ -7,22 +7,32 @@ module.exports = {
     states : {
         waitingForPlayer : { //realize event handlers of state 'waitingforplayer'
             addPlayer : function(){
-                console.log('wfp addPlayer() called');
+                console.log('waitingForPlayer.addPlayer() called.');
                 return 1;
             },
             name: "waitingForPlayer",
             wait : 5000
         },             //Wait For and Add New Players Upon Join
         acceptingBets:{
-            addPlayer : function(){
-                console.log('AB addPlayer() called');
-            },
-            wait : 5000
+            addPlayer : function(){},
+            wait : 10000
         },               
-        dealingCards:{},                    
-        checkingForDealerBlackJack:{},   
-        acceptingPlayerOptions:{},       
-        concludingRound:{}               //Includes Paying Out & Announcing Winner
+        dealingCards:{
+            addPlayer : function(){},
+            wait : 5000
+        },                    
+        checkingForDealerBlackJack:{
+            addPlayer : function(){},
+            wait : 5000
+        },   
+        acceptingPlayerOptions:{
+            addPlayer : function(){},
+            wait : 5000
+        },       
+        concludingRound:{
+            addPlayer : function(){},
+            wait : 5000
+        }               //Includes Paying Out & Announcing Winner
     },
     setState : function(state){
         this.currentState=this.states[state];

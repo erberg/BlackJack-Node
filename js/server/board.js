@@ -6,6 +6,7 @@
 module.exports = {
     publicCards : [],
     positionClientID : [0,0,0,0,0,0,0],
+    playerBets : [0,0,0,0,0,0,0],
     tablePositions : [1,0,0,0,0,0,0],  //Positions Dealer & Player 1-6
     numPlayers : 0,
     addPlayer : function(id,requestedPosition){
@@ -13,12 +14,7 @@ module.exports = {
         if(this.numPlayers<=6)
         {
             var existingPlayerPosition=this.isCurrentPlayer(id);
-            if(existingPlayerPosition>0)
-            {
-                this.positionClientID[existingPlayerPosition]=0;
-                this.tablePositions[existingPlayerPosition]=0;
-                this.numPlayers--;
-            }
+            this.remPlayer(id); //Remove player if already seated.
             if(this.tablePositions[requestedPosition]==0)
             {
                 this.positionClientID[requestedPosition]=id;
@@ -29,10 +25,12 @@ module.exports = {
         } 
         return 0;
     },
-    remPlayer : function(requestedPosition, id){
-        if(this.tablePositions[requestedPosition]==id)
+    remPlayer : function(id){
+        var existingPlayerPosition=this.isCurrentPlayer(id);
+        if(existingPlayerPosition>0)
         {
-            this.tablePositions[requestedPosition]=0;
+            this.positionClientID[existingPlayerPosition]=0;
+            this.tablePositions[existingPlayerPosition]=0;
             this.numPlayers--;
         }   
     },

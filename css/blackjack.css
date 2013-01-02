@@ -164,6 +164,16 @@ body {
     width:1000px;
 }
 
+.message
+{
+    bottom:200px;
+    position:absolute;
+    width:1000px;
+    text-align:center;
+    font-size: 20px;
+    z-index:2;
+}
+
 .joinButton{
     left: 10px;
     bottom: 20px;
