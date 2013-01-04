@@ -4,9 +4,12 @@
  */
 
 module.exports = {
+    initialChips : 500,
+    currentMessage : "",
     publicCards : [],
     positionClientID : [0,0,0,0,0,0,0],
     playerBets : [0,0,0,0,0,0,0],
+    playerChips : [0,0,0,0,0,0,0],
     tablePositions : [1,0,0,0,0,0,0],  //Positions Dealer & Player 1-6
     numPlayers : 0,
     addPlayer : function(id,requestedPosition){
@@ -19,6 +22,7 @@ module.exports = {
             {
                 this.positionClientID[requestedPosition]=id;
                 this.tablePositions[requestedPosition]=1;
+                this.playerChips[requestedPosition]=this.initialChips;
                 this.numPlayers++;
                 return 1;
             }    
@@ -26,22 +30,17 @@ module.exports = {
         return 0;
     },
     remPlayer : function(id){
-        var existingPlayerPosition=this.isCurrentPlayer(id);
-        if(existingPlayerPosition>0)
+        var playerPosition=this.positionClientID.indexOf(id);
+        if(playerPosition)
         {
-            this.positionClientID[existingPlayerPosition]=0;
-            this.tablePositions[existingPlayerPosition]=0;
+            this.positionClientID[playerPosition]=0;
+            this.tablePositions[playerPosition]=0;
             this.numPlayers--;
         }   
     },
     isCurrentPlayer : function(id){
-        for(var i=1;i<this.positionClientID.length;i++)
-        {
-            if(this.positionClientID[i]===id){
-                return i;
-            }
-        }
-        return 0;
+        var playerPosition=this.positionClientID.indexOf(id);
+        return playerPosition;
     },
     init : function(deck){
         this.publicCards[0]="XX";
@@ -54,5 +53,9 @@ module.exports = {
                 this.publicCards.push(deck.randomizedDeck.pop());
             }
         }
+    },
+    setMessage : function(msg){
+        this.currentMessage = msg;
+        console.log("BoardMessage: " + msg);
     }
 };

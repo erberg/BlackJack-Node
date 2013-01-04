@@ -4,32 +4,17 @@
  */
 
 // note, io.listen(<port>) will create a http server
-gameLoop = require('./js/server/gameLoop.js');
+var io = require('socket.io').listen(8080);
+
 deck=require('./js/server/deck.js');
 board=require('./js/server/board.js');
-gameState=require('./js/server/gameState.js');
-gameState.setState('waitingForPlayer');
-
 deck.fillDeck();
 deck.randomizeDeck();
-
-var io = require('socket.io').listen(8080);
+gameState=require('./js/server/gameState.js');
+gameState.setState('waitingForPlayer');
+gameLoop = require('./js/server/gameLoop.js');
 io.sockets.on('connection', function (socket) {
-    
-    gameLoop.run = function() {
-        for (var i=1;i<board.positionClientID.length;i++)
-        {
-            if(board.positionClientID[i]!==0)
-            {
-                socket.emit('derrrp'); 
-            }
-        }  
-    };
-
-    socket.emit('news', {
-        hello: 'world'
-    });
-    
+    socket.emit('updateTable', board);
     socket.emit('id', {
         id: socket.id
     });
@@ -38,19 +23,27 @@ io.sockets.on('connection', function (socket) {
         socket.emit('updateTable', board);
     });
     
+    socket.on('updateRequest', function (data) {
+        socket.emit('updateTable', board);
+    });
+     
+    var sendUpdate = setInterval(function() {   //Looking for better ways to do this (or a way to use io sockets from state module.
+        socket.emit('updateTable', board);
+    }, 500);
+            
     socket.on('addPlayerRequest', function (data) {  //If no players, kicks off game loop. 
         if(gameState.currentState.addPlayer())
-            {
+        {
             if(board.addPlayer(data["clientID"],data["requestedPosition"]))
+            {
+                if(!gameLoop.running) 
                 {
-                    if(!gameLoop.running) 
-                    {
                     gameLoop.startLoop();
-                    socket.emit('displayMessage', "Accepting bets in 5 seconds.");
-                    }
-                    io.sockets.emit('updateTable', board);
                 }
             }
+        }
+        io.sockets.emit('updateTable', board);
     });
     
 });
+

@@ -11,7 +11,7 @@ module.exports = {
                 return 1;
             },
             name: "waitingForPlayer",
-            wait : 5000
+            wait : 10000
         },             //Wait For and Add New Players Upon Join
         acceptingBets:{
             addPlayer : function(){},

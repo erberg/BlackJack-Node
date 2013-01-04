@@ -8,12 +8,14 @@ function displayBoard()
     prepareCardDisplay();
     prepareButtonDisplay();
     prepareCardSpritePositions();
+    prepareChipsDisplay();
+    displayMessage();
 }
 
 function displayMessage()
 {
-    $(".message").append('<p id="type"> message </p>');
-    setTimeout(function() {$('.message > #type').remove();}, 5000);
+    $('.message > #type').remove();
+    $(".message").append('<p id="type">' + glClientBoard.currentMessage + '</p>');
 }
 
 function prepareCardDisplay()
@@ -21,8 +23,20 @@ function prepareCardDisplay()
     $(".card-container").each(function(index){
         if(glClientBoard.publicCards[index]==undefined) $(this).hide();         //Remove card display if no player is present
         $(this).attr('data-card',glClientBoard.publicCards[index]);             //Set 'data-card' variables using board (passed from server) 
+    });      
+}
+
+function prepareChipsDisplay()
+{
+    $(".chips-Player").each(function(index){
+        if(glClientBoard.tablePositions[index+1]===0){ //+1 compensates for dealer
+            $(this).hide();
+        } else 
+            {
+                $(this).show();
+                $(this).text('Chips: ' + glClientBoard.playerChips[index+1]);
+            }
     });
-          
 }
 
 function prepareButtonDisplay()
