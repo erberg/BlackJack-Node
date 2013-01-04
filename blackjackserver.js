@@ -27,9 +27,9 @@ io.sockets.on('connection', function (socket) {
         socket.emit('updateTable', board);
     });
      
-    var sendUpdate = setInterval(function() {   //Looking for better ways to do this (or a way to use io sockets from state module.
-        socket.emit('updateTable', board);
-    }, 500);
+    //var sendUpdate = setInterval(function() {   //Looking for better ways to do this (or a way to use io sockets from state module.
+    //    socket.emit('updateTable', board);
+    //}, 500);
             
     socket.on('addPlayerRequest', function (data) {  //If no players, kicks off game loop. 
         if(gameState.currentState.addPlayer())
@@ -38,7 +38,7 @@ io.sockets.on('connection', function (socket) {
             {
                 if(!gameLoop.running) 
                 {
-                    gameLoop.startLoop();
+                    gameLoop.startLoop(io);
                 }
             }
         }
