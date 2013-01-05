@@ -12,6 +12,17 @@ module.exports = {
     playerChips : [0,0,0,0,0,0,0],
     tablePositions : [1,0,0,0,0,0,0],  //Positions Dealer & Player 1-6
     numPlayers : 0,
+    placeBet : function(id,betAmt){
+        var existingPlayerPosition=this.isCurrentPlayer(id);
+        if(existingPlayerPosition&&this.playerBets[existingPlayerPosition]==0) 
+        {
+            if(betAmt<=this.playerChips[existingPlayerPosition])
+                {
+                    this.playerBets[existingPlayerPosition]=betAmt;
+                    this.playerChips[existingPlayerPosition]=this.playerChips[existingPlayerPosition]-betAmt;
+                }
+        }
+    },
     addPlayer : function(id,requestedPosition){
         console.log(id);
         if(this.numPlayers<=6)

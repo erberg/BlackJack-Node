@@ -2,7 +2,6 @@
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
-
 var val="Bet Min";
 $( "#scroller" ).draggable({
     axis: "x",
@@ -11,6 +10,8 @@ $( "#scroller" ).draggable({
 });
 $( "#scroller" ).on("drag", function( event, ui ) {
     val=parseInt($(this).css("left"));
-    if(val<5) val=5;
-    $( "#betAmt" ).text("Bet " + Math.round((val/114)*100 / 5) * 5);
+    var finalAmt=Math.round((val/114)*glClientBoard.clientChips / 5) * 5;
+    if(val==0) finalAmt=5;
+    $('#betAmt').text("Bet " + finalAmt);
+    $('#betAmt').data('betAmount',finalAmt);
 });

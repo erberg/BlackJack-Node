@@ -44,6 +44,7 @@ function prepareButtonDisplay()
     $(".joinButton").each(function(index){
         if(glClientBoard.tablePositions[index+1]==1){ //+1 compensates for dealer
             $(this).hide();
+            glClientBoard.clientPosition=index+1;
         } else $(this).show();
     });
 }
