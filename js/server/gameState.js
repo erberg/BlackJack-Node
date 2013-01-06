@@ -11,6 +11,7 @@ module.exports = {
             addPlayer : function(board,requestData){
                 return board.addPlayer(requestData["clientID"],requestData["requestedPosition"]);   
             },
+            placeBet : function(){},
             message: "Waiting 10 seconds for other players to join.",
             wait : 10000 //think of it is minwait?
         },             //Wait For and Add New Players Upon Join

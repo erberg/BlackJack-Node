@@ -5,7 +5,7 @@
 
 // note, io.listen(<port>) will create a http server
 var io = require('socket.io').listen(8080);
-
+//io.set('log level', 1);
 deck=require('./js/server/deck.js');
 board=require('./js/server/board.js');
 deck.fillDeck();
