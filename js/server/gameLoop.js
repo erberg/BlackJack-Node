@@ -19,7 +19,7 @@ module.exports = {
     },
     loop : function(){                          //Statechange occurs on every loop.
         var thisParent=this;
-        board.setMessage(""+thisParent.loopIndex);
+        board.setMessage(gameState.getMessage());
         setTimeout(function(){
             thisParent.loopIndex++;
             if(thisParent.loopIndex===thisParent.loopOrder.length) {thisParent.loopIndex=0;}

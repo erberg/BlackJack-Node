@@ -27,17 +27,11 @@ io.sockets.on('connection', function (socket) {
         socket.emit('updateTable', board);
     });
             
-    socket.on('addPlayerRequest', function (data) {  //If no players, kicks off game loop. 
-        if(gameState.currentState.addPlayer())
+    socket.on('addPlayerRequest', function (data) {  
+        if(gameState.currentState.addPlayer(board,data))
         {
-            if(board.addPlayer(data["clientID"],data["requestedPosition"]))
-            {
-                if(!gameLoop.running) 
-                {
-                    gameLoop.startLoop(io);                                     //Will Likely move logic into states.
-                }
-                io.sockets.emit('updateTable', board);
-            }
+            if(!gameLoop.running) { gameLoop.startLoop(io); } 
+            io.sockets.emit('updateTable', board);   
         }
     });
 

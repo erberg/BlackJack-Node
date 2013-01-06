@@ -1,3 +1,4 @@
+
 /* 
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
@@ -7,16 +8,19 @@ module.exports = {
     states : {
         waitingForPlayer : { //realize event handlers of state 'waitingforplayer'
             placeBet : function(){},
-            addPlayer : function(){
-                console.log('waitingForPlayer.addPlayer() called.');
-                return 1;
+            addPlayer : function(board,requestData){
+                return board.addPlayer(requestData["clientID"],requestData["requestedPosition"]);   
             },
-            name: "waitingForPlayer",
-            wait : 10000
+            message: "Waiting 10 seconds for other players to join.",
+            wait : 10000 //think of it is minwait?
         },             //Wait For and Add New Players Upon Join
         acceptingBets:{
             placeBet : function(){return 1;},
             addPlayer : function(){},
+            conclude : function(){
+
+            },
+            message: "Please place your bets.",
             wait : 10000
         },               
         dealingCards:{
@@ -49,6 +53,9 @@ module.exports = {
     },
     getWait : function(){
         return this.currentState.wait;
+    },
+    getMessage : function(){
+        return this.currentState.message;
     }
 };
 
