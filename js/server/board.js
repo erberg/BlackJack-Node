@@ -25,7 +25,7 @@ module.exports = {
     },
     addPlayer : function(id,requestedPosition){
             if(this.getPlayerIndex(id)){this.remPlayer(id);}            //Remove player if already seated.
-            if(this.tablePositions[requestedPosition]==0)              //Add Player if Empty Seat.
+            if(this.tablePositions[requestedPosition]===0)              //Add Player if Empty Seat.
             {
                 this.positionClientID[requestedPosition]=id;
                 this.tablePositions[requestedPosition]=1;
