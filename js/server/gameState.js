@@ -7,7 +7,6 @@ module.exports = {
     currentState : {},
     states : {
         waitingForPlayer : { //realize event handlers of state 'waitingforplayer'
-            placeBet : function(){},
             addPlayer : function(board,requestData){
                 return board.addPlayer(requestData["clientID"],requestData["requestedPosition"]);   
             },

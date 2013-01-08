@@ -84,28 +84,30 @@
 
         <script>
             var glClientID=0;
-            var socket = io.connect('http://192.168.2.4:8080');
+            var socket = io.connect('http://192.168.2.6:8080');
             var glClientBoard={};
+            var glClientInfo={};
             
            
             
             socket.on('id', function (data) {
                 $(".socket").append("<li>My ClientID: "+data.id+"</li>");
                 glClientID=data.id;
-                //socket.emit('my other event', { my: 'data' });
             });
                 
         
             socket.on('updateTable', function (board) {
                 glClientBoard=board;
-                glClientBoard.clientPosition=glClientBoard.positionClientID.indexOf(glClientID); //TEMP! will be sent simpler modified object as board with this info filled out.
-                glClientBoard.clientChips=glClientBoard.playerChips[glClientBoard.clientPosition]; 
-                //for(var i=0;i<14;i++)       //Display cards. Only used for debugging.
+                //for(var i=0;i<14;i++)       //Print all cards. Only used for debugging.
                 //{
                 //    $(".socket").append("<li>Card: "+board.publicCards[i]+"</li>"); 
                 //}
                 $(".socket").append("Message: "+ board.currentMessage );
                 displayBoard();
+            })
+
+            socket.on('clientInfoUpdate', function (clientInfoFromServer) {
+                glClientInfo=clientInfoFromServer;
             })
 
            

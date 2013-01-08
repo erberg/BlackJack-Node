@@ -19,19 +19,24 @@ io.sockets.on('connection', function (socket) {
         id: socket.id
     });
     
-    socket.on('connect', function (data) {
-        socket.emit('updateTable', board);
-    });
+    //socket.on('connect', function (data) {
+    //    socket.emit('updateTable', board);
+    //});
     
     socket.on('updateRequest', function (data) {
         socket.emit('updateTable', board);
+        var clientInfo = getClientInfo(socket.id);
+        socket.emit('clientInfoUpdate', clientInfo); 
     });
             
     socket.on('addPlayerRequest', function (data) {  
         if(gameState.currentState.addPlayer(board,data))
         {
             if(!gameLoop.running) { gameLoop.startLoop(io); } 
-            io.sockets.emit('updateTable', board);   
+            //io.sockets.emit('updateTable', board); 
+            io.sockets.emit('updateTable', board);
+            var clientInfo=getClientInfo(socket.id);
+            socket.emit('clientInfoUpdate', clientInfo);  
         }
     });
 
@@ -45,3 +50,11 @@ io.sockets.on('connection', function (socket) {
     
 });
 
+
+function getClientInfo(id)
+{
+        var clientInfo = {};
+        clientInfo.position=board.getPlayerIndex(id);
+        clientInfo.chips=board.playerChips[clientInfo.position];
+        return clientInfo;   
+}
