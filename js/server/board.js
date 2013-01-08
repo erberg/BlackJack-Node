@@ -20,8 +20,10 @@ module.exports = {
                 {
                     this.playerBets[playerPosition]=betAmt;
                     this.playerChips[playerPosition]=this.playerChips[playerPosition]-betAmt;
+                    return 1;
                 }
         }
+        return 0;
     },
     addPlayer : function(id,requestedPosition){
             if(this.getPlayerIndex(id)){this.remPlayer(id);}            //Remove player if already seated.
@@ -50,10 +52,14 @@ module.exports = {
         this.publicCards[1]="XX";
         for(var i=1;i<this.tablePositions.length;i++)  //# of current players will go here
         {
-            if(this.tablePositions[i]!==0)
+            if(this.tablePositions[i]==1)
             {
                 this.publicCards.push(deck.randomizedDeck.pop());
                 this.publicCards.push(deck.randomizedDeck.pop());
+            }else
+            {
+                this.publicCards.push(0);
+                this.publicCards.push(0);
             }
         }
     },

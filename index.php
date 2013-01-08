@@ -80,13 +80,12 @@
         <script src="socket.io.js"></script>
         <script src="/js/boardView.js"></script>
         <script src="/js/buttonController.js"></script>
-        <script src="/js/ui/interface.js"></script>
 
         <script>
-            var glClientID=0;
+            glClientID=0;
             var socket = io.connect('http://192.168.2.6:8080');
-            var glClientBoard={};
-            var glClientInfo={};
+            glClientBoard={};
+            glClientInfo={};
             
            
             
@@ -98,10 +97,7 @@
         
             socket.on('updateTable', function (board) {
                 glClientBoard=board;
-                //for(var i=0;i<14;i++)       //Print all cards. Only used for debugging.
-                //{
-                //    $(".socket").append("<li>Card: "+board.publicCards[i]+"</li>"); 
-                //}
+                //for(var i=0;i<14;i++) {$(".socket").append("<li>Card: "+board.publicCards[i]+"</li>");}  //Print all cards. Only used for debugging.
                 $(".socket").append("Message: "+ board.currentMessage );
                 displayBoard();
             })
@@ -112,5 +108,6 @@
 
            
         </script>
+        <script src="/js/ui/interface.js"></script>
     </body>
 </html>

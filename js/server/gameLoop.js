@@ -4,7 +4,7 @@
  */
 module.exports = {
     running : 0,
-    loopOrder : ["waitingForPlayer","acceptingBets","dealingCards","checkingForDealerBlackJack","acceptingPlayerOptions","concludingRound"],
+    loopOrder : ["waitingForPlayer","acceptingBets","checkingForDealerBlackJack","acceptingPlayerOptions","concludingRound"],
     loopIndex : 0,
     startLoop : function(ioInput){
         this.io=ioInput;
@@ -20,7 +20,9 @@ module.exports = {
     loop : function(){                          //Statechange occurs on every loop.
         var thisParent=this;
         board.setMessage(gameState.getMessage());
+        gameState.getState().beginState();
         setTimeout(function(){
+            gameState.getState().endState();
             thisParent.loopIndex++;
             if(thisParent.loopIndex===thisParent.loopOrder.length) {thisParent.loopIndex=0;}
             gameState.setState(thisParent.loopOrder[thisParent.loopIndex]);

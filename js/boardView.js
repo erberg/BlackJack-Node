@@ -21,17 +21,19 @@ function displayMessage()
 function prepareCardDisplay()
 {
     $(".card-container").each(function(index){
-        if(glClientBoard.publicCards[index]==undefined) $(this).hide();         //Remove card display if no player is present
-        $(this).attr('data-card',glClientBoard.publicCards[index]);             //Set 'data-card' variables using board (passed from server) 
+        if(!glClientBoard.publicCards[index]) { $(this).hide(); }         //Remove card display if no player is present
+        else {
+        $(this).attr('data-card',glClientBoard.publicCards[index]);             //Set 'data-card' variables using board (passed from server)
+        $(this).show();
+        }
     });      
 }
 
 function prepareChipsDisplay()
 {
     $(".chips-Player").each(function(index){
-        if(glClientBoard.tablePositions[index+1]===0){ //+1 compensates for dealer
-            $(this).hide();
-        } else 
+        if(glClientBoard.tablePositions[index+1]===0){ $(this).hide(); } //+1 compensates for dealer
+        else 
             {
                 $(this).show();
                 $(this).text('Chips: ' + glClientBoard.playerChips[index+1]);

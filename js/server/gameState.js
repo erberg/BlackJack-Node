@@ -10,35 +10,40 @@ module.exports = {
             addPlayer : function(board,requestData){
                 return board.addPlayer(requestData["clientID"],requestData["requestedPosition"]);   
             },
+            beginState : function(){},
+            endState : function(){},
             placeBet : function(){},
             message: "Waiting 10 seconds for other players to join.",
-            wait : 10000 //think of it is minwait?
-        },             //Wait For and Add New Players Upon Join
+            wait : 3000 //think of it is minwait?
+        },             
         acceptingBets:{
-            placeBet : function(){return 1;},
-            addPlayer : function(){},
-            conclude : function(){
-
+            beginState : function(){},
+            endState : function(){board.getCards(deck);},
+            placeBet : function(data){
+                return board.placeBet(data["clientID"],data["betAmt"]);
             },
-            message: "Please place your bets.",
-            wait : 10000
-        },               
-        dealingCards:{
-            placeBet : function(){},
             addPlayer : function(){},
-            wait : 5000
+            conclude : function(){},
+            message: "Please place your bets.",
+            wait : 3000
         },                    
         checkingForDealerBlackJack:{
+            beginState : function(){},
+            endState : function(){},
             placeBet : function(){},
             addPlayer : function(){},
             wait : 5000
         },   
         acceptingPlayerOptions:{
+            beginState : function(){},
+            endState : function(){},
             placeBet : function(){},
             addPlayer : function(){},
             wait : 5000
         },       
         concludingRound:{
+            beginState : function(){},
+            endState : function(){},
             placeBet : function(){},
             addPlayer : function(){},
             wait : 5000
@@ -56,6 +61,12 @@ module.exports = {
     },
     getMessage : function(){
         return this.currentState.message;
+    },
+    callStart : function(){
+        this.currentState.beginState();
+    },
+    callEnd : function(){
+        this.currentState.endState();
     }
 };
 

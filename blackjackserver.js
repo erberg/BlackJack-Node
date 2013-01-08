@@ -41,9 +41,8 @@ io.sockets.on('connection', function (socket) {
     });
 
     socket.on('betRequest', function (data) {
-        if(gameState.currentState.placeBet())
-        {
-            board.placeBet(data["clientID"],data["betAmt"]);                    //Will Likely move logic into states.
+        if(gameState.currentState.placeBet(data))
+        {               
             io.sockets.emit('updateTable', board);
         }
     });
@@ -54,7 +53,8 @@ io.sockets.on('connection', function (socket) {
 function getClientInfo(id)
 {
         var clientInfo = {};
-        clientInfo.position=board.getPlayerIndex(id);
+        if(clientInfo.position=board.getPlayerIndex(id))
         clientInfo.chips=board.playerChips[clientInfo.position];
+        else clientInfo.chips=0;
         return clientInfo;   
 }
