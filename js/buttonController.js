@@ -21,8 +21,7 @@ function requestPlaceBet()
 {
      $("#betAmt").click(function(){
          var data = {};
-         $('#betAmt').data('betAmount');
-         data["betAmt"]=$('#betAmt').data('betAmount');
+         data["betAmt"]=$('#betAmt').data('betamount');
          data["clientID"]=glClientID;
          socket.emit('betRequest',data);
      });    

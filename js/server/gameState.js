@@ -14,7 +14,7 @@ module.exports = {
             endState : function(){},
             placeBet : function(){},
             message: "Waiting 10 seconds for other players to join.",
-            wait : 3000 //think of it is minwait?
+            wait : 3000 //think of it as minwait?
         },             
         acceptingBets:{
             beginState : function(){},

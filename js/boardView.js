@@ -44,7 +44,7 @@ function prepareChipsDisplay()
 function prepareButtonDisplay()
 {
     $(".joinButton").each(function(index){
-        if(glClientBoard.tablePositions[index+1]==1){ //+1 compensates for dealer
+        if(glClientBoard.tablePositions[index+1]===1){ //+1 compensates for dealer
             $(this).hide();
             glClientBoard.clientPosition=index+1;
         } else $(this).show();
@@ -57,7 +57,7 @@ function prepareCardSpritePositions()
         getPosition: function(stringInput){
             var cardInput=stringInput.slice(0,-1);                  //everything but last char
             var suitInput=stringInput.slice(-1);                    //just last char
-            if(cardInput + suitInput == "XX") {                     //XX Means Face Down Card
+            if(cardInput + suitInput === "XX") {                     //XX Means Face Down Card
                 var xPosition=0;
                 var yPosition=-125.2*4;
             } 

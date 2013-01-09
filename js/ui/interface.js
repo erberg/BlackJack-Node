@@ -14,5 +14,5 @@ $( "#scroller" ).on("drag", function( event, ui ) {
     var finalAmt=Math.round((val/114)*glClientInfo.chips / 5) * 5;
     if(val==0) finalAmt=5;
     $('#betAmt').text("Bet " + finalAmt);
-    $('#betAmt').data('betAmount',finalAmt);
+    $('#betAmt').data('betamount',finalAmt);
 });

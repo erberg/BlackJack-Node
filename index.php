@@ -52,7 +52,7 @@
                 <div class="message"></div>
                 <div class="btn-container">
                     <div class="btn-group">
-                        <button id="betAmt" class="btn btn-primary" style="width:85px;text-align:left;">Bet 5 </button>
+                        <button id="betAmt" data-betAmount="5" class="btn btn-primary" style="width:85px;text-align:left;">Bet 5 </button>
                         <button class="btn btn-primary dropdown-toggle" data-toggle="dropdown"><span class="caret"></span></button>
                         <ul class="dropdown-menu">
                             <li style="margin-right:10px;margin-left:10px;background-image: url(graphics/scroller.png);">

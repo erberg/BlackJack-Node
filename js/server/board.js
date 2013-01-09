@@ -49,7 +49,7 @@ module.exports = {
     },
     getCards : function(deck){
         this.publicCards[0]="XX";
-        this.publicCards[1]="XX";
+        this.publicCards[1]=deck.randomizedDeck.pop();
         for(var i=1;i<this.tablePositions.length;i++)  //# of current players will go here
         {
             if(this.tablePositions[i]==1)
