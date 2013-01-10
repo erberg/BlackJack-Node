@@ -82,12 +82,10 @@
         <script src="/js/buttonController.js"></script>
 
         <script>
-            glClientID=0;
+            var glClientID=0;
             var socket = io.connect('http://192.168.2.6:8080');
-            glClientBoard={};
-            glClientInfo={};
-            
-           
+            var glClientBoard={};
+            var glClientInfo={};
             
             socket.on('id', function (data) {
                 $(".socket").append("<li>My ClientID: "+data.id+"</li>");
@@ -105,8 +103,7 @@
             socket.on('clientInfoUpdate', function (clientInfoFromServer) {
                 glClientInfo=clientInfoFromServer;
             })
-
-           
+            
         </script>
         <script src="/js/ui/interface.js"></script>
     </body>

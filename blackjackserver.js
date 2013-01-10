@@ -25,8 +25,6 @@ io.sockets.on('connection', function (socket) {
     
     socket.on('updateRequest', function (data) {
         socket.emit('updateTable', board);
-        var clientInfo = getClientInfo(socket.id);
-        socket.emit('clientInfoUpdate', clientInfo); 
     });
             
     socket.on('addPlayerRequest', function (data) {  
@@ -54,7 +52,9 @@ function getClientInfo(id)
 {
         var clientInfo = {};
         if(clientInfo.position=board.getPlayerIndex(id))
-        clientInfo.chips=board.playerChips[clientInfo.position];
+        {
+            clientInfo.chips=board.playerChips[clientInfo.position];
+        }
         else clientInfo.chips=0;
         return clientInfo;   
 }

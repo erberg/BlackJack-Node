@@ -21,9 +21,9 @@ function displayMessage()
 function prepareCardDisplay()
 {
     $(".card-container").each(function(index){
-        if(!glClientBoard.publicCards[index]) { $(this).hide(); }         //Remove card display if no player is present
+        if(!glClientBoard.publicCards[index]) { $(this).hide(); }           //Remove card display if no player is present
         else {
-        $(this).attr('data-card',glClientBoard.publicCards[index]);             //Set 'data-card' variables using board (passed from server)
+        $(this).attr('data-card',glClientBoard.publicCards[index]);         //Set 'data-card' variables using board (passed from server)
         $(this).show();
         }
     });      

@@ -1,0 +1,36 @@
+module.exports = {
+    currentState : {},
+    states : {
+        
+        twoCards : {
+            displayCards : function(board){
+                   
+            }
+        },
+
+        oneSplit:{
+            displayCards : function(board){
+                
+            }
+        },       
+
+        twoSplit:{
+            displayCards : function(board){
+                  
+            }
+        },  
+
+        threeSplit:{
+            
+        },       
+    },
+
+    setState : function(state){
+        this.currentState=this.states[state];
+        console.log('State player set to ' + state);    //return this.currentState;
+    },
+
+    getState : function(){
+        return this.currentState;
+    }
+};
