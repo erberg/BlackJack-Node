@@ -123,8 +123,9 @@ body {
     -moz-border-radius: 5px;
     border-radius: 5px;
     background-size: 1170px 626px;
-    box-shadow: 5px 5px 5px #000;
-    display: none; /*disable this to test card positions*/
+    border:1px solid black;
+    /*box-shadow: 1px 1px 1px #000;*/
+    /*display: none; disable this to test card positions*/
 }
 
 /*

@@ -42,13 +42,13 @@
                 <div class="left-card-table"></div>
                 <div class="middle-card-table"></div>
                 <div class="right-card-table"></div>
-                <div class="position-Dealer"><div class="card-container"></div><div class="card-container dealer-card-offset"></div><div class="username-Player">Dealer</div></div>
-                <div class="position-Player1"><div class="btn joinButton btn-primary">Join Table</div><div class="card-container"></div><div class="card-container card-offset"></div><div class="username-Player">Player 1</div><div class="chips-Player">$$$</div></div>
-                <div class="position-Player2"><div class="btn joinButton btn-primary">Join Table</div><div class="card-container"></div><div class="card-container card-offset"></div><div class="username-Player">Player 2</div><div class="chips-Player">$$$</div></div>
-                <div class="position-Player3"><div class="btn joinButton btn-primary">Join Table</div><div class="card-container"></div><div class="card-container card-offset"></div><div class="username-Player">Player 3</div><div class="chips-Player">$$$</div></div>
-                <div class="position-Player4"><div class="btn joinButton btn-primary">Join Table</div><div class="card-container"></div><div class="card-container card-offset"></div><div class="username-Player">Player 4</div><div class="chips-Player">$$$</div></div>
-                <div class="position-Player5"><div class="btn joinButton btn-primary">Join Table</div><div class="card-container"></div><div class="card-container card-offset"></div><div class="username-Player">Player 5</div><div class="chips-Player">$$$</div></div>
-                <div class="position-Player6"><div class="btn joinButton btn-primary">Join Table</div><div class="card-container"></div><div class="card-container card-offset"></div><div class="username-Player">Player 6</div><div class="chips-Player">$$$</div></div>
+                <div class="position-Dealer"><div class="username-Player">Dealer</div></div>
+                <div class="position-Player1"><div class="btn joinButton btn-primary">Join Table</div><div class="username-Player">Player 1</div><div class="chips-Player">$$$</div></div>
+                <div class="position-Player2"><div class="btn joinButton btn-primary">Join Table</div><div class="username-Player">Player 2</div><div class="chips-Player">$$$</div></div>
+                <div class="position-Player3"><div class="btn joinButton btn-primary">Join Table</div><div class="username-Player">Player 3</div><div class="chips-Player">$$$</div></div>
+                <div class="position-Player4"><div class="btn joinButton btn-primary">Join Table</div><div class="username-Player">Player 4</div><div class="chips-Player">$$$</div></div>
+                <div class="position-Player5"><div class="btn joinButton btn-primary">Join Table</div><div class="username-Player">Player 5</div><div class="chips-Player">$$$</div></div>
+                <div class="position-Player6"><div class="btn joinButton btn-primary">Join Table</div><div class="username-Player">Player 6</div><div class="chips-Player">$$$</div></div>
                 <div class="message"></div>
                 <div class="btn-container">
                     <div class="btn-group">
@@ -80,13 +80,15 @@
         <script src="socket.io.js"></script>
         <script src="/js/boardView.js"></script>
         <script src="/js/buttonController.js"></script>
+        <script src="/js/playerDisplayState.js"></script>
 
         <script>
+            
             var glClientID=0;
             var socket = io.connect('http://www.ericrberg.com:8080');
             var glClientBoard={};
             var glClientInfo={};
-            
+
             socket.on('id', function (data) {
                 $(".socket").append("<li>My ClientID: "+data.id+"</li>");
                 glClientID=data.id;
@@ -95,14 +97,14 @@
         
             socket.on('updateTable', function (board) {
                 glClientBoard=board;
-                //for(var i=0;i<14;i++) {$(".socket").append("<li>Card: "+board.publicCards[i]+"</li>");}  //Print all cards. Only used for debugging.
-                $(".socket").append("Message: "+ board.currentMessage );
+                $(".socket").append("<li>Message: "+ board.currentMessage + "</li>");
                 displayBoard();
             })
 
             socket.on('clientInfoUpdate', function (clientInfoFromServer) {
                 glClientInfo=clientInfoFromServer;
             })
+
             
         </script>
         <script src="/js/ui/interface.js"></script>

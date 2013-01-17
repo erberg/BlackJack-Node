@@ -9,6 +9,7 @@ module.exports = {
     publicCards : [],
     positionClientID : [0,0,0,0,0,0,0],
     playerBets : [0,0,0,0,0,0,0],
+    playerCards : [[[]],[[]],[[]],[[]],[[]],[[]],[[]]],
     playerChips : [0,0,0,0,0,0,0],
     tablePositions : [1,0,0,0,0,0,0],  //Positions Dealer & Player 1-6
     numPlayers : 0,
@@ -48,18 +49,14 @@ module.exports = {
         return playerPosition;
     },
     getCards : function(deck){
-        this.publicCards[0]="XX";
-        this.publicCards[1]=deck.randomizedDeck.pop();
+        this.playerCards[0][0].push("XX");
+        this.playerCards[0][0].push(deck.randomizedDeck.pop());
         for(var i=1;i<this.tablePositions.length;i++)  //# of current players will go here
         {
             if(this.tablePositions[i]==1)
             {
-                this.publicCards.push(deck.randomizedDeck.pop());
-                this.publicCards.push(deck.randomizedDeck.pop());
-            }else
-            {
-                this.publicCards.push(0);
-                this.publicCards.push(0);
+                this.playerCards[i][0].push(deck.randomizedDeck.pop());
+                this.playerCards[i][0].push(deck.randomizedDeck.pop());
             }
         }
     },
