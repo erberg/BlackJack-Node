@@ -55,7 +55,6 @@ var playerDisplayState = {
 
     setState : function(state){
         this.currentState=this.states[state];
-        console.log('State player set to ' + state);    //return this.currentState;
     },
 
     selectDisplayState : function(hands)

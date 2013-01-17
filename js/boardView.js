@@ -3,6 +3,8 @@
  * These functions convert text into spritesheet positions. 
  */
 //playerCards=[[["AS","10C","9S","6S","6H"]],[["AS","10C","9S","6S","6H"]],[["AS","9S","6S"],["10C","9S"]],[["10C","6S","6H"],["6S","6H"],["AS","10C","9S"]],[["AS","10C","9S","6S","6H"],["AS","10C","9S"],["AS","6S","6H"]]];
+
+
 function displayBoard()
 { 
     prepareCardDisplay();
@@ -20,7 +22,7 @@ function displayMessage()
 function prepareCardDisplay()
 {
 $("[class*='position-']").each(function(index){
-    if(glClientBoard.tablePositions[index]===1){                        //need to fix this... its calling the state change on empty hands
+    if(glClientBoard.tablePositions[index]===1){                        
         var numberOfHands = glClientBoard.playerCards[index].length;
         playerDisplayState.selectDisplayState(numberOfHands); 
         playerDisplayState.currentState.displayCards($(this),index);
