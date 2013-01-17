@@ -2,7 +2,7 @@
  * This script is responsible for displaying appropriate card using "data-card" values found in index.php.
  * These functions convert text into spritesheet positions. 
  */
- 
+//playerCards=[[["AS","10C","9S","6S","6H"]],[["AS","10C","9S","6S","6H"]],[["AS","9S","6S"],["10C","9S"]],[["10C","6S","6H"],["6S","6H"],["AS","10C","9S"]],[["AS","10C","9S","6S","6H"],["AS","10C","9S"],["AS","6S","6H"]]];
 function displayBoard()
 { 
     prepareCardDisplay();
@@ -14,19 +14,18 @@ function displayBoard()
 
 function displayMessage()
 {
-    $('.message > #type').remove();
-    $(".message").append('<p id="type">' + glClientBoard.currentMessage + '</p>');
+    $(".message").empty().append('<p id="type">' + glClientBoard.currentMessage + '</p>');
 }
 
 function prepareCardDisplay()
 {
-    $(".card-container").each(function(index){
-        if(!glClientBoard.publicCards[index]) { $(this).hide(); }           //Remove card display if no player is present
-        else {
-        $(this).attr('data-card',glClientBoard.publicCards[index]);         //Set 'data-card' variables using board (passed from server)
-        $(this).show();
-        }
-    });      
+$("[class*='position-']").each(function(index){
+    if(glClientBoard.tablePositions[index]===1){                        //need to fix this... its calling the state change on empty hands
+        var numberOfHands = glClientBoard.playerCards[index].length;
+        playerDisplayState.selectDisplayState(numberOfHands); 
+        playerDisplayState.currentState.displayCards($(this),index);
+    }
+});
 }
 
 function prepareChipsDisplay()
