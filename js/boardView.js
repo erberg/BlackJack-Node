@@ -11,6 +11,7 @@ function displayBoard()
     prepareButtonDisplay();
     prepareCardSpritePositions();
     prepareChipsDisplay();
+    prepareBetDisplay();
     displayMessage();
 }
 
@@ -21,6 +22,7 @@ function displayMessage()
 
 function prepareCardDisplay()
 {
+$(".card-container").remove();
 $("[class*='position-']").each(function(index){
     if(glClientBoard.tablePositions[index]===1){                        
         var numberOfHands = glClientBoard.playerCards[index].length;
@@ -34,13 +36,24 @@ function prepareChipsDisplay()
 {
     $(".chips-Player").each(function(index){
         if(glClientBoard.tablePositions[index+1]===0){ $(this).hide(); } //+1 compensates for dealer
-        else 
-            {
+        else{
                 $(this).show();
                 $(this).text('Chips: ' + glClientBoard.playerChips[index+1]);
             }
-    });
+    });  
 }
+
+function prepareBetDisplay()
+{
+    $(".bet-Player").each(function(index){
+        if(glClientBoard.playerBets[index+1]===0){ $(this).hide(); } //+1 compensates for dealer
+        else{
+                $(this).show();
+                $(this).text('Bet: ' + glClientBoard.playerBets[index+1]);
+            }
+    });  
+}
+
 
 function prepareButtonDisplay()
 {

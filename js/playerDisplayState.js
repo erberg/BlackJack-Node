@@ -19,7 +19,7 @@ var playerDisplayState = {
                     columnposition=30-hand*45;
                     for(var card=0;card<glClientBoard.playerCards[playerPosition][hand].length;card++){
                         cssobject.append("<div class='card-container' data-card=\'" + glClientBoard.playerCards[playerPosition][hand][card] 
-                        + "\'"+ "style=\'bottom: " + 20*card + "px; right: " + columnposition + "px \'> </div>");
+                        + "\'"+ "style=\'bottom: " + 25*card + "px; right: " + columnposition + "px \'> </div>");
                     }
                 }
             }
@@ -32,7 +32,7 @@ var playerDisplayState = {
                     columnposition=30-hand*21;
                     for(var card=0;card<glClientBoard.playerCards[playerPosition][hand].length;card++){
                         cssobject.append("<div class='card-container' data-card=\'" + glClientBoard.playerCards[playerPosition][hand][card] 
-                        + "\'"+ "style=\'bottom: " + 20*card + "px; right: " + columnposition + "px \'> </div>");
+                        + "\'"+ "style=\'bottom: " + 25*card + "px; right: " + columnposition + "px \'> </div>");
                     }
                 }     
             }
@@ -45,7 +45,7 @@ var playerDisplayState = {
                     columnposition=30-hand*15;
                     for(var card=0;card<glClientBoard.playerCards[playerPosition][hand].length;card++){
                         cssobject.append("<div class='card-container' data-card=\'" + glClientBoard.playerCards[playerPosition][hand][card] 
-                        + "\'"+ "style=\'bottom: " + 20*card + "px; right: " + columnposition + "px \'> </div>");
+                        + "\'"+ "style=\'bottom: " + 25*card + "px; right: " + columnposition + "px \'> </div>");
                     }
                 }     
             }

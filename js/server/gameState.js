@@ -6,7 +6,7 @@
 module.exports = {
     currentState : {},
     states : {
-        waitingForPlayer : { //realize event handlers of state 'waitingforplayer'
+        waitingForPlayer : { 
             addPlayer : function(board,requestData){
                 return board.addPlayer(requestData["clientID"],requestData["requestedPosition"]);   
             },
@@ -14,16 +14,13 @@ module.exports = {
             endState : function(){},
             placeBet : function(){},
             message: "Waiting 10 seconds for other players to join.",
-            wait : 3000 //think of it as minwait?
+            wait : 3000 
         },             
         acceptingBets:{
             beginState : function(){},
             endState : function(){board.getCards(deck);},
-            placeBet : function(data){
-                return board.placeBet(data["clientID"],data["betAmt"]);
-            },
+            placeBet : function(requestData){return board.placeBet(requestData["clientID"],requestData["betAmt"]);},
             addPlayer : function(){},
-            conclude : function(){},
             message: "Please place your bets.",
             wait : 3000
         },                    
@@ -32,6 +29,7 @@ module.exports = {
             endState : function(){},
             placeBet : function(){},
             addPlayer : function(){},
+            message: "Checking for dealer blackjack.",
             wait : 5000
         },   
         acceptingPlayerOptions:{
@@ -43,7 +41,7 @@ module.exports = {
         },       
         concludingRound:{
             beginState : function(){},
-            endState : function(){},
+            endState : function(){board.resetBoard();},
             placeBet : function(){},
             addPlayer : function(){},
             wait : 5000

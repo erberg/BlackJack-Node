@@ -6,10 +6,9 @@
 module.exports = {
     initialChips : 500,
     currentMessage : "",
-    publicCards : [],
     positionClientID : [0,0,0,0,0,0,0],
     playerBets : [0,0,0,0,0,0,0],
-    playerCards : [[[]],[[]],[[]],[[]],[[]],[[]],[[]]],
+    playerCards : [[[]],[["AH","10D"],["AH","10D"],["AH","10D"],["AH","10D"]],[[]],[[]],[[]],[[]],[[]]],
     playerChips : [0,0,0,0,0,0,0],
     tablePositions : [1,0,0,0,0,0,0],  //Positions Dealer & Player 1-6
     numPlayers : 0,
@@ -49,7 +48,7 @@ module.exports = {
         return playerPosition;
     },
     getCards : function(deck){
-        this.playerCards[0][0].push("XX");
+        this.playerCards[0][0].push(deck.randomizedDeck.pop());
         this.playerCards[0][0].push(deck.randomizedDeck.pop());
         for(var i=1;i<this.tablePositions.length;i++)  //# of current players will go here
         {
@@ -63,5 +62,9 @@ module.exports = {
     setMessage : function(msg){
         this.currentMessage = msg;
         console.log("BoardMessage: " + msg);
+    },
+    resetBoard : function(){
+        this.playerBets = [0,0,0,0,0,0,0];
+        this.playerCards = [[[]],[[]],[[]],[[]],[[]],[[]],[[]]];
     }
 };

@@ -15,13 +15,10 @@ gameState.setState('waitingForPlayer');
 gameLoop = require('./js/server/gameLoop.js');
 io.sockets.on('connection', function (socket) {
     socket.emit('updateTable', board);
+    
     socket.emit('id', {
         id: socket.id
     });
-    
-    //socket.on('connect', function (data) {
-    //    socket.emit('updateTable', board);
-    //});
     
     socket.on('updateRequest', function (data) {
         socket.emit('updateTable', board);
@@ -31,7 +28,6 @@ io.sockets.on('connection', function (socket) {
         if(gameState.currentState.addPlayer(board,data))
         {
             if(!gameLoop.running) { gameLoop.startLoop(io); } 
-            //io.sockets.emit('updateTable', board); 
             io.sockets.emit('updateTable', board);
             var clientInfo=getClientInfo(socket.id);
             socket.emit('clientInfoUpdate', clientInfo);  

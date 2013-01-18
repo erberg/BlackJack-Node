@@ -64,7 +64,7 @@ body {
     height:125.2px;
     position:absolute;
     left:820px;
-    bottom:130px;
+    bottom:140px;
 }
 .position-Player2{
     background-size:cover;
@@ -72,7 +72,7 @@ body {
     height:125.2px;
     position:absolute;
     left:670px;
-    bottom:70px;
+    bottom:80px;
 }
 .position-Player3{
     background-size:cover;
@@ -80,7 +80,7 @@ body {
     height:125.2px;
     position:absolute;
     left:520px;
-    bottom:50px;
+    bottom:60px;
 }
 .position-Player4{
     background-size:cover;
@@ -88,7 +88,7 @@ body {
     height:125.2px;
     left:370px;
     position:absolute;
-    bottom:50px;
+    bottom:60px;
 }
 .position-Player5{
     background-size:cover;
@@ -96,7 +96,7 @@ body {
     height:125.2px;
     left:220px;
     position:absolute;
-    bottom:70px;
+    bottom:80px;
 }
 .position-Player6{
     background-size:cover;
@@ -104,7 +104,7 @@ body {
     height:125.2px;
     position:absolute;
     left:70px;
-    bottom:130px;
+    bottom:140px;
 }
 .position-Dealer{
     background-size:cover;
@@ -128,37 +128,6 @@ body {
     /*display: none; disable this to test card positions*/
 }
 
-/*
-Split positions are organized from left to right.
-For a single split use 1 and 5. 
-For two splits use call 1, 3, and 5. 
-For three splits use 1 2 4 & 5.
-*/
-
-.card-split-position1{         
-    right: 30px;
-    bottom:100px;
-}
-
-.card-split-position2{
-    right:15px;
-    bottom:100px;
-}
-
-.card-split-position3{
-    right:7px;
-    bottom:100px;
-}
-
-.card-split-position4{
-    right: 0px;
-    bottom:100px;
-}
-
-.card-split-position5{
-    right:-15px;
-    bottom:100px;
-}
 
 .card-offset{
     left: 20px;
@@ -175,7 +144,7 @@ For three splits use 1 2 4 & 5.
     border-radius: 15px;
     color:white;
     position:absolute;
-    bottom:-30px;
+    bottom:-40px;
     width: 110px;
     height:20px;
     overflow: hidden;
@@ -184,7 +153,17 @@ For three splits use 1 2 4 & 5.
 .chips-Player{
     color:black;
     position:absolute;
-    bottom:-50px;
+    bottom:-60px;
+    width: 110px;
+    height:20px;
+    overflow: hidden;
+    text-align:center;
+    display:none;
+}
+.bet-Player{
+    color:black;
+    position:absolute;
+    bottom:-20px;
     width: 110px;
     height:20px;
     overflow: hidden;
