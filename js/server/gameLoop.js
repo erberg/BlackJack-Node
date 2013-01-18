@@ -21,16 +21,17 @@ module.exports = {
         var thisParent=this;
         board.setMessage(gameState.getMessage());
         gameState.getState().beginState();
-        setTimeout(function(){
-            gameState.getState().endState();
-            thisParent.loopIndex++;
-            if(thisParent.loopIndex===thisParent.loopOrder.length) {thisParent.loopIndex=0;}
-            gameState.setState(thisParent.loopOrder[thisParent.loopIndex]);
-            thisParent.step();
-        },gameState.getWait());
+        setTimeout(function(){thisParent.delayedIncrement();},gameState.getWait());
     },
-    restartLoop : function(){ //Call from endstate function of gameState object
+    concludeRound : function(){ //Call from endstate function of gameState object
         this.loopIndex=3;
+    },
+    delayedIncrement : function(){
+            gameState.getState().endState();
+            this.loopIndex++;
+            if(this.loopIndex===this.loopOrder.length) {this.loopIndex=0;}
+            gameState.setState(this.loopOrder[this.loopIndex]);
+            this.step();
     }
     
 };

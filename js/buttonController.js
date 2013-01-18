@@ -26,3 +26,4 @@ function requestPlaceBet()
          socket.emit('betRequest',data);
      });    
 }
+

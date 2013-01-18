@@ -7,20 +7,22 @@ module.exports = {
     currentState : {},
     states : {
         waitingForPlayer : { 
-            addPlayer : function(board,requestData){
-                return board.addPlayer(requestData["clientID"],requestData["requestedPosition"]);   
-            },
             beginState : function(){},
             endState : function(){},
             placeBet : function(){},
+            addPlayer : function(board,requestData){
+                return board.addPlayer(requestData["clientID"],requestData["requestedPosition"]);   
+            },
+            splitRequest : function(){},
             message: "Waiting 10 seconds for other players to join.",
             wait : 3000 
         },             
         acceptingBets:{
             beginState : function(){},
-            endState : function(){board.getCards(deck);},
+            endState : function(){board.checkPlayerBets();board.getCards(deck);},
             placeBet : function(requestData){return board.placeBet(requestData["clientID"],requestData["betAmt"]);},
             addPlayer : function(){},
+            splitRequest : function(){},
             message: "Please place your bets.",
             wait : 3000
         },                    
@@ -29,12 +31,13 @@ module.exports = {
             endState : function(){
                 if(gameLogic.checkDealerBlackjack()){
                     console.log('DEALER HAS BLACKJACK!!!! OH NOOOOOOOOO.');
-                    gameLoop.restartLoop();
+                    gameLoop.concludeRound();
                 }
                 else {console.log('No Dealer BlackJack!!');}
             },
             placeBet : function(){},
             addPlayer : function(){},
+            splitRequest : function(){},
             message: "Checking for dealer blackjack.",
             wait : 2000
         },   
@@ -43,6 +46,7 @@ module.exports = {
             endState : function(){},
             placeBet : function(){},
             addPlayer : function(){},
+            splitRequest : function(){},
             message: "Accepting player options.",
             wait : 2000
         },       
@@ -54,13 +58,14 @@ module.exports = {
             },
             placeBet : function(){},
             addPlayer : function(){},
+            splitRequest : function(){},
             message: "Ending Round.",
             wait : 5000
         }               //Includes Paying Out & Announcing Winner
     },
     setState : function(state){
         this.currentState=this.states[state];
-        console.log('State set to ' + state);    //return this.currentState;
+        //console.log('State set to ' + state);    //return this.currentState;
     },
     getState : function(){
         return this.currentState;

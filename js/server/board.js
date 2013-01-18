@@ -10,6 +10,7 @@ module.exports = {
     playerBets : [0,0,0,0,0,0,0],
     playerCards : [[[]],[[]],[[]],[[]],[[]],[[]],[[]]],
     playerChips : [0,0,0,0,0,0,0],
+    playerSitoutCounter : [0,0,0,0,0,0,0],
     tablePositions : [1,0,0,0,0,0,0],  //Positions Dealer & Player 1-6
     numPlayers : 0,
     placeBet : function(id,betAmt){
@@ -41,6 +42,7 @@ module.exports = {
         var playerPosition=this.positionClientID.indexOf(id);
         this.positionClientID[playerPosition]=0;
         this.tablePositions[playerPosition]=0;
+        this.playerSitoutCounter[playerPosition]=0;
         this.numPlayers--;       
     },
     getPlayerIndex : function(id){
@@ -52,7 +54,7 @@ module.exports = {
         this.playerCards[0][0].push(deck.randomizedDeck.pop());
         for(var i=1;i<this.tablePositions.length;i++)  //# of current players will go here
         {
-            if(this.tablePositions[i]==1)
+            if(this.tablePositions[i]===1&&this.playerSitoutCounter[i]===0)
             {
                 this.playerCards[i][0].push(deck.randomizedDeck.pop());
                 this.playerCards[i][0].push(deck.randomizedDeck.pop());
@@ -64,7 +66,17 @@ module.exports = {
         console.log("BoardMessage: " + msg);
     },
     resetBoard : function(){
+        for(var playerIndex=1;playerIndex<7;playerIndex++){
+            if(this.playerSitoutCounter[playerIndex]===3){this.remPlayer(this.positionClientID[playerIndex]);}
+        }
         this.playerBets = [0,0,0,0,0,0,0];
         this.playerCards = [[[]],[[]],[[]],[[]],[[]],[[]],[[]]];
+    },
+    checkPlayerBets : function(){
+        for(var playerIndex=1;playerIndex<7;playerIndex++){
+            if(this.tablePositions[playerIndex]===1&&this.playerBets[playerIndex]===0){
+                this.playerSitoutCounter[playerIndex]++;
+            }
+        }
     }
 };
