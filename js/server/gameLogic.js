@@ -6,17 +6,8 @@ payOutWinners : function(){
         {
             for(var handIndex=0;handIndex<board.playerCards[playerIndex].length;handIndex++){
                 var currentHand=board.playerCards[playerIndex][handIndex];
-                if(this.handValue(currentHand)>dealerHandValue){
-                    board.playerChips[playerIndex]+=2*board.playerBets[playerIndex]; 
-                    console.log('Player ' + playerIndex + '\'s ' + this.handValue(currentHand) + ' beats dealer\'s ' + dealerHandValue + '.');
-                }
-                else if(this.handValue(currentHand)===dealerHandValue){
-                    board.playerChips[playerIndex]+=board.playerBets[playerIndex];
-                    console.log('Player ' + playerIndex + '\'s ' + this.handValue(currentHand) + ' pushes dealer\'s ' + dealerHandValue + '.');
-                }
-                else {
-                    console.log('Player ' + playerIndex + '\'s ' + this.handValue(currentHand) + ' loses to dealer\'s ' + dealerHandValue + '.');
-                }
+                if(this.handValue(currentHand)>dealerHandValue){board.playerChips[playerIndex]+=2*board.playerBets[playerIndex];}
+                else if(this.handValue(currentHand)===dealerHandValue){board.playerChips[playerIndex]+=board.playerBets[playerIndex];}
             }
         }
     }
@@ -42,9 +33,7 @@ handValue : function(cardArray){
         else return 0;
     },
 cardValue : function(cardString){
-        console.log('CARDSTRING VALUE BEFORE SLICE: ' + typeof cardString);
         card=String(cardString).slice(0, -1); //remove suit
-        console.log('CARDSTRING VALUE AFTER SLICE: ' + card);
         if(card==="A"){return 11;}
         else if(isNaN(card)){return 10;}
         else {return parseInt(card);}
