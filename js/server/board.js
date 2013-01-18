@@ -8,7 +8,7 @@ module.exports = {
     currentMessage : "",
     positionClientID : [0,0,0,0,0,0,0],
     playerBets : [0,0,0,0,0,0,0],
-    playerCards : [[[]],[["AH","10D"],["AH","10D"],["AH","10D"],["AH","10D"]],[[]],[[]],[[]],[[]],[[]]],
+    playerCards : [[[]],[[]],[[]],[[]],[[]],[[]],[[]]],
     playerChips : [0,0,0,0,0,0,0],
     tablePositions : [1,0,0,0,0,0,0],  //Positions Dealer & Player 1-6
     numPlayers : 0,

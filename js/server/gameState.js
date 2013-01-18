@@ -26,22 +26,30 @@ module.exports = {
         },                    
         checkingForDealerBlackJack:{
             beginState : function(){},
-            endState : function(){},
+            endState : function(){
+                if(gameLogic.checkDealerBlackjack()){
+                    console.log('DEALER HAS BLACKJACK!!!! OH NOOOOOOOOO.');
+                }
+                else console.log('No Dealer BlackJack!!');
+            },
             placeBet : function(){},
             addPlayer : function(){},
             message: "Checking for dealer blackjack.",
-            wait : 5000
+            wait : 2000
         },   
         acceptingPlayerOptions:{
             beginState : function(){},
             endState : function(){},
             placeBet : function(){},
             addPlayer : function(){},
-            wait : 5000
+            wait : 2000
         },       
         concludingRound:{
             beginState : function(){},
-            endState : function(){board.resetBoard();},
+            endState : function(){
+                gameLogic.payOutWinners();
+                board.resetBoard();
+            },
             placeBet : function(){},
             addPlayer : function(){},
             wait : 5000
