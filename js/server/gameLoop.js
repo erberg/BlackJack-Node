@@ -28,6 +28,9 @@ module.exports = {
             gameState.setState(thisParent.loopOrder[thisParent.loopIndex]);
             thisParent.step();
         },gameState.getWait());
+    },
+    restartLoop : function(){ //Call from endstate function of gameState object
+        this.loopIndex=3;
     }
     
 };

@@ -21,7 +21,7 @@ handValue : function(cardArray){
         var aceCount=0;
         if(cardArray.length>0) {
             for(var cardIndex=0;cardIndex<cardArray.length;cardIndex++){
-                cardTotal=cardTotal+this.cardValue(cardArray[cardIndex]);
+                cardTotal+=this.cardValue(cardArray[cardIndex]);
                 if(this.cardValue(cardArray[cardIndex])===11){aceCount++;}
             }
             while(aceCount>0&&cardTotal>21){

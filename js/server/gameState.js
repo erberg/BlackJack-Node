@@ -29,8 +29,9 @@ module.exports = {
             endState : function(){
                 if(gameLogic.checkDealerBlackjack()){
                     console.log('DEALER HAS BLACKJACK!!!! OH NOOOOOOOOO.');
+                    gameLoop.restartLoop();
                 }
-                else console.log('No Dealer BlackJack!!');
+                else {console.log('No Dealer BlackJack!!');}
             },
             placeBet : function(){},
             addPlayer : function(){},
@@ -42,6 +43,7 @@ module.exports = {
             endState : function(){},
             placeBet : function(){},
             addPlayer : function(){},
+            message: "Accepting player options.",
             wait : 2000
         },       
         concludingRound:{
@@ -52,6 +54,7 @@ module.exports = {
             },
             placeBet : function(){},
             addPlayer : function(){},
+            message: "Ending Round.",
             wait : 5000
         }               //Includes Paying Out & Announcing Winner
     },
