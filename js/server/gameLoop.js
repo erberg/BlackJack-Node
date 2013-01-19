@@ -12,10 +12,9 @@ module.exports = {
         this.step();
     },
     step : function(){
-        if(this.running){
-            this.loop();
-            this.io.sockets.emit('updateTable', board);
-        }
+        if(this.running===0&&this.loopIndex===0){}
+        else if(this.running===1){this.loop();}
+        this.io.sockets.emit('updateTable', board);
     },
     loop : function(){                          //Statechange occurs on every loop.
         var thisParent=this;
@@ -32,6 +31,10 @@ module.exports = {
             if(this.loopIndex===this.loopOrder.length) {this.loopIndex=0;}
             gameState.setState(this.loopOrder[this.loopIndex]);
             this.step();
+    },
+    stopLoop : function()
+    {
+        this.running=0;
     }
     
 };

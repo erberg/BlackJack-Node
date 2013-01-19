@@ -7,7 +7,7 @@ module.exports = {
     currentState : {},
     states : {
         waitingForPlayer : { 
-            beginState : function(){},
+            beginState : function(){if(board.numPlayers===0){gameLoop.stopLoop();}},
             endState : function(){},
             placeBet : function(){},
             addPlayer : function(board,requestData){
@@ -39,7 +39,7 @@ module.exports = {
             addPlayer : function(){},
             splitRequest : function(){},
             message: "Checking for dealer blackjack.",
-            wait : 2000
+            wait : 1000
         },   
         acceptingPlayerOptions:{
             beginState : function(){},
@@ -48,7 +48,7 @@ module.exports = {
             addPlayer : function(){},
             splitRequest : function(){},
             message: "Accepting player options.",
-            wait : 2000
+            wait : 1000
         },       
         concludingRound:{
             beginState : function(){},
@@ -60,7 +60,7 @@ module.exports = {
             addPlayer : function(){},
             splitRequest : function(){},
             message: "Ending Round.",
-            wait : 5000
+            wait : 1000
         }               //Includes Paying Out & Announcing Winner
     },
     setState : function(state){
