@@ -63,6 +63,11 @@ function prepareButtonDisplay()
             glClientBoard.clientPosition=index+1;
         } else $(this).show();
     });
+
+    $(".sitOutButton").hide().each(function(index){
+        if(glClientBoard.tablePositions[index+1]===1&&glClientBoard.playerSitoutCounter[index+1]>0){ //+1 compensates for dealer
+        $(this).show();} 
+    });
 }
 
 function prepareCardSpritePositions()

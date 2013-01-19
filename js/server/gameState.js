@@ -30,10 +30,10 @@ module.exports = {
             beginState : function(){},
             endState : function(){
                 if(gameLogic.checkDealerBlackjack()){
-                    console.log('DEALER HAS BLACKJACK!!!! OH NOOOOOOOOO.');
+                    console.log('Dealer has blackjack. Ending round early.');
                     gameLoop.concludeRound();
                 }
-                else {console.log('No Dealer BlackJack!!');}
+                else {console.log('No Dealer BlackJack.');}
             },
             placeBet : function(){},
             addPlayer : function(){},

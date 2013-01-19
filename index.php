@@ -20,12 +20,12 @@
                 <div class="middle-card-table"></div>
                 <div class="right-card-table"></div>
                 <div class="position-Dealer"><div class="username-Player">Dealer</div></div>
-                <div class="position-Player1"><div class="btn joinButton btn-primary">Join Table</div><div class="username-Player">Player 1</div><div class="chips-Player">$$$</div><div class="bet-Player">$$$</div></div>
-                <div class="position-Player2"><div class="btn joinButton btn-primary">Join Table</div><div class="username-Player">Player 2</div><div class="chips-Player">$$$</div><div class="bet-Player">$$$</div></div>
-                <div class="position-Player3"><div class="btn joinButton btn-primary">Join Table</div><div class="username-Player">Player 3</div><div class="chips-Player">$$$</div><div class="bet-Player">$$$</div></div>
-                <div class="position-Player4"><div class="btn joinButton btn-primary">Join Table</div><div class="username-Player">Player 4</div><div class="chips-Player">$$$</div><div class="bet-Player">$$$</div></div>
-                <div class="position-Player5"><div class="btn joinButton btn-primary">Join Table</div><div class="username-Player">Player 5</div><div class="chips-Player">$$$</div><div class="bet-Player">$$$</div></div>
-                <div class="position-Player6"><div class="btn joinButton btn-primary">Join Table</div><div class="username-Player">Player 6</div><div class="chips-Player">$$$</div><div class="bet-Player">$$$</div></div>
+                <div class="position-Player1"><div class="btn joinButton btn-primary">Join Table</div><div class="btn sitOutButton btn-inverse disabled">Sitting Out</div><div class="username-Player">Player 1</div><div class="chips-Player">$$$</div><div class="bet-Player">$$$</div></div>
+                <div class="position-Player2"><div class="btn joinButton btn-primary">Join Table</div><div class="btn sitOutButton btn-inverse disabled">Sitting Out</div><div class="username-Player">Player 2</div><div class="chips-Player">$$$</div><div class="bet-Player">$$$</div></div>
+                <div class="position-Player3"><div class="btn joinButton btn-primary">Join Table</div><div class="btn sitOutButton btn-inverse disabled">Sitting Out</div><div class="username-Player">Player 3</div><div class="chips-Player">$$$</div><div class="bet-Player">$$$</div></div>
+                <div class="position-Player4"><div class="btn joinButton btn-primary">Join Table</div><div class="btn sitOutButton btn-inverse disabled">Sitting Out</div><div class="username-Player">Player 4</div><div class="chips-Player">$$$</div><div class="bet-Player">$$$</div></div>
+                <div class="position-Player5"><div class="btn joinButton btn-primary">Join Table</div><div class="btn sitOutButton btn-inverse disabled">Sitting Out</div><div class="username-Player">Player 5</div><div class="chips-Player">$$$</div><div class="bet-Player">$$$</div></div>
+                <div class="position-Player6"><div class="btn joinButton btn-primary">Join Table</div><div class="btn sitOutButton btn-inverse disabled">Sitting Out</div><div class="username-Player">Player 6</div><div class="chips-Player">$$$</div><div class="bet-Player">$$$</div></div>
                 <div class="message"></div>
                 <div class="btn-container">
                     <div class="btn-group">

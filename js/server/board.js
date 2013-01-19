@@ -66,9 +66,7 @@ module.exports = {
         console.log("BoardMessage: " + msg);
     },
     resetBoard : function(){
-        for(var playerIndex=1;playerIndex<7;playerIndex++){
-            if(this.playerSitoutCounter[playerIndex]===3) {this.remPlayer(this.positionClientID[playerIndex]);}
-        }
+        this.removeTimedOutPlayers();
         this.playerBets = [0,0,0,0,0,0,0];
         this.playerCards = [[[]],[[]],[[]],[[]],[[]],[[]],[[]]];
     },
@@ -79,5 +77,11 @@ module.exports = {
                 else {this.playerSitoutCounter[playerIndex]=0;}
             }
         }
+    },
+    removeTimedOutPlayers : function(){
+        for(var playerIndex=1;playerIndex<7;playerIndex++){
+            if(this.playerSitoutCounter[playerIndex]===3) {this.remPlayer(this.positionClientID[playerIndex]);}
+        }
     }
+
 };

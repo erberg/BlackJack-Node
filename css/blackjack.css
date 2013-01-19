@@ -205,3 +205,12 @@ body {
     z-index:2;
     height:20px;
 }
+
+.sitOutButton{
+    left: 10px;
+    bottom: 20px;
+    position:absolute;
+    z-index:2;
+    height:20px;
+    display:none;
+}

@@ -12,7 +12,7 @@ module.exports = {
         this.step();
     },
     step : function(){
-        if(this.running===0&&this.loopIndex===0){console.log('Loop has ended.');}
+        if(this.running===0 && this.loopIndex===0) {console.log('Loop has ended.');}
         else if(this.running===1){this.loop();}
         board.setMessage(gameState.getMessage());
         this.io.sockets.emit('updateTable', board);
