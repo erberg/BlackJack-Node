@@ -14,12 +14,12 @@ module.exports = {
                 return board.addPlayer(requestData["clientID"],requestData["requestedPosition"]);   
             },
             splitRequest : function(){},
-            message: "Waiting 10 seconds for other players to join.",
+            message: "Waiting for players to join.",
             wait : 3000 
         },             
         acceptingBets:{
             beginState : function(){},
-            endState : function(){board.checkPlayerBets();board.getCards(deck);},
+            endState : function(){board.checkPlayerBets();board.dealCards(deck);},
             placeBet : function(requestData){return board.placeBet(requestData["clientID"],requestData["betAmt"]);},
             addPlayer : function(){},
             splitRequest : function(){},

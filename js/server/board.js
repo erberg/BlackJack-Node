@@ -49,7 +49,7 @@ module.exports = {
         var playerPosition=this.positionClientID.indexOf(id);
         return playerPosition;
     },
-    getCards : function(deck){
+    dealCards : function(deck){
         this.playerCards[0][0].push(deck.randomizedDeck.pop());
         this.playerCards[0][0].push(deck.randomizedDeck.pop());
         for(var i=1;i<this.tablePositions.length;i++)  //# of current players will go here
@@ -74,8 +74,9 @@ module.exports = {
     },
     checkPlayerBets : function(){
         for(var playerIndex=1;playerIndex<7;playerIndex++){
-            if(this.tablePositions[playerIndex]===1&&this.playerBets[playerIndex]===0){
-                this.playerSitoutCounter[playerIndex]++;
+            if(this.tablePositions[playerIndex]===1){
+                if(this.playerBets[playerIndex]===0) {this.playerSitoutCounter[playerIndex]++;}
+                else {this.playerSitoutCounter[playerIndex]=0;}
             }
         }
     }

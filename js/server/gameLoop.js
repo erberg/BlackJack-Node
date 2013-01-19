@@ -12,18 +12,15 @@ module.exports = {
         this.step();
     },
     step : function(){
-        if(this.running===0&&this.loopIndex===0){console.log('OUTOFLOOP');board.setMessage(gameState.getMessage());}
+        if(this.running===0&&this.loopIndex===0){console.log('Loop has ended.');}
         else if(this.running===1){this.loop();}
+        board.setMessage(gameState.getMessage());
         this.io.sockets.emit('updateTable', board);
     },
     loop : function(){                          //Statechange occurs on every loop.
         var thisParent=this;
-        board.setMessage(gameState.getMessage());
         gameState.getState().beginState();
         setTimeout(function(){thisParent.delayedIncrement();},gameState.getWait());
-    },
-    concludeRound : function(){ //Call from endstate function of gameState object
-        this.loopIndex=3;
     },
     delayedIncrement : function(){
             gameState.getState().endState();
@@ -31,6 +28,9 @@ module.exports = {
             if(this.loopIndex===this.loopOrder.length) {this.loopIndex=0;}
             gameState.setState(this.loopOrder[this.loopIndex]);
             this.step();
+    },
+    concludeRound : function(){ //Call from endstate function of gameState object
+        this.loopIndex=3;
     },
     pauseLoop : function()
     {
