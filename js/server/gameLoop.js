@@ -12,7 +12,7 @@ module.exports = {
         this.step();
     },
     step : function(){
-        if(this.running===0&&this.loopIndex===0){}
+        if(this.running===0&&this.loopIndex===0){console.log('OUTOFLOOP');board.setMessage(gameState.getMessage());}
         else if(this.running===1){this.loop();}
         this.io.sockets.emit('updateTable', board);
     },
@@ -32,7 +32,7 @@ module.exports = {
             gameState.setState(this.loopOrder[this.loopIndex]);
             this.step();
     },
-    stopLoop : function()
+    pauseLoop : function()
     {
         this.running=0;
     }

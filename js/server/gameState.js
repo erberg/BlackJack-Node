@@ -7,7 +7,7 @@ module.exports = {
     currentState : {},
     states : {
         waitingForPlayer : { 
-            beginState : function(){if(board.numPlayers===0){gameLoop.stopLoop();}},
+            beginState : function(){},
             endState : function(){},
             placeBet : function(){},
             addPlayer : function(board,requestData){
@@ -55,6 +55,7 @@ module.exports = {
             endState : function(){
                 gameLogic.payOutWinners();
                 board.resetBoard();
+                if(board.numPlayers===0){gameLoop.pauseLoop();}
             },
             placeBet : function(){},
             addPlayer : function(){},
