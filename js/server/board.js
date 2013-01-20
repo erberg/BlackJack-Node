@@ -19,6 +19,7 @@ module.exports = {
         {
             if(betAmt<=this.playerChips[playerPosition])                    
                 {
+                    this.playerSitoutCounter[playerPosition]=0;
                     this.playerBets[playerPosition]=betAmt;
                     this.playerChips[playerPosition]=this.playerChips[playerPosition]-betAmt;
                     return 1;
@@ -52,12 +53,12 @@ module.exports = {
     dealCards : function(deck){
         this.playerCards[0][0].push(deck.randomizedDeck.pop());
         this.playerCards[0][0].push(deck.randomizedDeck.pop());
-        for(var i=1;i<this.tablePositions.length;i++)  //# of current players will go here
+        for(var playerIndex=1;playerIndex<7;playerIndex++)  
         {
-            if(this.tablePositions[i]===1&&this.playerSitoutCounter[i]===0)
+            if(this.tablePositions[playerIndex]===1&&this.playerSitoutCounter[playerIndex]===0)
             {
-                this.playerCards[i][0].push(deck.randomizedDeck.pop());
-                this.playerCards[i][0].push(deck.randomizedDeck.pop());
+                this.playerCards[playerIndex][0].push(deck.randomizedDeck.pop());
+                this.playerCards[playerIndex][0].push(deck.randomizedDeck.pop());
             }
         }
     },
@@ -71,16 +72,31 @@ module.exports = {
         this.playerCards = [[[]],[[]],[[]],[[]],[[]],[[]],[[]]];
     },
     checkPlayerBets : function(){
+        var countPlayersSittingOut=0;
         for(var playerIndex=1;playerIndex<7;playerIndex++){
             if(this.tablePositions[playerIndex]===1){
-                if(this.playerBets[playerIndex]===0) {this.playerSitoutCounter[playerIndex]++;}
-                else {this.playerSitoutCounter[playerIndex]=0;}
+                if(this.playerBets[playerIndex]===0) {
+                    countPlayersSittingOut++;
+                } else {this.playerSitoutCounter[playerIndex]=0;}
+            }
+            if(countPlayersSittingOut===this.numPlayers)     //all current players are sitting out
+            {
+                gameLoop.pauseLoop();
+                gameLoop.loopIndex=0;
+            }
+        }
+    },
+    incrementSitoutCounter : function(){
+        for(var playerIndex=1;playerIndex<7;playerIndex++){
+            if(this.tablePositions[playerIndex]===1&&this.playerBets[playerIndex]===0) {
+            console.log('sitoutcount incremented for player ' + playerIndex);
+            this.playerSitoutCounter[playerIndex]++;
             }
         }
     },
     removeTimedOutPlayers : function(){
         for(var playerIndex=1;playerIndex<7;playerIndex++){
-            if(this.playerSitoutCounter[playerIndex]===3) {this.remPlayer(this.positionClientID[playerIndex]);}
+            if(this.playerSitoutCounter[playerIndex]>=3) {console.log('removeTimedOutPlayers called!!!' + this.playerSitoutCounter[playerIndex] + ' for player index ' + playerIndex);this.remPlayer(this.positionClientID[playerIndex]);}
         }
     }
 

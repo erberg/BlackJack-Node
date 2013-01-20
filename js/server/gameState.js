@@ -19,15 +19,22 @@ module.exports = {
         },             
         acceptingBets:{
             beginState : function(){},
-            endState : function(){board.checkPlayerBets();board.dealCards(deck);},
+            endState : function(){
+                board.checkPlayerBets();
+            },
             placeBet : function(requestData){return board.placeBet(requestData["clientID"],requestData["betAmt"]);},
-            addPlayer : function(){},
+            addPlayer : function(board,requestData){
+                if(!gameLoop.running){
+                    var addPlayerSuccess=board.addPlayer(requestData["clientID"],requestData["requestedPosition"]);
+                    if(addPlayerSuccess){gameLoop.unPauseLoop();}
+                }
+            },
             splitRequest : function(){},
-            message: "Please place your bets.",
+            message: "Please place your bet.",
             wait : 3000
         },                    
         checkingForDealerBlackJack:{
-            beginState : function(){},
+            beginState : function(){board.incrementSitoutCounter();board.dealCards(deck);},
             endState : function(){
                 if(gameLogic.checkDealerBlackjack()){
                     console.log('Dealer has blackjack. Ending round early.');

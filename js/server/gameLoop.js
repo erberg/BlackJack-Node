@@ -35,6 +35,11 @@ module.exports = {
     pauseLoop : function()
     {
         this.running=0;
+    },
+    unPauseLoop : function()
+    {
+        this.running=1;
+        this.step();
     }
     
 };

@@ -45,6 +45,10 @@ io.sockets.on('connection', function (socket) {
     socket.on('betRequest', function (data) {
         if(gameState.currentState.placeBet(data))
         {               
+            if(!gameLoop.running) {                             //Handles the case that game has been paused.
+                gameLoop.startLoop(io); 
+                var clientInfo=getClientInfo(socket.id);
+                socket.emit('clientInfoUpdate', clientInfo);} 
             io.sockets.emit('updateTable', board);
         }
     });
