@@ -17,7 +17,7 @@ module.exports = {
         this.io.sockets.emit('updateTable', board);
         var thisParent=this;
         gameState.getState().beginState();
-        this.timeout=setTimeout(function(){thisParent.delayedIncrement();},gameState.getWait());
+        setTimeout(function(){thisParent.delayedIncrement();},gameState.getWait());
     },
     delayedIncrement : function(){
             gameState.getState().endState();
@@ -40,7 +40,8 @@ module.exports = {
     unPauseLoop : function()
     {
         this.running=1;
-        this.step();
+        this.delayedIncrement();
+        this.io.sockets.emit('updateTable', board);
     }
     
 };

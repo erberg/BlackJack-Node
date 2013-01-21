@@ -20,7 +20,7 @@ module.exports = {
         acceptingBets:{
             beginState : function(){},
             endState : function(){
-                board.checkPlayerBets();
+                    board.checkPlayerBets();
             },
             placeBet : function(requestData){return board.placeBet(requestData["clientID"],requestData["betAmt"]);},
             addPlayer : function(board,requestData){
