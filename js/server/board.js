@@ -79,17 +79,15 @@ module.exports = {
                     countPlayersSittingOut++;
                 } else {this.playerSitoutCounter[playerIndex]=0;}
             }
-            if(countPlayersSittingOut===this.numPlayers)     //all current players are sitting out
+        }
+        if(countPlayersSittingOut===this.numPlayers)     //all current players are sitting out
             {
                 gameLoop.pauseLoop();
-                gameLoop.loopIndex=0;
             }
-        }
     },
     incrementSitoutCounter : function(){
         for(var playerIndex=1;playerIndex<7;playerIndex++){
             if(this.tablePositions[playerIndex]===1&&this.playerBets[playerIndex]===0) {
-            console.log('sitoutcount incremented for player ' + playerIndex);
             this.playerSitoutCounter[playerIndex]++;
             }
         }
