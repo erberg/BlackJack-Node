@@ -46,7 +46,7 @@ module.exports = {
             addPlayer : function(){},
             splitRequest : function(){},
             message: "Checking for dealer blackjack.",
-            wait : 1000
+            wait : 4000
         },   
         acceptingPlayerOptions:{
             beginState : function(){},

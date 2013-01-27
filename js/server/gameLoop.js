@@ -14,10 +14,10 @@ module.exports = {
     },
     step : function(){
         board.setMessage(gameState.getMessage());
-        this.io.sockets.emit('updateTable', board);
         var thisParent=this;
         gameState.getState().beginState();
         setTimeout(function(){thisParent.delayedIncrement();},gameState.getWait());
+        this.io.sockets.emit('updateTable', board);
     },
     delayedIncrement : function(){
             gameState.getState().endState();
