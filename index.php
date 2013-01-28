@@ -62,7 +62,7 @@
 
         <script>
             
-            var glClientID=0;
+            var glClientID=-1;
             var socket = io.connect('http://www.ericrberg.com:8080');
             var glClientBoard={};
             var glClientInfo={};

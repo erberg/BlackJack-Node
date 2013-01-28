@@ -15,11 +15,11 @@ gameState=require('./js/server/gameState.js');
 gameState.setState('waitingForPlayer');
 gameLoop = require('./js/server/gameLoop.js');
 io.sockets.on('connection', function (socket) {
-    socket.emit('updateTable', board);
-    
     socket.emit('id', {
         id: socket.id
     });
+
+    socket.emit('updateTable', board);
     
     socket.on('updateRequest', function (data) {
         socket.emit('updateTable', board);
@@ -48,9 +48,10 @@ io.sockets.on('connection', function (socket) {
             if(!gameLoop.running) {                             //Handles the case that game has been paused.
                 gameLoop.startLoop(io); 
                 var clientInfo=getClientInfo(socket.id);
-                socket.emit('clientInfoUpdate', clientInfo);} 
-            io.sockets.emit('updateTable', board);
-        }
+                socket.emit('clientInfoUpdate', clientInfo);
+                } 
+             io.sockets.emit('updateTable', board);
+            }
     });
     
 });
