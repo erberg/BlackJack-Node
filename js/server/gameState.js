@@ -28,6 +28,7 @@ module.exports = {
                     var addPlayerSuccess=board.addPlayer(requestData["clientID"],requestData["requestedPosition"]);
                     if(addPlayerSuccess){gameLoop.unPauseLoop();}
                 }
+                return addPlayerSuccess;
             },
             splitRequest : function(){},
             message: "Please place your bet.",
@@ -55,7 +56,7 @@ module.exports = {
             addPlayer : function(){},
             splitRequest : function(){},
             message: "Accepting player options.",
-            wait : 1000
+            wait : 5000
         },       
         concludingRound:{
             beginState : function(){},

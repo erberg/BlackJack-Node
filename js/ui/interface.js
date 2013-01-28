@@ -10,8 +10,9 @@ $( "#scroller" ).draggable({
 });
 
 $( "#scroller" ).on("drag", function( event, ui ) {
-    val=parseInt($(this).css("left"));
-    var finalAmt=Math.round((val/113)*glClientBoard.playerChips[glClientInfo.position] / 5) * 5;
+    var val=parseInt($(this).css("left"));
+    var playerChips=glClientBoard.playerChips[glClientInfo.position];
+    var finalAmt=Math.min(Math.round((val/112)*playerChips / 5) * 5, playerChips);
     if(val==0) finalAmt=5;
     $('#betAmt').text("Bet " + finalAmt);
     $('#betAmt').data('betamount',finalAmt);
