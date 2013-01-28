@@ -27,3 +27,11 @@ function requestPlaceBet()
      });    
 }
 
+function requestSplit()
+{
+     $("#split").click(function(){
+         var data = {};
+         data["clientID"]=glClientID;
+         socket.emit('splitRequest',data);
+     });    
+}

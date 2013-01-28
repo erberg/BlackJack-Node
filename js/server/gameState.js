@@ -27,8 +27,8 @@ module.exports = {
                 if(!gameLoop.running){
                     var addPlayerSuccess=board.addPlayer(requestData["clientID"],requestData["requestedPosition"]);
                     if(addPlayerSuccess){gameLoop.unPauseLoop();}
-                }
-                return addPlayerSuccess;
+                    return addPlayerSuccess;
+                } else {return 0;}
             },
             splitRequest : function(){},
             message: "Please place your bet.",
