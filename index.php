@@ -36,10 +36,10 @@
                                 <div id="scroller" class="btn btn-primary"></div>
                             </li>
                         </ul>
-                        <button class="btn btn-primary">Hit</button>
-                        <button class="btn btn-primary">Stand</button>
-                        <button class="btn btn-primary">Double-Down</button>
-                        <button class="btn btn-primary">Split</button>
+                        <button id="hit" class="btn btn-primary">Hit</button>
+                        <button id="stand" class="btn btn-primary">Stand</button>
+                        <button id="doubledown" class="btn btn-primary">Double-Down</button>
+                        <button id="split" class="btn btn-primary">Split</button>
 
                     </div>
                 </div>
@@ -68,14 +68,14 @@
             var glClientInfo={};
 
             socket.on('id', function (data) {
-                $(".socket").append("<li>My ClientID: "+data.id+"</li>");
+                $(".socket").append("<li>My ClientID: " + data.id + "</li>");
                 glClientID=data.id;
             });
                 
         
             socket.on('updateTable', function (board) {
                 glClientBoard=board;
-                $(".socket").append("<li>Message: "+ board.currentMessage + "</li>");
+                $(".socket").append("<li>Message: " + board.currentMessage + "</li>");
                 displayBoard();
             })
 
