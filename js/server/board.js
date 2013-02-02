@@ -13,7 +13,6 @@ module.exports = {
     playerCards : [[[]],[[]],[[]],[[]],[[]],[[]],[[]]],
     playerChips : [0,0,0,0,0,0,0],
     playerSitoutCounter : [0,0,0,0,0,0,0],
-    playerOptionTimers : [0,0,0,0,0,0,0],
     tablePositions : [1,0,0,0,0,0,0],  //Positions Dealer & Player 1-6
     numPlayers : 0,
     placeBet : function(id,betAmt){
@@ -110,20 +109,24 @@ module.exports = {
             {
             if(this.playerCards[playerIndex][newHandIndex]===undefined)
                 {
-                this.performSplit(playerIndex,newHandIndex);
+                this.performSplit(playerIndex,handIndex,newHandIndex);
                 return 1;
                 }
             }
         }   
         return 0;
     },
-    performSplit: function(playerIndex,newHandIndex){
-        handIndex=parseInt(this.activeHand);
+    performSplit: function(playerIndex,handIndex,newHandIndex){
         this.playerCards[playerIndex][newHandIndex]=[];
         this.playerCards[playerIndex][newHandIndex][0]=this.playerCards[playerIndex][handIndex].pop(); 
         this.playerCards[playerIndex][handIndex].push(deck.randomizedDeck.pop());
         this.playerCards[playerIndex][newHandIndex][1]=deck.randomizedDeck.pop();
         this.playerChips[playerIndex]=this.playerChips[playerIndex]-this.playerBets[playerIndex];
+    },
+    resetCounters : function()
+    {
+        this.activePlayer=1;
+        this.activeHand=0;
     }
 
 

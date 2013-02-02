@@ -60,10 +60,7 @@ io.sockets.on('connection', function (socket) {
 function getClientInfo(id)
 {
         var clientInfo = {};
-        if(clientInfo.position=board.getPlayerIndex(id))
-        {
-            clientInfo.chips=board.playerChips[clientInfo.position];
-        }
+        if(clientInfo.position=board.getPlayerIndex(id)){clientInfo.chips=board.playerChips[clientInfo.position];}
         else clientInfo.chips=0;
         return clientInfo;   
 }

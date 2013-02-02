@@ -59,7 +59,7 @@ module.exports = {
                //board.getNextPlayerOption();
                this.playerOptionTimer=setTimeout(this.playerOptionTimeout,5000); //call default player action
             },
-            endState : function(){},
+            endState : function(){board.resetCounters();},
             placeBet : function(){},
             addPlayer : function(){},
             splitRequest : function(requestData){
