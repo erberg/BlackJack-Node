@@ -110,19 +110,21 @@ module.exports = {
             {
             if(this.playerCards[playerIndex][newHandIndex]===undefined)
                 {
-                this.playerCards[playerIndex][newHandIndex]=[];
-                this.playerCards[playerIndex][newHandIndex][0]=this.playerCards[playerIndex][handIndex].pop(); 
-                this.playerCards[playerIndex][handIndex].push(deck.randomizedDeck.pop());
-                this.playerCards[playerIndex][newHandIndex][1]=deck.randomizedDeck.pop();
-
-                this.playerChips[playerIndex]=this.playerChips[playerIndex]-this.playerBets[playerIndex];
-                break;
+                this.performSplit(playerIndex,newHandIndex);
+                return 1;
                 }
             }
-        }
-                //Does Player Have 2 Matching Cards? (ignore this one until everything else works)
-            
-        return 1;
+        }   
+        return 0;
+    },
+    performSplit: function(playerIndex,newHandIndex){
+        handIndex=parseInt(this.activeHand);
+        this.playerCards[playerIndex][newHandIndex]=[];
+        this.playerCards[playerIndex][newHandIndex][0]=this.playerCards[playerIndex][handIndex].pop(); 
+        this.playerCards[playerIndex][handIndex].push(deck.randomizedDeck.pop());
+        this.playerCards[playerIndex][newHandIndex][1]=deck.randomizedDeck.pop();
+        this.playerChips[playerIndex]=this.playerChips[playerIndex]-this.playerBets[playerIndex];
     }
+
 
 };

@@ -64,8 +64,10 @@ module.exports = {
             addPlayer : function(){},
             splitRequest : function(requestData){
                 var splitSuccess=board.splitRequest(requestData["clientID"]);
-                clearTimeout(this.playerOptionTimer);
-                console.log("Split Request Called. Timer Cleared.");
+                if(splitSuccess){
+                    clearTimeout(this.playerOptionTimer);
+                    console.log("Split Request Called. Timer Cleared.");
+                    }
                 return splitSuccess;
             },
             message: "Accepting player options.",
