@@ -7,10 +7,13 @@ module.exports = {
     initialChips : 500,
     currentMessage : "",
     positionClientID : [0,0,0,0,0,0,0],
+    activePlayer : 1,
+    activeHand : 0,
     playerBets : [0,0,0,0,0,0,0],
     playerCards : [[[]],[[]],[[]],[[]],[[]],[[]],[[]]],
     playerChips : [0,0,0,0,0,0,0],
     playerSitoutCounter : [0,0,0,0,0,0,0],
+    playerOptionTimers : [0,0,0,0,0,0,0],
     tablePositions : [1,0,0,0,0,0,0],  //Positions Dealer & Player 1-6
     numPlayers : 0,
     placeBet : function(id,betAmt){
@@ -96,6 +99,30 @@ module.exports = {
         for(var playerIndex=1;playerIndex<7;playerIndex++){
             if(this.playerSitoutCounter[playerIndex]>=3) {console.log('removeTimedOutPlayers called!!!' + this.playerSitoutCounter[playerIndex] + ' for player index ' + playerIndex);this.remPlayer(this.positionClientID[playerIndex]);}
         }
+    },
+    splitRequest : function(id){
+        playerIndex=this.getPlayerIndex(id);
+        handIndex=parseInt(this.activeHand);
+        if(playerIndex===this.activePlayer && this.playerChips[playerIndex]>=(this.playerBets[playerIndex]*this.playerCards[playerIndex].length)
+                                           && gameLogic.checkIfCardsSplittable(this.playerCards[playerIndex][handIndex]))
+        {
+            for(var newHandIndex=handIndex+1;newHandIndex<=3;newHandIndex++)
+            {
+            if(this.playerCards[playerIndex][newHandIndex]===undefined)
+                {
+                this.playerCards[playerIndex][newHandIndex]=[];
+                this.playerCards[playerIndex][newHandIndex][0]=this.playerCards[playerIndex][handIndex].pop(); 
+                this.playerCards[playerIndex][handIndex].push(deck.randomizedDeck.pop());
+                this.playerCards[playerIndex][newHandIndex][1]=deck.randomizedDeck.pop();
+
+                this.playerChips[playerIndex]=this.playerChips[playerIndex]-this.playerBets[playerIndex];
+                break;
+                }
+            }
+        }
+                //Does Player Have 2 Matching Cards? (ignore this one until everything else works)
+            
+        return 1;
     }
 
 };

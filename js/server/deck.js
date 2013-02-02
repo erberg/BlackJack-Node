@@ -29,11 +29,14 @@ module.exports = {
             rand=Math.floor(Math.random()*sacrificialDeck.length);
             this.randomizedDeck.push(sacrificialDeck.splice(rand,1));
         }        
+        //this.randomizedDeck.push("4D");                 //THESE ARE TEMP FOR TESTING PURPOSES!!! (testing a split)
+        //this.randomizedDeck.push("4C");                 //THESE ARE TEMP FOR TESTING PURPOSES!!!
+        //this.randomizedDeck.push("5H");                 //THESE ARE TEMP FOR TESTING PURPOSES!!!
+        //this.randomizedDeck.push("10C");                //THESE ARE TEMP FOR TESTING PURPOSES!!!
     },
 
     getCard:function(){
-        if(this.filledDeck.length>0)
-            return this.randomizedDeck.pop();
+        if(this.filledDeck.length>0) {return this.randomizedDeck.pop();}
         else return 0;
     }
 

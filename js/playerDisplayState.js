@@ -15,7 +15,7 @@ var playerDisplayState = {
         twoHands:{
             displayCards : function(cssobject,playerPosition){
                 var columnposition;
-                for(var hand=0;hand<glClientBoard.playerCards[playerPosition].length;hand++){
+                for(var hand=(glClientBoard.playerCards[playerPosition].length-1);hand>=0;hand--){
                     columnposition=30-hand*45;
                     for(var card=0;card<glClientBoard.playerCards[playerPosition][hand].length;card++){
                         cssobject.append("<div class='card-container' data-card=\'" + glClientBoard.playerCards[playerPosition][hand][card] 
@@ -28,7 +28,7 @@ var playerDisplayState = {
         threeHands:{
             displayCards : function(cssobject,playerPosition){
                 var columnposition;
-                for(var hand=0;hand<glClientBoard.playerCards[playerPosition].length;hand++){
+                for(var hand=(glClientBoard.playerCards[playerPosition].length-1);hand>=0;hand--){
                     columnposition=30-hand*21;
                     for(var card=0;card<glClientBoard.playerCards[playerPosition][hand].length;card++){
                         cssobject.append("<div class='card-container' data-card=\'" + glClientBoard.playerCards[playerPosition][hand][card] 
@@ -41,7 +41,7 @@ var playerDisplayState = {
         fourHands: {
             displayCards : function(cssobject,playerPosition){
                 var columnposition;
-                for(var hand=0;hand<glClientBoard.playerCards[playerPosition].length;hand++){
+                for(var hand=(glClientBoard.playerCards[playerPosition].length-1);hand>=0;hand--){
                     columnposition=30-hand*15;
                     for(var card=0;card<glClientBoard.playerCards[playerPosition][hand].length;card++){
                         cssobject.append("<div class='card-container' data-card=\'" + glClientBoard.playerCards[playerPosition][hand][card] 

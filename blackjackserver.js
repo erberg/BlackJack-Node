@@ -36,7 +36,7 @@ io.sockets.on('connection', function (socket) {
     });
 
     socket.on('splitRequest', function (data) {  
-        if(gameState.currentState.splitRequest(board,data))
+        if(gameState.currentState.splitRequest(data))
         {
             io.sockets.emit('updateTable', board); 
         }

@@ -33,9 +33,14 @@ handValue : function(cardArray){
         else return 0;
     },
 cardValue : function(cardString){
-        card=String(cardString).slice(0, -1); //remove suit
-        if(card==="A"){return 11;}
-        else if(isNaN(card)){return 10;}
-        else {return parseInt(card);}
-    }
+    card=String(cardString).slice(0, -1); //remove suit
+    if(card==="A"){return 11;}
+    else if(isNaN(card)){return 10;}
+    else {return parseInt(card);}
+    },
+checkIfCardsSplittable : function(cardArray){
+    cardOneStripped=String(cardArray[0]).slice(0, -1);
+    cardTwoStripped=String(cardArray[1]).slice(0, -1);
+    return (cardOneStripped===cardTwoStripped);
+}
 };
