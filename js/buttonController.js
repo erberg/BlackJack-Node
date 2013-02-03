@@ -36,3 +36,12 @@ function requestSplit()
          socket.emit('splitRequest',data);
      });    
 }
+
+function requestHit()
+{
+     $("#hit").click(function(){
+         var data = {};
+         data["clientID"]=glClientID;
+         socket.emit('hitRequest',data);
+     });    
+}

@@ -42,6 +42,13 @@ io.sockets.on('connection', function (socket) {
         }
     });
 
+    socket.on('hitRequest', function (data) {  
+        if(gameState.currentState.hitRequest(data))
+        {
+            io.sockets.emit('updateTable', board); 
+        }
+    });
+
     socket.on('betRequest', function (data) {
         if(gameState.currentState.placeBet(data))
         {               

@@ -14,6 +14,7 @@ module.exports = {
                 return board.addPlayer(requestData["clientID"],requestData["requestedPosition"]);   
             },
             splitRequest : function(){},
+            hitRequest : function(){},
             message: "Waiting for players to join.",
             wait : 5000//3000 
         },             
@@ -31,6 +32,7 @@ module.exports = {
                 } else {return 0;}
             },
             splitRequest : function(){},
+            hitRequest : function(){},
             message: "Please place your bet.",
             wait : 5000
         },                    
@@ -46,6 +48,7 @@ module.exports = {
             placeBet : function(){},
             addPlayer : function(){},
             splitRequest : function(){},
+            hitRequest : function(){},
             message: "Checking for dealer blackjack.",
             wait : 1000//4000
         },   
@@ -86,6 +89,7 @@ module.exports = {
             placeBet : function(){},
             addPlayer : function(){},
             splitRequest : function(){},
+            hitRequest : function(){},
             message: "Ending Round.",
             wait : 1000
         }               //Includes Paying Out & Announcing Winner
