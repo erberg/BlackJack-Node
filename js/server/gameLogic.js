@@ -39,8 +39,11 @@ cardValue : function(cardString){
     else {return parseInt(card);}
     },
 checkIfCardsSplittable : function(cardArray){
+    if(cardArray.length==2)
+    {
     cardOneStripped=String(cardArray[0]).slice(0, -1);
     cardTwoStripped=String(cardArray[1]).slice(0, -1);
     return (cardOneStripped===cardTwoStripped);
+    } else {return 0;}
 }
 };
