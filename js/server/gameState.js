@@ -56,7 +56,8 @@ module.exports = {
             playerOptionTimer : "0",
             playerOptionTimeout : function(){
             if(board.nextPlayerOption()){
-                gameState.currentState.playerOptionTimer=setTimeout(gameState.currentState.playerOptionTimeout,5000);
+                console.log("playertimeouthasbeencalled");
+                this.playerOptionTimer=setTimeout(this.playerOptionTimeout,5000);
                 }
             else {gameLoop.unPauseLoop();}
             },
@@ -65,7 +66,7 @@ module.exports = {
                board.setFirstPlayer();
                this.playerOptionTimer=setTimeout(this.playerOptionTimeout,5000); //call default player action
             },
-            endState : function(){board.resetCounters();},
+            endState : function(){},
             placeBet : function(){},
             addPlayer : function(){},
             splitRequest : function(requestData){
@@ -76,11 +77,20 @@ module.exports = {
                     }
                 return splitSuccess;
             },
+            hitRequest : function(requestData){
+                var hitSuccess=board.hitRequest(requestData["clientID"]);
+                //console.log("hit called");
+                if(hitSuccess){
+                    clearTimeout(this.playerOptionTimer);
+                    this.playerOptionTimer=setTimeout(this.playerOptionTimeout,5000); 
+                }
+                return hitSuccess;
+            },
             message: "Accepting player options.",
             wait : 1000
         },       
         concludingRound:{
-            beginState : function(){},
+            beginState : function(){board.resetCounters();},
             endState : function(){
                 gameLogic.payOutWinners();
                 board.resetBoard();

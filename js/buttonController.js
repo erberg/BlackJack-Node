@@ -7,6 +7,7 @@
 requestJoin();
 requestPlaceBet();
 requestSplit();
+requestHit();
 
 function requestJoin()
 {

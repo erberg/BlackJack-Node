@@ -28,7 +28,9 @@ module.exports = {
         {
             rand=Math.floor(Math.random()*sacrificialDeck.length);
             this.randomizedDeck.push(sacrificialDeck.splice(rand,1));
-        }        
+        }      
+        this.randomizedDeck.push("4S");                 //THESE ARE TEMP FOR TESTING PURPOSES!!! (testing a split)  
+        this.randomizedDeck.push("4H");                 //THESE ARE TEMP FOR TESTING PURPOSES!!! (testing a split)
         this.randomizedDeck.push("4D");                 //THESE ARE TEMP FOR TESTING PURPOSES!!! (testing a split)
         this.randomizedDeck.push("4C");                 //THESE ARE TEMP FOR TESTING PURPOSES!!!
         this.randomizedDeck.push("2H");                 //THESE ARE TEMP FOR TESTING PURPOSES!!!

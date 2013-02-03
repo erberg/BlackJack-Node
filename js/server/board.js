@@ -102,7 +102,8 @@ module.exports = {
     splitRequest : function(id){
         playerIndex=this.getPlayerIndex(id);
         handIndex=parseInt(this.activeHand);
-        if(playerIndex===this.activePlayer && this.playerChips[playerIndex]>=(this.playerBets[playerIndex]*this.playerCards[playerIndex].length)
+        console.log('split request!!');
+        if(playerIndex===this.activePlayer && this.playerChips[playerIndex]>=this.playerBets[playerIndex]
                                            && gameLogic.checkIfCardsSplittable(this.playerCards[playerIndex][handIndex]))
         {
             for(var newHandIndex=handIndex+1;newHandIndex<=3;newHandIndex++)
@@ -133,8 +134,8 @@ module.exports = {
         nextPlayerIndex=parseInt(this.activePlayer)+1;
         nextHandIndex=parseInt(this.activeHand)+1;
         for(nextHandIndex;nextHandIndex<=3;nextHandIndex++){                    
-            if(this.playerCards[this.activePlayer][nextHandIndex]===undefined){        //If There Are No More Hands For Current Player...
-                for(nextPlayerIndex;nextPlayerIndex<7;nextPlayerIndex++){       //Look For Another Player
+            if(this.playerCards[this.activePlayer][nextHandIndex]===undefined){         //If There Are No More Hands For Current Player...
+                for(nextPlayerIndex;nextPlayerIndex<7;nextPlayerIndex++){               //Look For Another Player
                     if(this.tablePositions[nextPlayerIndex]===1&&this.playerSitoutCounter[nextPlayerIndex]===0){
                         this.activePlayer=nextPlayerIndex;
                         this.activeHand=0;
@@ -142,7 +143,7 @@ module.exports = {
                     }
                 }
             }
-            else {                                                              //Otherwise Set New Hand 
+            else {                                                                      //Otherwise Set New Hand 
                 this.activeHand=nextHandIndex;                                  
                 return 1;
             }
@@ -153,6 +154,18 @@ module.exports = {
     setFirstPlayer : function()
     {
         for(var i=1;i<7;i++){if(this.tablePositions[i]===1&&this.playerSitoutCounter[i]===0){this.activePlayer=i;return 1;}}
+        return 0;
+    },
+    hitRequest : function(id)
+    {
+        handIndex=this.activeHand;
+        playerIndex=this.getPlayerIndex(id);
+        
+        if(playerIndex===this.activePlayer && gameLogic.handValue(this.playerCards[playerIndex][handIndex])<=21){
+            this.playerCards[playerIndex][handIndex].push(deck.randomizedDeck.pop());
+            console.log(gameLogic.handValue(this.playerCards[playerIndex][handIndex]));
+            return 1;
+        }
         return 0;
     }
 
