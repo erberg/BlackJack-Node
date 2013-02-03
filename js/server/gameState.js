@@ -15,7 +15,7 @@ module.exports = {
             },
             splitRequest : function(){},
             message: "Waiting for players to join.",
-            wait : 1000//3000 
+            wait : 5000//3000 
         },             
         acceptingBets:{
             beginState : function(){},
@@ -32,7 +32,7 @@ module.exports = {
             },
             splitRequest : function(){},
             message: "Please place your bet.",
-            wait : 1000 //3000
+            wait : 5000
         },                    
         checkingForDealerBlackJack:{
             beginState : function(){board.incrementSitoutCounter();board.dealCards(deck);},
@@ -52,11 +52,14 @@ module.exports = {
         acceptingPlayerOptions:{
             playerOptionTimer : "0",
             playerOptionTimeout : function(){
-            console.log('The World Ends');
+            if(board.nextPlayerOption()){
+                gameState.currentState.playerOptionTimer=setTimeout(gameState.currentState.playerOptionTimeout,5000);
+                }
+            else {gameLoop.unPauseLoop();}
             },
             beginState : function(){
                gameLoop.pauseLoop();
-               //board.getNextPlayerOption();
+               board.setFirstPlayer();
                this.playerOptionTimer=setTimeout(this.playerOptionTimeout,5000); //call default player action
             },
             endState : function(){board.resetCounters();},
@@ -66,7 +69,7 @@ module.exports = {
                 var splitSuccess=board.splitRequest(requestData["clientID"]);
                 if(splitSuccess){
                     clearTimeout(this.playerOptionTimer);
-                    console.log("Split Request Called. Timer Cleared.");
+                    this.playerOptionTimer=setTimeout(this.playerOptionTimeout,5000);
                     }
                 return splitSuccess;
             },

@@ -31,8 +31,8 @@ module.exports = {
         }        
         this.randomizedDeck.push("4D");                 //THESE ARE TEMP FOR TESTING PURPOSES!!! (testing a split)
         this.randomizedDeck.push("4C");                 //THESE ARE TEMP FOR TESTING PURPOSES!!!
-        this.randomizedDeck.push("5H");                 //THESE ARE TEMP FOR TESTING PURPOSES!!!
-        this.randomizedDeck.push("10C");                //THESE ARE TEMP FOR TESTING PURPOSES!!!
+        this.randomizedDeck.push("2H");                 //THESE ARE TEMP FOR TESTING PURPOSES!!!
+        this.randomizedDeck.push("2C");                //THESE ARE TEMP FOR TESTING PURPOSES!!!
     },
 
     getCard:function(){

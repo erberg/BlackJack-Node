@@ -96,7 +96,7 @@ module.exports = {
     },
     removeTimedOutPlayers : function(){
         for(var playerIndex=1;playerIndex<7;playerIndex++){
-            if(this.playerSitoutCounter[playerIndex]>=3) {console.log('removeTimedOutPlayers called!!!' + this.playerSitoutCounter[playerIndex] + ' for player index ' + playerIndex);this.remPlayer(this.positionClientID[playerIndex]);}
+            if(this.playerSitoutCounter[playerIndex]>=3) {this.remPlayer(this.positionClientID[playerIndex]);}
         }
     },
     splitRequest : function(id){
@@ -127,7 +127,33 @@ module.exports = {
     {
         this.activePlayer=1;
         this.activeHand=0;
-    }
+    },
+    nextPlayerOption : function()
+    {
+        nextPlayerIndex=parseInt(this.activePlayer)+1;
+        nextHandIndex=parseInt(this.activeHand)+1;
+        for(nextHandIndex;nextHandIndex<=3;nextHandIndex++){                    
+            if(this.playerCards[this.activePlayer][nextHandIndex]===undefined){        //If There Are No More Hands For Current Player...
+                for(nextPlayerIndex;nextPlayerIndex<7;nextPlayerIndex++){       //Look For Another Player
+                    if(this.tablePositions[nextPlayerIndex]===1&&this.playerSitoutCounter[nextPlayerIndex]===0){
+                        this.activePlayer=nextPlayerIndex;
+                        this.activeHand=0;
+                        return 1;
+                    }
+                }
+            }
+            else {                                                              //Otherwise Set New Hand 
+                this.activeHand=nextHandIndex;                                  
+                return 1;
+            }
 
+        }
+    return 0;
+    },
+    setFirstPlayer : function()
+    {
+        for(var i=1;i<7;i++){if(this.tablePositions[i]===1&&this.playerSitoutCounter[i]===0){this.activePlayer=i;return 1;}}
+        return 0;
+    }
 
 };
