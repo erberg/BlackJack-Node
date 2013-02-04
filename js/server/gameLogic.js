@@ -1,12 +1,14 @@
 module.exports = {
 payOutWinners : function(){
     var dealerHandValue=this.handValue(board.playerCards[0][0]);
+    console.log("Dealer has " + dealerHandValue);
     for(var playerIndex=1;playerIndex<7;playerIndex++){
         if(board.tablePositions[playerIndex]===1)
         {
             for(var handIndex=0;handIndex<board.playerCards[playerIndex].length;handIndex++){
                 var currentHand=board.playerCards[playerIndex][handIndex];
-                if(this.handValue(currentHand)>dealerHandValue){board.playerChips[playerIndex]+=2*board.playerBets[playerIndex];}
+                if((this.handValue(currentHand)>dealerHandValue&&this.handValue(currentHand)<=21)
+                 ||(this.handValue(currentHand)<=21&&dealerHandValue>21)){board.playerChips[playerIndex]+=2*board.playerBets[playerIndex];}
                 else if(this.handValue(currentHand)===dealerHandValue){board.playerChips[playerIndex]+=board.playerBets[playerIndex];}
             }
         }
