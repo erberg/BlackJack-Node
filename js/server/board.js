@@ -167,6 +167,14 @@ module.exports = {
             return 1;
         }
         return 0;
+    },
+    drawDealerCard : function()
+    {
+        this.playerCards[0][0].push(deck.randomizedDeck.pop());
+    },
+    getActiveHand : function()
+    {
+        return this.playerCards[this.activePlayer][this.activeHand];
     }
 
 };

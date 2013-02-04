@@ -4,7 +4,7 @@
  */
 module.exports = {
     running : 0,
-    loopOrder : ["waitingForPlayer","acceptingBets","checkingForDealerBlackJack","acceptingPlayerOptions","concludingRound"],
+    loopOrder : ["waitingForPlayer","acceptingBets","checkingForDealerBlackJack","acceptingPlayerOptions","drawingForDealer","concludingRound"],
     loopIndex : 0,
     startLoop : function(ioInput){
         this.io=ioInput;
@@ -30,7 +30,7 @@ module.exports = {
             }
     },
     concludeRound : function(){ //Call from endstate function of gameState object
-        this.loopIndex=3;
+        this.loopIndex=4;
     },
     pauseLoop : function()
     {

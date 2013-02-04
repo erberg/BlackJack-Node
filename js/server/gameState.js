@@ -57,14 +57,14 @@ module.exports = {
             playerOptionTimeout : function(){
             if(board.nextPlayerOption()){
                 console.log("playertimeouthasbeencalled");
-                this.playerOptionTimer=setTimeout(this.playerOptionTimeout,5000);
+                gameState.currentState.playerOptionTimer=setTimeout(gameState.currentState.playerOptionTimeout,5000);
                 }
             else {gameLoop.unPauseLoop();}
             },
             beginState : function(){
                gameLoop.pauseLoop();
                board.setFirstPlayer();
-               this.playerOptionTimer=setTimeout(this.playerOptionTimeout,5000); //call default player action
+               gameState.currentState.playerOptionTimer=setTimeout(gameState.currentState.playerOptionTimeout,5000); //call default player action
             },
             endState : function(){},
             placeBet : function(){},
@@ -72,8 +72,8 @@ module.exports = {
             splitRequest : function(requestData){
                 var splitSuccess=board.splitRequest(requestData["clientID"]);
                 if(splitSuccess){
-                    clearTimeout(this.playerOptionTimer);
-                    this.playerOptionTimer=setTimeout(this.playerOptionTimeout,5000);
+                    clearTimeout(gameState.currentState.playerOptionTimer);
+                    gameState.currentState.playerOptionTimer=setTimeout(gameState.currentState.playerOptionTimeout,5000);
                     }
                 return splitSuccess;
             },
@@ -81,14 +81,37 @@ module.exports = {
                 var hitSuccess=board.hitRequest(requestData["clientID"]);
                 //console.log("hit called");
                 if(hitSuccess){
-                    clearTimeout(this.playerOptionTimer);
-                    this.playerOptionTimer=setTimeout(this.playerOptionTimeout,5000); 
+                    if(gameLogic.handValue(board.getActiveHand())>=21){board.nextPlayerOption();}
+                    clearTimeout(gameState.currentState.playerOptionTimer);
+                    gameState.currentState.playerOptionTimer=setTimeout(gameState.currentState.playerOptionTimeout,5000); 
                 }
                 return hitSuccess;
             },
             message: "Accepting player options.",
             wait : 1000
-        },       
+        },
+        drawingForDealer:{
+            dealerOptionTimer : "0",
+            dealerOptionTimeout : function(){
+            if(gameLogic.handValue(board.playerCards[0][0])<17){
+                board.drawDealerCard();
+                gameLoop.io.sockets.emit('updateTable', board);
+                gameState.currentState.dealerOptionTimer=setTimeout(gameState.currentState.dealerOptionTimeout,2000);
+                }
+            else {gameLoop.unPauseLoop();}
+            },
+            beginState : function(){
+               gameLoop.pauseLoop();
+               gameState.currentState.dealerOptionTimer=setTimeout(gameState.currentState.dealerOptionTimeout,2000); //call default player action
+            },
+            endState : function(){},
+            placeBet : function(){},
+            addPlayer : function(){},
+            splitRequest : function(requestData){},
+            hitRequest : function(requestData){},
+            message: "Dealer is drawing cards.",
+            wait : 2000
+        },        
         concludingRound:{
             beginState : function(){board.resetCounters();},
             endState : function(){
