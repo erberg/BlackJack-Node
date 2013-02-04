@@ -14,22 +14,23 @@ gameLogic=require('./js/server/gameLogic.js');
 gameState=require('./js/server/gameState.js');
 gameState.setState('waitingForPlayer');
 gameLoop = require('./js/server/gameLoop.js');
+boardOutput = require('./js/server/boardOutput.js');
 io.sockets.on('connection', function (socket) {
     socket.emit('id', {
         id: socket.id
     });
 
-    socket.emit('updateTable', board);
+    socket.emit('updateTable', boardOutput.getBoard());
     
     socket.on('updateRequest', function (data) {
-        socket.emit('updateTable', board);
+        socket.emit('updateTable', boardOutput.getBoard());
     });
             
     socket.on('addPlayerRequest', function (data) {  
         if(gameState.currentState.addPlayer(board,data))
         {
             if(!gameLoop.running) { gameLoop.startLoop(io); } 
-            io.sockets.emit('updateTable', board);
+            io.sockets.emit('updateTable', boardOutput.getBoard());
             var clientInfo=getClientInfo(socket.id);
             socket.emit('clientInfoUpdate', clientInfo);  
         }
@@ -38,14 +39,15 @@ io.sockets.on('connection', function (socket) {
     socket.on('splitRequest', function (data) {  
         if(gameState.currentState.splitRequest(data))
         {
-            io.sockets.emit('updateTable', board); 
+            io.sockets.emit('updateTable', boardOutput.getBoard()); 
         }
     });
 
     socket.on('hitRequest', function (data) {  
         if(gameState.currentState.hitRequest(data))
         {
-            io.sockets.emit('updateTable', board); 
+            io.sockets.emit('updateTable', boardOutput.getBoard()); 
+            console.log(boardOutput.fillCardArray());
         }
     });
 
@@ -57,7 +59,7 @@ io.sockets.on('connection', function (socket) {
                 var clientInfo=getClientInfo(socket.id);
                 socket.emit('clientInfoUpdate', clientInfo);
                 } 
-             io.sockets.emit('updateTable', board);
+             io.sockets.emit('updateTable', boardOutput.getBoard());
             }
     });
     

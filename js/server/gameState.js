@@ -15,6 +15,7 @@ module.exports = {
             },
             splitRequest : function(){},
             hitRequest : function(){},
+            hideDealerCard : 1,
             message: "Waiting for players to join.",
             wait : 5000//3000 
         },             
@@ -33,6 +34,7 @@ module.exports = {
             },
             splitRequest : function(){},
             hitRequest : function(){},
+            hideDealerCard : 1,
             message: "Please place your bet.",
             wait : 5000
         },                    
@@ -49,6 +51,7 @@ module.exports = {
             addPlayer : function(){},
             splitRequest : function(){},
             hitRequest : function(){},
+            hideDealerCard : 1,
             message: "Checking for dealer blackjack.",
             wait : 1000//4000
         },   
@@ -87,6 +90,7 @@ module.exports = {
                 }
                 return hitSuccess;
             },
+            hideDealerCard : 1,
             message: "Accepting player options.",
             wait : 1000
         },
@@ -95,7 +99,7 @@ module.exports = {
             dealerOptionTimeout : function(){
             if(gameLogic.handValue(board.playerCards[0][0])<17){
                 board.drawDealerCard();
-                gameLoop.io.sockets.emit('updateTable', board);
+                gameLoop.io.sockets.emit('updateTable', boardOutput.getBoard());
                 gameState.currentState.dealerOptionTimer=setTimeout(gameState.currentState.dealerOptionTimeout,2000);
                 }
             else {gameLoop.unPauseLoop();}
@@ -109,6 +113,7 @@ module.exports = {
             addPlayer : function(){},
             splitRequest : function(requestData){},
             hitRequest : function(requestData){},
+            hideDealerCard : 0,
             message: "Dealer is drawing cards.",
             wait : 2000
         },        
@@ -123,6 +128,7 @@ module.exports = {
             addPlayer : function(){},
             splitRequest : function(){},
             hitRequest : function(){},
+            hideDealerCard : 0,
             message: "Ending Round.",
             wait : 1000
         }               //Includes Paying Out & Announcing Winner
