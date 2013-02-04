@@ -47,7 +47,13 @@ io.sockets.on('connection', function (socket) {
         if(gameState.currentState.hitRequest(data))
         {
             io.sockets.emit('updateTable', boardOutput.getBoard()); 
-            console.log(boardOutput.fillCardArray());
+        }
+    });
+
+    socket.on('standRequest', function (data) {  
+        if(gameState.currentState.standRequest(data))
+        {
+            io.sockets.emit('updateTable', boardOutput.getBoard()); 
         }
     });
 

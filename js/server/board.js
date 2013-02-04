@@ -102,7 +102,6 @@ module.exports = {
     splitRequest : function(id){
         playerIndex=this.getPlayerIndex(id);
         handIndex=parseInt(this.activeHand);
-        console.log('split request!!');
         if(playerIndex===this.activePlayer && this.playerChips[playerIndex]>=this.playerBets[playerIndex]
                                            && gameLogic.checkIfCardsSplittable(this.playerCards[playerIndex][handIndex]))
         {
@@ -123,6 +122,9 @@ module.exports = {
         this.playerCards[playerIndex][handIndex].push(deck.randomizedDeck.pop());
         this.playerCards[playerIndex][newHandIndex][1]=deck.randomizedDeck.pop();
         this.playerChips[playerIndex]=this.playerChips[playerIndex]-this.playerBets[playerIndex];
+    },
+    standRequest : function(id){
+        return (this.getPlayerIndex(id)===this.activePlayer);
     },
     resetCounters : function()
     {

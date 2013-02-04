@@ -15,6 +15,7 @@ module.exports = {
             },
             splitRequest : function(){},
             hitRequest : function(){},
+            standRequest : function(){},
             hideDealerCard : 1,
             message: "Waiting for players to join.",
             wait : 5000//3000 
@@ -34,6 +35,7 @@ module.exports = {
             },
             splitRequest : function(){},
             hitRequest : function(){},
+            standRequest : function(){},
             hideDealerCard : 1,
             message: "Please place your bet.",
             wait : 5000
@@ -51,6 +53,7 @@ module.exports = {
             addPlayer : function(){},
             splitRequest : function(){},
             hitRequest : function(){},
+            standRequest : function(){},
             hideDealerCard : 1,
             message: "Checking for dealer blackjack.",
             wait : 1000//4000
@@ -90,6 +93,14 @@ module.exports = {
                 }
                 return hitSuccess;
             },
+            standRequest : function(requestData){
+                var standSuccess=board.standRequest(requestData["clientID"]);
+                if(standSuccess){
+                    board.nextPlayerOption();
+                    clearTimeout(gameState.currentState.playerOptionTimer);
+                    gameState.currentState.playerOptionTimer=setTimeout(gameState.currentState.playerOptionTimeout,5000); 
+                }
+            },
             hideDealerCard : 1,
             message: "Accepting player options.",
             wait : 1000
@@ -113,6 +124,7 @@ module.exports = {
             addPlayer : function(){},
             splitRequest : function(requestData){},
             hitRequest : function(requestData){},
+            standRequest : function(){},
             hideDealerCard : 0,
             message: "Dealer is drawing cards.",
             wait : 2000
@@ -128,6 +140,7 @@ module.exports = {
             addPlayer : function(){},
             splitRequest : function(){},
             hitRequest : function(){},
+            standRequest : function(){},
             hideDealerCard : 0,
             message: "Ending Round.",
             wait : 1000
@@ -153,9 +166,3 @@ module.exports = {
         this.currentState.endState();
     }
 };
-
-
-
-
-
-

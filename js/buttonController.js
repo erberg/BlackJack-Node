@@ -8,6 +8,7 @@ requestJoin();
 requestPlaceBet();
 requestSplit();
 requestHit();
+requestStand();
 
 function requestJoin()
 {
@@ -44,5 +45,14 @@ function requestHit()
          var data = {};
          data["clientID"]=glClientID;
          socket.emit('hitRequest',data);
+     });    
+}
+
+function requestStand()
+{
+     $("#stand").click(function(){
+         var data = {};
+         data["clientID"]=glClientID;
+         socket.emit('standRequest',data);
      });    
 }
