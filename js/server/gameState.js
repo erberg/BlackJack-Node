@@ -9,13 +9,14 @@ module.exports = {
         waitingForPlayer : { 
             beginState : function(){},
             endState : function(){},
-            placeBet : function(){},
+            betRequest : function(){},
             addPlayer : function(board,requestData){
                 return board.addPlayer(requestData["clientID"],requestData["requestedPosition"]);   
             },
             splitRequest : function(){},
             hitRequest : function(){},
             standRequest : function(){},
+            doubleDownRequest : function(){},
             hideDealerCard : 1,
             message: "Waiting for players to join.",
             wait : 5000//3000 
@@ -25,7 +26,7 @@ module.exports = {
             endState : function(){
                     board.checkPlayerBets();
             },
-            placeBet : function(requestData){return board.placeBet(requestData["clientID"],requestData["betAmt"]);},
+            betRequest : function(requestData){return board.betRequest(requestData["clientID"],requestData["betAmt"]);},
             addPlayer : function(board,requestData){
                 if(!gameLoop.running){
                     var addPlayerSuccess=board.addPlayer(requestData["clientID"],requestData["requestedPosition"]);
@@ -36,6 +37,7 @@ module.exports = {
             splitRequest : function(){},
             hitRequest : function(){},
             standRequest : function(){},
+            doubleDownRequest : function(){},
             hideDealerCard : 1,
             message: "Please place your bet.",
             wait : 5000
@@ -49,11 +51,12 @@ module.exports = {
                 }
                 else {console.log('No Dealer BlackJack.');}
             },
-            placeBet : function(){},
+            betRequest : function(){},
             addPlayer : function(){},
             splitRequest : function(){},
             hitRequest : function(){},
             standRequest : function(){},
+            doubleDownRequest : function(){},
             hideDealerCard : 1,
             message: "Checking for dealer blackjack.",
             wait : 1000//4000
@@ -73,7 +76,7 @@ module.exports = {
                gameState.currentState.playerOptionTimer=setTimeout(gameState.currentState.playerOptionTimeout,5000); //call default player action
             },
             endState : function(){},
-            placeBet : function(){},
+            betRequest : function(){},
             addPlayer : function(){},
             splitRequest : function(requestData){
                 var splitSuccess=board.splitRequest(requestData["clientID"]);
@@ -85,7 +88,6 @@ module.exports = {
             },
             hitRequest : function(requestData){
                 var hitSuccess=board.hitRequest(requestData["clientID"]);
-                //console.log("hit called");
                 if(hitSuccess){
                     if(gameLogic.handValue(board.getActiveHand())>=21){board.nextPlayerOption();}
                     clearTimeout(gameState.currentState.playerOptionTimer);
@@ -100,6 +102,16 @@ module.exports = {
                     clearTimeout(gameState.currentState.playerOptionTimer);
                     gameState.currentState.playerOptionTimer=setTimeout(gameState.currentState.playerOptionTimeout,5000); 
                 }
+                return standSuccess;
+            },
+            doubleDownRequest : function(requestData){
+                var doubleDownSuccess=board.doubleDownRequest(requestData["clientID"]);
+                if(doubleDownSuccess){
+                    board.nextPlayerOption();
+                    clearTimeout(gameState.currentState.playerOptionTimer);
+                    gameState.currentState.playerOptionTimer=setTimeout(gameState.currentState.playerOptionTimeout,5000);
+                }
+                return doubleDownSuccess;
             },
             hideDealerCard : 1,
             message: "Accepting player options.",
@@ -120,11 +132,12 @@ module.exports = {
                gameState.currentState.dealerOptionTimer=setTimeout(gameState.currentState.dealerOptionTimeout,2000); //call default player action
             },
             endState : function(){},
-            placeBet : function(){},
+            betRequest : function(){},
             addPlayer : function(){},
             splitRequest : function(requestData){},
             hitRequest : function(requestData){},
             standRequest : function(){},
+            doubleDownRequest : function(){},
             hideDealerCard : 0,
             message: "Dealer is drawing cards.",
             wait : 2000
@@ -136,11 +149,12 @@ module.exports = {
                 board.resetBoard();
                 if(board.numPlayers===0){gameLoop.pauseLoop();}
             },
-            placeBet : function(){},
+            betRequest : function(){},
             addPlayer : function(){},
             splitRequest : function(){},
             hitRequest : function(){},
             standRequest : function(){},
+            doubleDownRequest : function(){},
             hideDealerCard : 0,
             message: "Ending Round.",
             wait : 1000

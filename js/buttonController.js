@@ -5,10 +5,11 @@
  */
 
 requestJoin();
-requestPlaceBet();
+requestBet();
 requestSplit();
 requestHit();
 requestStand();
+requestDoubleDown();
 
 function requestJoin()
 {
@@ -20,7 +21,7 @@ function requestJoin()
      });    
 }
 
-function requestPlaceBet()
+function requestBet()
 {
      $("#betAmt").click(function(){
          var data = {};
@@ -45,6 +46,15 @@ function requestHit()
          var data = {};
          data["clientID"]=glClientID;
          socket.emit('hitRequest',data);
+     });    
+}
+
+function requestDoubleDown()
+{
+     $("#doubledown").click(function(){
+         var data = {};
+         data["clientID"]=glClientID;
+         socket.emit('doubleDownRequest',data);
      });    
 }
 

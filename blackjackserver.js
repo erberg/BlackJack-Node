@@ -57,8 +57,15 @@ io.sockets.on('connection', function (socket) {
         }
     });
 
+    socket.on('doubleDownRequest', function (data) {  
+        if(gameState.currentState.doubleDownRequest(data))
+        {
+            io.sockets.emit('updateTable', boardOutput.getBoard()); 
+        }
+    });
+
     socket.on('betRequest', function (data) {
-        if(gameState.currentState.placeBet(data))
+        if(gameState.currentState.betRequest(data))
         {               
             if(!gameLoop.running) {                             //Handles the case that game has been paused.
                 gameLoop.startLoop(io); 

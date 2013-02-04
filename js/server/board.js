@@ -15,19 +15,26 @@ module.exports = {
     playerSitoutCounter : [0,0,0,0,0,0,0],
     tablePositions : [1,0,0,0,0,0,0],  //Positions Dealer & Player 1-6
     numPlayers : 0,
-    placeBet : function(id,betAmt){
+    betRequest : function(id,betAmt){
         var playerPosition=this.getPlayerIndex(id);
         if(playerPosition&&this.playerBets[playerPosition]===0)         //Client is Seated Player and Has Not Yet Placed a Bet
         {
             if(betAmt<=this.playerChips[playerPosition])                    
                 {
-                    this.playerSitoutCounter[playerPosition]=0;
-                    this.playerBets[playerPosition]=betAmt;
-                    this.playerChips[playerPosition]=this.playerChips[playerPosition]-betAmt;
-                    return 1;
+                    return this.placeBet(id,betAmt);
                 }
         }
         return 0;
+    },
+    placeBet : function(id,betAmt){
+        var playerPosition=this.getPlayerIndex(id);
+        if(betAmt<=this.playerChips[playerPosition])                    
+                {
+                    this.playerSitoutCounter[playerPosition]=0;
+                    this.playerBets[playerPosition]+=betAmt;
+                    this.playerChips[playerPosition]-=betAmt;
+                    return 1;
+                }
     },
     addPlayer : function(id,requestedPosition){
             if(this.getPlayerIndex(id)>=0){this.remPlayer(id);}             //Remove player if already seated.
@@ -125,6 +132,14 @@ module.exports = {
     },
     standRequest : function(id){
         return (this.getPlayerIndex(id)===this.activePlayer);
+    },
+    doubleDownRequest : function(id){
+        playerIndex=this.getPlayerIndex(id);
+        if(playerIndex===this.activePlayer && this.playerCards[this.activePlayer][this.activeHand].length===2){
+            if(this.placeBet(id,this.playerBets[playerIndex])){
+                return this.hitRequest(id);
+            }
+        }
     },
     resetCounters : function()
     {
