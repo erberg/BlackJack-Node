@@ -59,8 +59,9 @@ var playerDisplayState = {
         },       
     },
     getZIndex : function(currentPosition,currentHand){
-        if(playerDisplayState.activeHand(currentPosition,currentHand)){var cssindex="; z-index: 3";}
-        else {var cssindex="";}
+        //if(playerDisplayState.activeHand(currentPosition,currentHand)){var cssindex="; z-index: 3";} //PUTS ACTIVE CARDS IN FRONT... DOESNT LOOK VERY NICE
+        //else {var cssindex="";}                                                                       //IF IT REVERSED STACK ORDER AS ACTIVEHAND CHANGED, THIS WOULD LOOK GOOD
+        var cssindex="";
         return cssindex;
     },
     activeHand : function(currentPosition,currentHand){
