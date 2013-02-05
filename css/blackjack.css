@@ -116,6 +116,7 @@ body {
 }
 .card-container{
     background-size:cover;
+    background-color:black;
     width:90px;
     height:125.2px;
     position:absolute;
