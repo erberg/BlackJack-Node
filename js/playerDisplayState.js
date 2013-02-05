@@ -32,7 +32,7 @@ var playerDisplayState = {
                     columnposition=30-hand*21;
                     for(var card=0;card<glClientBoard.playerCards[playerPosition][hand].length;card++){
                         cssobject.append("<div class='card-container' data-card=\'" + glClientBoard.playerCards[playerPosition][hand][card] 
-                        + "\'"+ "style=\'bottom: " + 25*card + "px; right: " + columnposition + "px \'> </div>");
+                        + "\'"+ "style=\'bottom: " + 25*card + "px; right: " + columnposition + "px; "+ playerDisplayState.getHandStyle(playerPosition,hand) + "\'> </div>");
                     }
                 }     
             }
@@ -51,6 +51,12 @@ var playerDisplayState = {
             }
             
         },       
+    },
+    notActiveHand : function(currentPosition,currentHand){
+        return ((currentPosition===glClientBoard.activePlayer) && (currentHand !== glClientBoard.activeHand) && (glClientInfo.position===currentPosition));
+    },
+    getHandStyle : function(currentPosition,currentHand){
+        if(this.notActiveHand(currentPosition,currentHand)) {return "opacity: .70";}
     },
 
     setState : function(state){

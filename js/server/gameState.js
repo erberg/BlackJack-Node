@@ -89,7 +89,8 @@ module.exports = {
             hitRequest : function(requestData){
                 var hitSuccess=board.hitRequest(requestData["clientID"]);
                 if(hitSuccess){
-                    if(gameLogic.handValue(board.getActiveHand())>=21){board.nextPlayerOption();}
+                    if(gameLogic.handValue(board.getActiveHand())>=21){
+                        board.nextPlayerOption();}
                     clearTimeout(gameState.currentState.playerOptionTimer);
                     gameState.currentState.playerOptionTimer=setTimeout(gameState.currentState.playerOptionTimeout,5000); 
                 }
@@ -98,9 +99,10 @@ module.exports = {
             standRequest : function(requestData){
                 var standSuccess=board.standRequest(requestData["clientID"]);
                 if(standSuccess){
-                    board.nextPlayerOption();
+                    if(board.nextPlayerOption()){
                     clearTimeout(gameState.currentState.playerOptionTimer);
                     gameState.currentState.playerOptionTimer=setTimeout(gameState.currentState.playerOptionTimeout,5000); 
+                    } else {clearTimeout(gameState.currentState.playerOptionTimer);gameLoop.unPauseLoop();}
                 }
                 return standSuccess;
             },

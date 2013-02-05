@@ -27,8 +27,7 @@ io.sockets.on('connection', function (socket) {
     });
             
     socket.on('addPlayerRequest', function (data) {  
-        if(gameState.currentState.addPlayer(board,data))
-        {
+        if(gameState.currentState.addPlayer(board,data)) {
             if(!gameLoop.running) { gameLoop.startLoop(io); } 
             io.sockets.emit('updateTable', boardOutput.getBoard());
             var clientInfo=getClientInfo(socket.id);
@@ -37,36 +36,31 @@ io.sockets.on('connection', function (socket) {
     });
 
     socket.on('splitRequest', function (data) {  
-        if(gameState.currentState.splitRequest(data))
-        {
+        if(gameState.currentState.splitRequest(data)) {
             io.sockets.emit('updateTable', boardOutput.getBoard()); 
         }
     });
 
     socket.on('hitRequest', function (data) {  
-        if(gameState.currentState.hitRequest(data))
-        {
+        if(gameState.currentState.hitRequest(data)) {
             io.sockets.emit('updateTable', boardOutput.getBoard()); 
         }
     });
 
     socket.on('standRequest', function (data) {  
-        if(gameState.currentState.standRequest(data))
-        {
+        if(gameState.currentState.standRequest(data)) {
             io.sockets.emit('updateTable', boardOutput.getBoard()); 
         }
     });
 
     socket.on('doubleDownRequest', function (data) {  
-        if(gameState.currentState.doubleDownRequest(data))
-        {
+        if(gameState.currentState.doubleDownRequest(data)) {
             io.sockets.emit('updateTable', boardOutput.getBoard()); 
         }
     });
 
     socket.on('betRequest', function (data) {
-        if(gameState.currentState.betRequest(data))
-        {               
+        if(gameState.currentState.betRequest(data)) {               
             if(!gameLoop.running) {                             //Handles the case that game has been paused.
                 gameLoop.startLoop(io); 
                 var clientInfo=getClientInfo(socket.id);

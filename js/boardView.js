@@ -2,8 +2,6 @@
  * This script is responsible for displaying appropriate card using "data-card" values found in index.php.
  * These functions convert text into spritesheet positions. 
  */
-//playerCards=[[["AS","10C","9S","6S","6H"]],[["AS","10C","9S","6S","6H"]],[["AS","9S","6S"],["10C","9S"]],[["10C","6S","6H"],["6S","6H"],["AS","10C","9S"]],[["AS","10C","9S","6S","6H"],["AS","10C","9S"],["AS","6S","6H"]]];
-
 
 function displayBoard()
 { 
