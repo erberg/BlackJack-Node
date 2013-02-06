@@ -59,28 +59,26 @@
         <script src="/js/playerDisplayState.js"></script>
 
         <script>
-            
-            var glClientID=-1;
+            var glClientID = -1;
             var socket = io.connect('http://www.ericrberg.com:8080');
-            var glClientBoard={};
-            var glClientInfo={};
+            var glClientBoard = {};
+            var glClientInfo = {};
 
-            socket.on('id', function (data) {
+            socket.on('id', function(data) {
                 //$(".socket").append("<li>My ClientID: " + data.id + "</li>");
-                glClientID=data.id;
+                glClientID = data.id;
             });
-                
-        
-            socket.on('updateTable', function (board) {
-                glClientBoard=board;
+
+
+            socket.on('updateTable', function(board) {
+                glClientBoard = board;
                 //$(".socket").append("<li>Message: " + board.currentMessage + "</li>");
                 displayBoard();
             })
 
-            socket.on('clientInfoUpdate', function (clientInfoFromServer) {
-                glClientInfo=clientInfoFromServer;
+             socket.on('clientInfoUpdate', function(clientInfoFromServer) {
+                glClientInfo = clientInfoFromServer;
             })
-
             
         </script>
     </body>
