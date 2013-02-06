@@ -45,9 +45,7 @@
                 </div>
             </div>
         </div>
-        <ul class="socket">
-            <li>Connected?</li>
-        </ul>
+        <ul class="socket"> </ul>
         <script src="/js/jquery.js"></script>
         <script src="/js/ui/jquery.ui.core.js"></script>
         <script src="/js/ui/jquery.ui.widget.js"></script>
@@ -68,14 +66,14 @@
             var glClientInfo={};
 
             socket.on('id', function (data) {
-                $(".socket").append("<li>My ClientID: " + data.id + "</li>");
+                //$(".socket").append("<li>My ClientID: " + data.id + "</li>");
                 glClientID=data.id;
             });
                 
         
             socket.on('updateTable', function (board) {
                 glClientBoard=board;
-                $(".socket").append("<li>Message: " + board.currentMessage + "</li>");
+                //$(".socket").append("<li>Message: " + board.currentMessage + "</li>");
                 displayBoard();
             })
 

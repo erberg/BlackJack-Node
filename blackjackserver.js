@@ -8,8 +8,6 @@ var io = require('socket.io').listen(8080);
 io.set('log level', 1);
 deck=require('./js/server/deck.js');
 board=require('./js/server/board.js');
-deck.fillDeck();
-deck.randomizeDeck();
 gameLogic=require('./js/server/gameLogic.js');
 gameState=require('./js/server/gameState.js');
 gameState.setState('waitingForPlayer');

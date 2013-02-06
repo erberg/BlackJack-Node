@@ -7,7 +7,7 @@ module.exports = {
     currentState : {},
     states : {
         waitingForPlayer : { 
-            beginState : function(){},
+            beginState : function(){if(deck.shuffleRequired()){deck.refillDeck();}},
             endState : function(){},
             betRequest : function(){},
             addPlayer : function(board,requestData){
