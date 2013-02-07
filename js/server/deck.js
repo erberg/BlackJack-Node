@@ -10,13 +10,10 @@ module.exports = {
     randomizedDeck: [],
     numberOfDecks: 6,
     fillDeck: function() {
-        var h = 0,
-            i = 0,
-            j = 0;
-        for(h; h < this.numberOfDecks; h += 1) {
-            for(i; i < 4; i += 1) {
-                for(j; j < 13; j += 1) {
-                    this.filledDeck.push(String(this.Cards[j]) + String(this.Suits[i]));
+        for(var h=0; h < this.numberOfDecks; h += 1) {
+            for(var i=0; i < 4; i += 1) {
+                for(var j=0; j < 13; j += 1) {
+                    this.filledDeck.push(this.Cards[j] + "" +  this.Suits[i]);
                     //document.write(this.Cards[j] + "" + this.Suits[i] + " ");
                 }
             }
@@ -30,12 +27,9 @@ module.exports = {
             rand = Math.floor(Math.random() * sacrificialDeck.length);
             this.randomizedDeck.push(sacrificialDeck.splice(rand, 1));
         }
-        //this.randomizedDeck.push("4S");                 //THESE ARE TEMP FOR TESTING PURPOSES!!! (testing a split)  
-        //this.randomizedDeck.push("4H");                 //THESE ARE TEMP FOR TESTING PURPOSES!!! (testing a split)
-        //this.randomizedDeck.push("4D");                 //THESE ARE TEMP FOR TESTING PURPOSES!!! (testing a split)
-        //this.randomizedDeck.push("4C");                 //THESE ARE TEMP FOR TESTING PURPOSES!!!
-        this.randomizedDeck.push("AS");                 //THESE ARE TEMP FOR TESTING PURPOSES!!!
-        this.randomizedDeck.push("10H");                //THESE ARE TEMP FOR TESTING PURPOSES!!!
+
+        this.randomizedDeck.push("10S");                 //THESE ARE TEMP FOR TESTING PURPOSES!!!
+        this.randomizedDeck.push("7H");                //THESE ARE TEMP FOR TESTING PURPOSES!!!
     },
     getCard: function() {
         if(this.filledDeck.length > 0) {

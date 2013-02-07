@@ -77,6 +77,7 @@ module.exports = {
         this.removeTimedOutPlayers();
         this.playerBets = [0, 0, 0, 0, 0, 0, 0];
         this.playerCards = [[[]],[[]],[[]],[[]],[[]],[[]],[[]]];
+        this.playerWaitingForDeal = 0;
         //this.resetCounters();
     },
     checkPlayerBets: function() {
@@ -189,6 +190,17 @@ module.exports = {
     },
     getActiveHand: function() {
         return this.playerCards[this.activePlayer][this.activeHand];
+    },
+    playersWaitingForDealer: function() {                   //CAN BE RUN AFTER PLAYEROPTIONS STATE
+        for(var playerIndex = 1; playerIndex < 7; playerIndex++) {
+            if(this.tablePositions[playerIndex] === 1) {
+                for(var handIndex = 0; handIndex < 4; handIndex++) {
+                    if(this.playerCards[playerIndex][handIndex] !== undefined) {
+                        if(gameLogic.handValue(this.playerCards[playerIndex][handIndex])<=21){return 1;}
+                    }
+                }
+            }
+        }
+        return 0;
     }
-
 };

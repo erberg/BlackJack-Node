@@ -159,14 +159,17 @@ module.exports = {
                     gameLoop.io.sockets.emit('updateTable', boardOutput.getBoard());
                     gameState.currentState.dealerOptionTimer = setTimeout(gameState.currentState.dealerOptionTimeout, 2000);
                 } else {
-                    gameLoop.unPauseLoop();
+                    setTimeout(gameLoop.unPauseLoop(), 2000);
                 }
             },
             beginState: function() {
                 board.resetCounters();
-                gameLoop.io.sockets.emit('updateTable', boardOutput.getBoard());
+                if(board.playersWaitingForDealer()) {
                 gameLoop.pauseLoop();
+                console.log("Players waiting for dealer: " + board.playersWaitingForDealer());
+                gameLoop.io.sockets.emit('updateTable', boardOutput.getBoard());
                 gameState.currentState.dealerOptionTimer = setTimeout(gameState.currentState.dealerOptionTimeout, 2000); //call default player action
+                }
             },
             endState: function() {},
             betRequest: function() {},
@@ -195,8 +198,8 @@ module.exports = {
             standRequest: function() {},
             doubleDownRequest: function() {},
             hideDealerCard: 0,
-            message: "Ending Round.",
-            wait: 2000
+            message: "",
+            wait: 0
         } //Includes Paying Out & Announcing Winner
     },
     setState: function(state) {
