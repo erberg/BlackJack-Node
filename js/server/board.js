@@ -91,10 +91,7 @@ module.exports = {
                 }
             }
         }
-        if(countPlayersSittingOut === this.numPlayers) //all current players are sitting out
-        {
-            gameLoop.pauseLoop();
-        }
+        return countPlayersSittingOut;
     },
     incrementSitoutCounter: function() {
         for(var playerIndex = 1; playerIndex < 7; playerIndex++) {

@@ -27,7 +27,9 @@ module.exports = {
         acceptingBets: {
             beginState: function() {},
             endState: function() {
-                board.checkPlayerBets();
+                if(board.checkPlayerBets() === board.numPlayers) { //all current players are sitting out
+                    gameLoop.pauseLoop();
+                }
             },
             betRequest: function(requestData) {
                 return board.betRequest(requestData["clientID"], requestData["betAmt"]);
@@ -63,9 +65,7 @@ module.exports = {
                 }
 
             },
-            endState: function() {
-                this.message = "Checking for dealer blackjack.";
-            },
+            endState: function() {},
             betRequest: function() {},
             addPlayer: function() {},
             splitRequest: function() {},
@@ -159,7 +159,7 @@ module.exports = {
                     gameLoop.io.sockets.emit('updateTable', boardOutput.getBoard());
                     gameState.currentState.dealerOptionTimer = setTimeout(gameState.currentState.dealerOptionTimeout, 2000);
                 } else {
-                    setTimeout(gameLoop.unPauseLoop(), 2000);
+                    setTimeout(function(){gameLoop.unPauseLoop();}, 2000);
                 }
             },
             beginState: function() {
@@ -199,7 +199,7 @@ module.exports = {
             doubleDownRequest: function() {},
             hideDealerCard: 0,
             message: "",
-            wait: 0
+            wait: 2000
         } //Includes Paying Out & Announcing Winner
     },
     setState: function(state) {
