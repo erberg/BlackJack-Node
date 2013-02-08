@@ -26,7 +26,7 @@ module.exports = {
         if(this.running) {
             this.loopIndex++;
             if(this.loopIndex === this.loopOrder.length) {
-                this.loopIndex = 0;
+                this.loopIndex = 1;
             }
             gameState.setState(this.loopOrder[this.loopIndex]);
             this.step();

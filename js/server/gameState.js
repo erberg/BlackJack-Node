@@ -6,11 +6,7 @@ module.exports = {
     currentState: {},
     states: {
         waitingForPlayer: {
-            beginState: function() {
-                if(deck.shuffleRequired()) {
-                    deck.refillDeck();
-                }
-            },
+            beginState: function() {},
             endState: function() {},
             betRequest: function() {},
             addPlayer: function(board, requestData) {
@@ -25,9 +21,13 @@ module.exports = {
             wait: 5000 //3000 
         },
         acceptingBets: {
-            beginState: function() {},
+            beginState: function() {
+                if(deck.shuffleRequired()) {
+                    deck.refillDeck();
+                }
+            },
             endState: function() {
-                if(board.checkPlayerBets() === board.numPlayers) { //all current players are sitting out
+                if(board.playersSittingOut() === board.numPlayers) { //all current players are sitting out
                     gameLoop.pauseLoop();
                 }
             },
@@ -35,15 +35,12 @@ module.exports = {
                 return board.betRequest(requestData["clientID"], requestData["betAmt"]);
             },
             addPlayer: function(board, requestData) {
-                if(!gameLoop.running) {
                     var addPlayerSuccess = board.addPlayer(requestData["clientID"], requestData["requestedPosition"]);
-                    if(addPlayerSuccess) {
+                    if(addPlayerSuccess && !gameLoop.running) {
                         gameLoop.unPauseLoop();
                     }
                     return addPlayerSuccess;
-                } else {
-                    return 0;
-                }
+                
             },
             splitRequest: function() {},
             hitRequest: function() {},
@@ -57,15 +54,14 @@ module.exports = {
             beginState: function() {
                 board.incrementSitoutCounter();
                 board.dealCards(deck);
+            },
+            endState: function() {
                 if(gameLogic.checkDealerBlackjack()) {
                     console.log('Dealer has blackjack. Ending round early.');
                     gameLoop.concludeRound();
                 } else {
                     console.log('No Dealer BlackJack.');
-                }
-
-            },
-            endState: function() {},
+                }},
             betRequest: function() {},
             addPlayer: function() {},
             splitRequest: function() {},
@@ -198,7 +194,7 @@ module.exports = {
             standRequest: function() {},
             doubleDownRequest: function() {},
             hideDealerCard: 0,
-            message: "",
+            message: "Paying out players.",
             wait: 2000
         } //Includes Paying Out & Announcing Winner
     },

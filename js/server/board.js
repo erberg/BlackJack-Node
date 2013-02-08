@@ -53,6 +53,7 @@ module.exports = {
         this.positionClientID[playerPosition] = 0;
         this.tablePositions[playerPosition] = 0;
         this.playerSitoutCounter[playerPosition] = 0;
+        this.playerBets[playerPosition] = 0;
         this.numPlayers--;
     },
     getPlayerIndex: function(id) {
@@ -80,7 +81,7 @@ module.exports = {
         this.playerWaitingForDeal = 0;
         //this.resetCounters();
     },
-    checkPlayerBets: function() {
+    playersSittingOut: function() {
         var countPlayersSittingOut = 0;
         for(var playerIndex = 1; playerIndex < 7; playerIndex++) {
             if(this.tablePositions[playerIndex] === 1) {
