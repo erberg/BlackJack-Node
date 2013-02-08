@@ -88,6 +88,10 @@ module.exports = {
                 this.remPlayer(this.positionClientID[playerIndex]);
             }
         }
+        this.numPlayers=0;
+        this.playerSitoutCounter= [0, 0, 0, 0, 0, 0, 0];
+        this.positionClientID= [0, 0, 0, 0, 0, 0, 0];
+        this.tablePositions= [1, 0, 0, 0, 0, 0, 0];
     },
     playersSittingOut: function() {
         var countPlayersSittingOut = 0;

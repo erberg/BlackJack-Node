@@ -65,6 +65,16 @@ function prepareButtonDisplay() {
             $(this).show();
         }
     });
+
+    /*
+    $("#scroller").each(function() {
+    var playerChips = glClientBoard.playerChips[glClientInfo.position];
+    var betAmt=glClientBoard.playerBets[glClientInfo.position];
+    var left = Math.round(112 * $('#betAmt').data('betamount') / playerChips);
+    console.log("BOOOOOOOP: " + left);
+    });
+    */
+
 }
 
 function prepareCardSpritePositions() {
