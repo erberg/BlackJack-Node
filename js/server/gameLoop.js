@@ -43,6 +43,12 @@ module.exports = {
         this.running = 1;
         this.delayedIncrement();
         this.io.sockets.emit('updateTable', boardOutput.getBoard());
+    },
+    resetLoop: function() {
+        this.loopIndex=0;
+        gameState.setState(this.loopOrder[this.loopIndex]);
+        board.setMessage(gameState.getMessage());
+        gameState.getState().beginState();
     }
 
 };

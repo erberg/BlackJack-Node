@@ -81,6 +81,14 @@ module.exports = {
         this.playerWaitingForDeal = 0;
         //this.resetCounters();
     },
+    removeAllPlayers: function() {
+        for(var playerIndex=1;playerIndex<7;playerIndex+=1)
+        {
+            if(this.positionClientID[playerIndex] !== 0){
+                this.remPlayer(this.positionClientID[playerIndex]);
+            }
+        }
+    },
     playersSittingOut: function() {
         var countPlayersSittingOut = 0;
         for(var playerIndex = 1; playerIndex < 7; playerIndex++) {

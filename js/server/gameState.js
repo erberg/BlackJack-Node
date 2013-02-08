@@ -21,6 +21,13 @@ module.exports = {
             wait: 5000 //3000 
         },
         acceptingBets: {
+            dropPlayersTimer: "0",
+            dropPlayersTimeout: function() {
+                board.removeAllPlayers();
+                board.resetBoard();
+                gameLoop.resetLoop();
+                gameLoop.io.sockets.emit('updateTable', boardOutput.getBoard());
+            },
             beginState: function() {
                 if(deck.shuffleRequired()) {
                     deck.refillDeck();
@@ -29,15 +36,20 @@ module.exports = {
             endState: function() {
                 if(board.playersSittingOut() === board.numPlayers) { //all current players are sitting out
                     gameLoop.pauseLoop();
+                    gameState.currentState.dropPlayersTimer = setTimeout(gameState.currentState.dropPlayersTimeout, 60000);
                 }
             },
             betRequest: function(requestData) {
-                return board.betRequest(requestData["clientID"], requestData["betAmt"]);
+                if(board.betRequest(requestData["clientID"], requestData["betAmt"])) {
+                    clearTimeout(gameState.currentState.dropPlayersTimer);
+                    return 1;
+                }
             },
             addPlayer: function(board, requestData) {
                     var addPlayerSuccess = board.addPlayer(requestData["clientID"], requestData["requestedPosition"]);
                     if(addPlayerSuccess && !gameLoop.running) {
                         gameLoop.unPauseLoop();
+                        clearTimeout(gameState.currentState.dropPlayersTimer);
                     }
                     return addPlayerSuccess;
                 
