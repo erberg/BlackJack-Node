@@ -27,6 +27,7 @@ module.exports = {
                 board.resetBoard();
                 gameLoop.resetLoop();
                 gameLoop.io.sockets.emit('updateTable', boardOutput.getBoard());
+                console.log("Player Timeout Run: " + gameState.currentState.dropPlayersTimer);
             },
             beginState: function() {
                 if(deck.shuffleRequired()) {
@@ -34,22 +35,23 @@ module.exports = {
                 }
             },
             endState: function() {
-                if(board.playersSittingOut() === board.numPlayers) { //all current players are sitting out
+                if(board.playersSittingOut() && (board.playersSittingOut() === board.numPlayers)) { //all current players are sitting out
                     gameLoop.pauseLoop();
-                    gameState.currentState.dropPlayersTimer = setTimeout(gameState.currentState.dropPlayersTimeout, 60000);
+                    gameState.currentState.dropPlayersTimer = setTimeout(this.dropPlayersTimeout, 5000);
+                    console.log("Player Timeout Started: " + gameState.currentState.dropPlayersTimer);
                 }
             },
             betRequest: function(requestData) {
                 if(board.betRequest(requestData["clientID"], requestData["betAmt"])) {
-                    clearTimeout(gameState.currentState.dropPlayersTimer);
+                    console.log("Player Timeout Stopped: " + clearTimeout(gameState.currentState.dropPlayersTimer));
                     return 1;
                 }
             },
             addPlayer: function(board, requestData) {
                     var addPlayerSuccess = board.addPlayer(requestData["clientID"], requestData["requestedPosition"]);
                     if(addPlayerSuccess && !gameLoop.running) {
-                        gameLoop.unPauseLoop();
-                        clearTimeout(gameState.currentState.dropPlayersTimer);
+                        //if(!gameLoop.running) {gameLoop.unPauseLoop();}
+                        console.log("Player Timeout Stopped: " + clearTimeout(gameState.currentState.dropPlayersTimer));
                     }
                     return addPlayerSuccess;
                 

@@ -66,14 +66,19 @@ function prepareButtonDisplay() {
         }
     });
 
-    /*
+    
     $("#scroller").each(function() {
     var playerChips = glClientBoard.playerChips[glClientInfo.position];
     var betAmt=glClientBoard.playerBets[glClientInfo.position];
-    var left = Math.round(112 * $('#betAmt').data('betamount') / playerChips);
-    console.log("BOOOOOOOP: " + left);
+    if($('#betAmt').data('betamount')>(betAmt+playerChips))
+    {
+    $('#betAmt').text("Bet " + playerChips);
+    $('#betAmt').data('betamount', playerChips);
+    $(this).css("left",115);
+    }
+    //console.log("BOOOOOOOP: " + left);
     });
-    */
+    
 
 }
 

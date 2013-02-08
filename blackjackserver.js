@@ -13,6 +13,7 @@ gameState = require('./js/server/gameState.js');
 gameState.setState('waitingForPlayer');
 gameLoop = require('./js/server/gameLoop.js');
 boardOutput = require('./js/server/boardOutput.js');
+GAMESTATETIMER = '0';
 io.sockets.on('connection', function(socket) {
     socket.emit('id', {
         id: socket.id
