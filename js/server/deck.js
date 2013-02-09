@@ -28,8 +28,8 @@ module.exports = {
             this.randomizedDeck.push(sacrificialDeck.splice(rand, 1));
         }
 
-        this.randomizedDeck.push("10S");                 //THESE ARE TEMP FOR TESTING PURPOSES!!!
-        this.randomizedDeck.push("7H");                //THESE ARE TEMP FOR TESTING PURPOSES!!!
+        this.randomizedDeck.push("AS");                 //THESE ARE TEMP FOR TESTING PURPOSES!!!
+        this.randomizedDeck.push("10H");                //THESE ARE TEMP FOR TESTING PURPOSES!!!
     },
     getCard: function() {
         if(this.filledDeck.length > 0) {

@@ -37,7 +37,7 @@ module.exports = {
             endState: function() {
                 if(board.playersSittingOut() && (board.playersSittingOut() === board.numPlayers)) { //all current players are sitting out
                     gameLoop.pauseLoop();
-                    gameState.currentState.dropPlayersTimer = setTimeout(this.dropPlayersTimeout, 5000);
+                    gameState.currentState.dropPlayersTimer = setTimeout(this.dropPlayersTimeout, 60000);
                     console.log("Player Timeout Started: " + gameState.currentState.dropPlayersTimer);
                 }
             },
@@ -50,7 +50,6 @@ module.exports = {
             addPlayer: function(board, requestData) {
                     var addPlayerSuccess = board.addPlayer(requestData["clientID"], requestData["requestedPosition"]);
                     if(addPlayerSuccess && !gameLoop.running) {
-                        //if(!gameLoop.running) {gameLoop.unPauseLoop();}
                         console.log("Player Timeout Stopped: " + clearTimeout(gameState.currentState.dropPlayersTimer));
                     }
                     return addPlayerSuccess;
