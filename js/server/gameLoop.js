@@ -16,9 +16,9 @@ module.exports = {
         board.setMessage(gameState.getMessage());
         var thisParent = this;
         gameState.getState().beginState();
-        setTimeout(function() {
-            thisParent.delayedIncrement();
-        }, gameState.getWait());
+        if(this.running){
+            setTimeout(function() {thisParent.delayedIncrement();}, gameState.getWait());
+        }
         this.io.sockets.emit('updateTable', boardOutput.getBoard());
     },
     delayedIncrement: function() {

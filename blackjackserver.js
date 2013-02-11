@@ -7,6 +7,7 @@
 var io = require('socket.io').listen(8080);
 io.set('log level', 1);
 deck = require('./js/server/deck.js');
+deck.refillDeck();
 board = require('./js/server/board.js');
 gameLogic = require('./js/server/gameLogic.js');
 gameState = require('./js/server/gameState.js');

@@ -4,6 +4,7 @@
  */
 module.exports = {
     currentState: {},
+    stateTimer : 0,
     states: {
         waitingForPlayer: {
             beginState: function() {},
@@ -29,11 +30,7 @@ module.exports = {
                 gameLoop.io.sockets.emit('updateTable', boardOutput.getBoard());
                 console.log("Player Timeout Run: " + gameState.currentState.dropPlayersTimer);
             },
-            beginState: function() {
-                if(deck.shuffleRequired()) {
-                    deck.refillDeck();
-                }
-            },
+            beginState: function() {},
             endState: function() {
                 if(board.playersSittingOut() && (board.playersSittingOut() === board.numPlayers)) { //all current players are sitting out
                     gameLoop.pauseLoop();
@@ -166,9 +163,10 @@ module.exports = {
                 if(gameLogic.handValue(board.playerCards[0][0]) < 17) {
                     board.drawDealerCard();
                     gameLoop.io.sockets.emit('updateTable', boardOutput.getBoard());
-                    gameState.currentState.dealerOptionTimer = setTimeout(gameState.currentState.dealerOptionTimeout, 2000);
+                    gameState.stateTimer = setTimeout(gameState.currentState.dealerOptionTimeout, 2000);
                 } else {
-                    setTimeout(function(){gameLoop.unPauseLoop();}, 2000);
+                    console.log("Unpauseloop Called");
+                    gameLoop.unPauseLoop();
                 }
             },
             beginState: function() {
@@ -177,10 +175,15 @@ module.exports = {
                 gameLoop.pauseLoop();
                 console.log("Players waiting for dealer: " + board.playersWaitingForDealer());
                 gameLoop.io.sockets.emit('updateTable', boardOutput.getBoard());
-                gameState.currentState.dealerOptionTimer = setTimeout(gameState.currentState.dealerOptionTimeout, 2000); //call default player action
+                gameState.stateTimer = setTimeout(gameState.currentState.dealerOptionTimeout, 2000); //call default player action
                 }
             },
-            endState: function() {},
+            endState: function() {
+                if(deck.shuffleRequired()) {
+                    deck.refillDeck();
+                    gameState.states.concludingRound.message += " Dealer reshuffling " + deck.numberOfDecks + " decks.";
+                }
+            },
             betRequest: function() {},
             addPlayer: function() {},
             splitRequest: function(requestData) {},
@@ -199,6 +202,7 @@ module.exports = {
                 if(board.numPlayers === 0) {
                     gameLoop.pauseLoop();
                 }
+                this.message = "Paying out players.";
             },
             betRequest: function() {},
             addPlayer: function() {},
@@ -208,7 +212,7 @@ module.exports = {
             doubleDownRequest: function() {},
             hideDealerCard: 0,
             message: "Paying out players.",
-            wait: 2000
+            wait: 3000
         } //Includes Paying Out & Announcing Winner
     },
     setState: function(state) {
