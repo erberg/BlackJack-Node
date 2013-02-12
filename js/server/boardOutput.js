@@ -11,6 +11,7 @@ module.exports = {
         this.boardOut.playerSitoutCounter = board.playerSitoutCounter;
         this.boardOut.tablePositions = board.tablePositions;
         this.boardOut.numPlayers = board.numPlayers;
+        this.boardOut.cardCountValue = board.cardCountValue;
         this.fillCardArray();
         if(typeof this.boardOut.playerCards[0][0][0] !== 'undefined' && gameState.currentState.hideDealerCard) {
             this.boardOut.playerCards[0][0][0] = "XX";

@@ -40,7 +40,12 @@
                         <button id="stand" class="btn btn-primary">Stand</button>
                         <button id="doubledown" class="btn btn-primary">Double-Down</button>
                         <button id="split" class="btn btn-primary">Split</button>
-
+                    </div>
+                    <div class="btn-group">
+                    <a class="btn btn-primary dropdown-toggle" data-toggle="dropdown"> Check Count <span class="caret"></span></a>
+                        <ul class="dropdown-menu">
+                            <li class="currentcount" style="margin-left: 10px">Current Count: 0</li>
+                        </ul>
                     </div>
                 </div>
             </div>

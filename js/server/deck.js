@@ -14,7 +14,6 @@ module.exports = {
             for(var i=0; i < 4; i += 1) {
                 for(var j=0; j < 13; j += 1) {
                     this.filledDeck.push(this.Cards[j] + "" +  this.Suits[i]);
-                    //document.write(this.Cards[j] + "" + this.Suits[i] + " ");
                 }
             }
         }
@@ -22,18 +21,10 @@ module.exports = {
 
     randomizeDeck: function() {
         var sacrificialDeck = this.filledDeck.slice(0);
-        //document.write(sacrificialDeck.length);
         for(var i = 0; i < this.filledDeck.length; i++) {
             rand = Math.floor(Math.random() * sacrificialDeck.length);
             this.randomizedDeck.push(sacrificialDeck.splice(rand, 1));
         }
-
-        this.randomizedDeck.push("5S");                 //THESE ARE TEMP FOR TESTING PURPOSES!!!
-        this.randomizedDeck.push("5S");                 //THESE ARE TEMP FOR TESTING PURPOSES!!!
-        this.randomizedDeck.push("5S");                 //THESE ARE TEMP FOR TESTING PURPOSES!!!
-        this.randomizedDeck.push("5H");                //THESE ARE TEMP FOR TESTING PURPOSES!!!
-        this.randomizedDeck.push("QS");                 //THESE ARE TEMP FOR TESTING PURPOSES!!!
-        this.randomizedDeck.push("10H");                //THESE ARE TEMP FOR TESTING PURPOSES!!!
     },
     getCard: function() {
         if(this.filledDeck.length > 0) {

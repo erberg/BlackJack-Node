@@ -14,6 +14,7 @@ module.exports = {
     playerChips: [0, 0, 0, 0, 0, 0, 0],
     playerSitoutCounter: [0, 0, 0, 0, 0, 0, 0],
     tablePositions: [1, 0, 0, 0, 0, 0, 0],
+    cardCountValue: 0,
     //Positions Dealer & Player 1-6
     numPlayers: 0,
     betRequest: function(id, betAmt) {
@@ -212,5 +213,24 @@ module.exports = {
             }
         }
         return 0;
+    },
+    countCards: function(){
+        for(playerIndex=0;playerIndex<7;playerIndex+=1){
+            for(handIndex=0;handIndex<4;handIndex+=1){
+                if(this.playerCards[playerIndex][handIndex] !== undefined) {
+                    var cardIndex=0;
+                        while(this.playerCards[playerIndex][handIndex][cardIndex]){
+                            this.cardCountValue+=this.getCountValue(this.playerCards[playerIndex][handIndex][cardIndex]);
+                            cardIndex+=1;
+                        }
+                    }
+            }
+        }
+    },
+    getCountValue: function(card){
+        var hiloCountValues={"2" : 1,"3" : 1,"4" : 1,"5" : 1,"6" : 1,"7" : 0,"8" : 0,"9" : 0,"10" : -1,"J" : -1,"Q" : -1,"K" : -1,"A" : -1};
+        //console.log("CARD: " + String(card) + " is worth " + hiloCountValues[String(card).slice(0,-1)]);
+        return hiloCountValues[String(card).slice(0,-1)]; //Slice Removes The Suit
     }
+
 };

@@ -36,7 +36,6 @@ module.exports = {
         this.loopIndex = 4;
     },
     pauseLoop: function() {
-        //clearTimeout(this.timeout);
         this.running = 0;
     },
     unPauseLoop: function() {

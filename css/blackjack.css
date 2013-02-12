@@ -1,5 +1,5 @@
 body {
-    padding-top: 60px; /* 60px to make the container go all the way to the bottom of the topbar */
+    padding-top: 40px; /* 60px to make the container go all the way to the bottom of the topbar */
     height:100%;
     width:100%;
     background-color:grey;
@@ -214,6 +214,7 @@ body {
 .btn-container
 {
     bottom:-30px;
+    left:250px;
     position:absolute;
     width:1000px;
 }

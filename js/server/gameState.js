@@ -188,6 +188,7 @@ module.exports = {
             endState: function() {
                 if(deck.shuffleRequired()) {
                     deck.refillDeck();
+                    board.cardCountValue=0;
                     gameState.states.concludingRound.message += " Dealer reshuffling " + deck.numberOfDecks + " decks.";
                 }
             },
@@ -204,6 +205,7 @@ module.exports = {
         concludingRound: {
             beginState: function() {},
             endState: function() {
+                board.countCards();
                 gameLogic.payOutWinners();
                 board.resetBoard();
                 if(board.numPlayers === 0) {

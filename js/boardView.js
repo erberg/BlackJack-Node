@@ -10,14 +10,25 @@ function displayBoard() {
     prepareChipsDisplay();
     prepareBetDisplay();
     displayMessage();
+    displayCount();
 }
 
-function clearTimers(){
-     $(".username-playerTimer").hide();
+function clearTimers() {
+    $(".username-playerTimer").hide();
 }
 
-function displayTimer(player,ms) {
-    $(".username-playerTimer").stop().eq(player).show().css("background-position",0).animate({'background-position' : '-110px'},ms);
+function displayCount() {
+    if(typeof glClientBoard.cardCountValue === "undefined") {
+        $(".currentcount").text("Current Count: 0");
+    } else {
+        $(".currentcount").text("Current Count: " + glClientBoard.cardCountValue);
+    }
+}
+
+function displayTimer(player, ms) {
+    $(".username-playerTimer").hide().stop().eq(player).css("background-position", 0).show().animate({
+        'background-position': '-110px'
+    }, ms);
 }
 
 function displayMessage() {
@@ -74,19 +85,17 @@ function prepareButtonDisplay() {
         }
     });
 
-    
+
     $("#scroller").each(function() {
-    var playerChips = glClientBoard.playerChips[glClientInfo.position];
-    var betAmt=glClientBoard.playerBets[glClientInfo.position];
-    if($('#betAmt').data('betamount')>(betAmt+playerChips))
-    {
-    $('#betAmt').text("Bet " + playerChips);
-    $('#betAmt').data('betamount', playerChips);
-    $(this).css("left",115);
-    }
-    //console.log("BOOOOOOOP: " + left);
+        var playerChips = glClientBoard.playerChips[glClientInfo.position];
+        var betAmt = glClientBoard.playerBets[glClientInfo.position];
+        if($('#betAmt').data('betamount') > (betAmt + playerChips)) {
+            $('#betAmt').text("Bet " + playerChips);
+            $('#betAmt').data('betamount', playerChips);
+            $(this).css("left", 115);
+        }
     });
-    
+
 
 }
 
