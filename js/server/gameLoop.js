@@ -49,6 +49,15 @@ module.exports = {
         gameState.setState(this.loopOrder[this.loopIndex]);
         board.setMessage(gameState.getMessage());
         gameState.getState().beginState();
-    }
+    },
+    sendTimerUpdate: function(player,ms){
+    var timer={};
+    timer.player=player-1;
+    timer.ms=ms;
+    this.io.sockets.emit('timerUpdate', timer);
+    },
+    sendClearTimersUpdate: function(){
+    this.io.sockets.emit('clearTimers');
+    } 
 
 };

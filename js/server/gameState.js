@@ -88,6 +88,7 @@ module.exports = {
                 if(board.nextPlayerOption()) {
                     console.log("playertimeouthasbeencalled");
                     gameState.currentState.playerOptionTimer = setTimeout(gameState.currentState.playerOptionTimeout, 5000);
+                    gameLoop.sendTimerUpdate(board.activePlayer,5000);
                 } else {
                     gameLoop.unPauseLoop();
                 }
@@ -97,8 +98,9 @@ module.exports = {
                 gameLoop.pauseLoop();
                 board.setFirstPlayer();
                 gameState.currentState.playerOptionTimer = setTimeout(gameState.currentState.playerOptionTimeout, 5000); //call default player action
+                gameLoop.sendTimerUpdate(board.activePlayer,5000);
             },
-            endState: function() {},
+            endState: function() {gameLoop.sendClearTimersUpdate();},
             betRequest: function() {},
             addPlayer: function() {},
             splitRequest: function(requestData) {
@@ -106,6 +108,7 @@ module.exports = {
                 if(splitSuccess) {
                     clearTimeout(gameState.currentState.playerOptionTimer);
                     gameState.currentState.playerOptionTimer = setTimeout(gameState.currentState.playerOptionTimeout, 5000);
+                    gameLoop.sendTimerUpdate(board.activePlayer,5000);
                 }
                 return splitSuccess;
             },
@@ -116,6 +119,7 @@ module.exports = {
                         if(board.nextPlayerOption()) {
                             clearTimeout(gameState.currentState.playerOptionTimer);
                             gameState.currentState.playerOptionTimer = setTimeout(gameState.currentState.playerOptionTimeout, 5000);
+                            gameLoop.sendTimerUpdate(board.activePlayer,5000);
                         } else {
                             clearTimeout(gameState.currentState.playerOptionTimer);
                             gameLoop.unPauseLoop();
@@ -123,6 +127,7 @@ module.exports = {
                     } else {
                         clearTimeout(gameState.currentState.playerOptionTimer);
                         gameState.currentState.playerOptionTimer = setTimeout(gameState.currentState.playerOptionTimeout, 5000);
+                        gameLoop.sendTimerUpdate(board.activePlayer,5000);
                     }
                 }
                 return hitSuccess;
@@ -133,6 +138,7 @@ module.exports = {
                     if(board.nextPlayerOption()) {
                         clearTimeout(gameState.currentState.playerOptionTimer);
                         gameState.currentState.playerOptionTimer = setTimeout(gameState.currentState.playerOptionTimeout, 5000);
+                        gameLoop.sendTimerUpdate(board.activePlayer,5000);
                     } else {
                         clearTimeout(gameState.currentState.playerOptionTimer);
                         gameLoop.unPauseLoop();
@@ -146,6 +152,7 @@ module.exports = {
                     if(board.nextPlayerOption()) {
                         clearTimeout(gameState.currentState.playerOptionTimer);
                         gameState.currentState.playerOptionTimer = setTimeout(gameState.currentState.playerOptionTimeout, 5000);
+                        gameLoop.sendTimerUpdate(board.activePlayer,5000);
                     } else {
                         clearTimeout(gameState.currentState.playerOptionTimer);
                         gameLoop.unPauseLoop();

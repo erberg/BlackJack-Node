@@ -12,6 +12,14 @@ function displayBoard() {
     displayMessage();
 }
 
+function clearTimers(){
+     $(".username-playerTimer").hide();
+}
+
+function displayTimer(player,ms) {
+    $(".username-playerTimer").stop().eq(player).show().css("background-position",0).animate({'background-position' : '-110px'},ms);
+}
+
 function displayMessage() {
     $(".message").empty().append('<p id="type">' + glClientBoard.currentMessage + '</p>');
 }

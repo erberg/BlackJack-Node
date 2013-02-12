@@ -74,7 +74,6 @@ io.sockets.on('connection', function(socket) {
 
 });
 
-
 function getClientInfo(id) {
     var clientInfo = {};
     if(clientInfo.position = board.getPlayerIndex(id)) {

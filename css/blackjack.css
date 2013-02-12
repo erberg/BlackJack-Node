@@ -140,6 +140,33 @@ body {
 
 }
 .username-Player{
+    -moz-border-radius: 15px;
+    border-radius: 15px;
+    color:white;
+    position:absolute;
+    bottom:-40px;
+    width: 110px;
+    height:20px;
+    overflow: hidden;
+    text-align:center;
+    z-index: 5;
+}
+.username-playerTimer{
+    background-image: url(../graphics/timerblock.png);
+    background-position: -110px;
+    -moz-border-radius: 15px;
+    border-radius: 15px;
+    color:white;
+    position:absolute;
+    bottom:-40px;
+    width: 110px;
+    height:20px;
+    overflow: hidden;
+    text-align:center;
+    z-index: 4;
+}
+
+.username-BG{
     background-color:black;
     -moz-border-radius: 15px;
     border-radius: 15px;
@@ -150,7 +177,9 @@ body {
     height:20px;
     overflow: hidden;
     text-align:center;
+    z-index: 3;
 }
+
 .chips-Player{
     color:black;
     position:absolute;
