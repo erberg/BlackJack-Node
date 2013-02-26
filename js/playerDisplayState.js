@@ -70,20 +70,8 @@ var playerDisplayState = {
     },
 
     selectDisplayState: function(hands) {
-        switch(hands) {
-        case 1:
-            this.setState("oneHand");
-            break;
-        case 2:
-            this.setState("twoHands");
-            break;
-        case 3:
-            this.setState("threeHands");
-            break;
-        case 4:
-            this.setState("fourHands");
-            break;
-        }
+        var handArray=["","oneHand","twoHands", "threeHands", "fourHands"];
+        this.setState(handArray[hands]);
     },
 
     getState: function() {
