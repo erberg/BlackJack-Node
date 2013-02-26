@@ -58,7 +58,7 @@ module.exports = {
             doubleDownRequest: function() {},
             hideDealerCard: 1,
             message: "Please place your bet.",
-            wait: 5000
+            wait: 10000
         },
         checkingForDealerBlackJack: {
             beginState: function() {
@@ -80,15 +80,15 @@ module.exports = {
             doubleDownRequest: function() {},
             hideDealerCard: 1,
             message: "Checking for dealer blackjack.",
-            wait: 2000 //4000
+            wait: 4000 //4000
         },
         acceptingPlayerOptions: {
             playerOptionTimer: "0",
             playerOptionTimeout: function() {
                 if(board.nextPlayerOption()) {
                     console.log("playertimeouthasbeencalled");
-                    gameState.currentState.playerOptionTimer = setTimeout(gameState.currentState.playerOptionTimeout, 5000);
-                    gameLoop.sendTimerUpdate(board.activePlayer,5000);
+                    gameState.currentState.playerOptionTimer = setTimeout(gameState.currentState.playerOptionTimeout, 10000);
+                    gameLoop.sendTimerUpdate(board.activePlayer,10000);
                 } else {
                     gameLoop.unPauseLoop();
                 }
@@ -97,8 +97,8 @@ module.exports = {
             beginState: function() {
                 gameLoop.pauseLoop();
                 board.setFirstPlayer();
-                gameState.currentState.playerOptionTimer = setTimeout(gameState.currentState.playerOptionTimeout, 5000); //call default player action
-                gameLoop.sendTimerUpdate(board.activePlayer,5000);
+                gameState.currentState.playerOptionTimer = setTimeout(gameState.currentState.playerOptionTimeout, 10000); //call default player action
+                gameLoop.sendTimerUpdate(board.activePlayer,10000);
             },
             endState: function() {gameLoop.sendClearTimersUpdate();},
             betRequest: function() {},
@@ -107,8 +107,8 @@ module.exports = {
                 var splitSuccess = board.splitRequest(requestData["clientID"]);
                 if(splitSuccess) {
                     clearTimeout(gameState.currentState.playerOptionTimer);
-                    gameState.currentState.playerOptionTimer = setTimeout(gameState.currentState.playerOptionTimeout, 5000);
-                    gameLoop.sendTimerUpdate(board.activePlayer,5000);
+                    gameState.currentState.playerOptionTimer = setTimeout(gameState.currentState.playerOptionTimeout, 10000);
+                    gameLoop.sendTimerUpdate(board.activePlayer,10000);
                 }
                 return splitSuccess;
             },
@@ -118,16 +118,16 @@ module.exports = {
                     if(gameLogic.handValue(board.getActiveHand()) >= 21) {
                         if(board.nextPlayerOption()) {
                             clearTimeout(gameState.currentState.playerOptionTimer);
-                            gameState.currentState.playerOptionTimer = setTimeout(gameState.currentState.playerOptionTimeout, 5000);
-                            gameLoop.sendTimerUpdate(board.activePlayer,5000);
+                            gameState.currentState.playerOptionTimer = setTimeout(gameState.currentState.playerOptionTimeout, 10000);
+                            gameLoop.sendTimerUpdate(board.activePlayer,10000);
                         } else {
                             clearTimeout(gameState.currentState.playerOptionTimer);
                             gameLoop.unPauseLoop();
                         }
                     } else {
                         clearTimeout(gameState.currentState.playerOptionTimer);
-                        gameState.currentState.playerOptionTimer = setTimeout(gameState.currentState.playerOptionTimeout, 5000);
-                        gameLoop.sendTimerUpdate(board.activePlayer,5000);
+                        gameState.currentState.playerOptionTimer = setTimeout(gameState.currentState.playerOptionTimeout, 10000);
+                        gameLoop.sendTimerUpdate(board.activePlayer,10000);
                     }
                 }
                 return hitSuccess;
@@ -137,8 +137,8 @@ module.exports = {
                 if(standSuccess) {
                     if(board.nextPlayerOption()) {
                         clearTimeout(gameState.currentState.playerOptionTimer);
-                        gameState.currentState.playerOptionTimer = setTimeout(gameState.currentState.playerOptionTimeout, 5000);
-                        gameLoop.sendTimerUpdate(board.activePlayer,5000);
+                        gameState.currentState.playerOptionTimer = setTimeout(gameState.currentState.playerOptionTimeout, 10000);
+                        gameLoop.sendTimerUpdate(board.activePlayer,10000);
                     } else {
                         clearTimeout(gameState.currentState.playerOptionTimer);
                         gameLoop.unPauseLoop();
@@ -151,8 +151,8 @@ module.exports = {
                 if(doubleDownSuccess) {
                     if(board.nextPlayerOption()) {
                         clearTimeout(gameState.currentState.playerOptionTimer);
-                        gameState.currentState.playerOptionTimer = setTimeout(gameState.currentState.playerOptionTimeout, 5000);
-                        gameLoop.sendTimerUpdate(board.activePlayer,5000);
+                        gameState.currentState.playerOptionTimer = setTimeout(gameState.currentState.playerOptionTimeout, 10000);
+                        gameLoop.sendTimerUpdate(board.activePlayer,10000);
                     } else {
                         clearTimeout(gameState.currentState.playerOptionTimer);
                         gameLoop.unPauseLoop();
