@@ -13,7 +13,6 @@
     </head>
 
     <body>
-
         <div class="table-container">
             <div class="card-table">
                 <div class="left-card-table"></div>
@@ -94,5 +93,6 @@
             })
             
         </script>
+        <div class="imageloader"><img src="/graphics/deck.png"/></div>
     </body>
 </html>

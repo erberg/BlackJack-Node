@@ -1,9 +1,19 @@
+/*
+ * Blackjack.css
+ * Designed and built by Eric R. Berg
+ */
+
 body {
-    padding-top: 40px; /* 60px to make the container go all the way to the bottom of the topbar */
+    margin-top: 40px; /* 60px to make the container go all the way to the bottom of the topbar */
     height:100%;
     width:100%;
-    background-color:grey;
+    background-color:gray;
 }
+
+.imageloader{
+display: none;
+}
+
 .spacer{
     width:100%;
     min-height:50px;
@@ -115,7 +125,7 @@ body {
     top:40px;
 }
 .card-container{
-    background-size:cover;
+    /*background-size:cover;*/
     background-color:black;
     width:90px;
     height:125.2px;

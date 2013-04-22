@@ -56,9 +56,7 @@ var playerDisplayState = {
 
         },
     },
-    getZIndex: function(currentPosition, currentHand) {
-        //if(playerDisplayState.activeHand(currentPosition,currentHand)){var cssindex="; z-index: 3";} //PUTS ACTIVE CARDS IN FRONT... DOESNT LOOK VERY NICE
-        //else {var cssindex="";}                                                                       
+    getZIndex: function(currentPosition, currentHand) {                                                                    
         var cssindex = "";
         return cssindex;
     },
