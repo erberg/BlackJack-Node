@@ -1,5 +1,4 @@
-
-
+This is a multiplayer blackjack game demo that is currently being hosted at blackjack.ericrberg.com.
 
 
 
