@@ -1,4 +1,4 @@
-This is a multiplayer blackjack game demo written primarily in node.js and javsscript.
+This is a multiplayer blackjack game demo written primarily in node.js and javascript.
 
 It is currently being hosted at blackjack.ericrberg.com. Please note that this is still a work in progress - check back for updated versions.
 
